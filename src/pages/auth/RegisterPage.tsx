@@ -17,7 +17,7 @@ export default function RegisterPage() {
         try {
             const res = await AuthService.register(username, email, password)
             if(res.status === 200){
-                toast.success('User created successfully')
+                toast.success(res.data.message)
                 navigate('/login')
             }
         } catch (error:any) {
