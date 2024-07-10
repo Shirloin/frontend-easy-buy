@@ -3,24 +3,29 @@ import Layout from "../../components/Layout";
 import { ChangeEvent, useState } from "react";
 import AuthService from "../../services/AuthService";
 import toast from "react-hot-toast";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function LoginPage() {
 
     const navigate = useNavigate()
-
+    
+    const {setToken, setUser} = useAuth()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
 
     const handleSubmit = async () => {
         try {
             const res = await AuthService.login(username, password)
             if (res.status === 200) {
+                setToken(res.data.token)
+                setUser(res.data.user)
                 toast.success(res.data.message)
                 navigate('/')
             }
         } catch (error: any) {
             if (error.response) {
-                const msg = error.response.data.errors[0].msg
+                const msg = error.response.data.message
                 toast.error(msg)
             }
         }

@@ -1,12 +1,15 @@
 import { Toaster } from "react-hot-toast"
 import AppRoutes from "./routes/AppRoutes"
+import { AuthProvider } from "./contexts/AuthContext"
 
 function App() {
 
   return (
     <>
-      <Toaster />
-      <AppRoutes />
+      <AuthProvider>
+        <Toaster />
+        <AppRoutes />
+      </AuthProvider>
     </>
   )
 }

@@ -22,7 +22,7 @@ export default function RegisterPage() {
             }
         } catch (error:any) {
             if(error.response){
-                const msg = error.response.data.errors[0].msg
+                const msg = error.response.data.message
                 toast.error(msg)
             }
         }
