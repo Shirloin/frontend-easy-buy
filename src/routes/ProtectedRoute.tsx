@@ -1,11 +1,15 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
+// import Layout from "../components/Layout"
+// import Navbar from "../components/Navbar"
 
-export const ProtectedRoute = () =>{
-    const {token} = useAuth()
+export const ProtectedRoute = () => {
+    const { token } = useAuth()
+    const location = useLocation()
 
-    if(!token){
-        return <Navigate to="/login"/>
-    }
-    return <Outlet/>
+    return token ? (
+            <Outlet />
+    ) : (
+        <Navigate to="/login" state={{ from: location }} replace />
+    )
 }

@@ -1,50 +1,21 @@
-import { Route , Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import LoginPage from '../pages/auth/LoginPage'
 import RegisterPage from '../pages/auth/RegisterPage'
 import HomePage from '../pages/HomePage'
 import { ProtectedRoute } from './ProtectedRoute'
+import Layout from '../components/Layout'
 export default function AppRoutes() {
-
-
-    // const authenticatedRoutes = [
-    //     {
-    //         path: '/',
-    //         element: <ProtectedRoute/>,
-    //         children: [
-    //             {
-    //                 path: '/',
-    //                 element: <HomePage/>
-    //             }
-    //         ]
-    //     }
-    // ]
-
-    // const notAuthenticatedRoutes = [
-    //     {
-    //         path: '/login',
-    //         element: <LoginPage/>
-    //     },
-    //     {
-    //         path: '/register',
-    //         element: <RegisterPage/>
-    //     },
-
-    // ]
-
-    // const router = createBrowserRouter([
-    //     ...authenticatedRoutes,
-    //     ...(!token ? notAuthenticatedRoutes : []),
-    // ])
-
-    // return <RouterProvider router={router}/>
 
     return (
         <Routes>
-            <Route path='/' element={<ProtectedRoute />}>
-                <Route path='/' element={<HomePage />} />
+            <Route path='/' element={<Layout />}>
+                <Route path='login' element={<LoginPage />} />
+                <Route path='register' element={<RegisterPage />} />
+
+                <Route element={<ProtectedRoute />}>
+                    <Route path='/' element={<HomePage />} />
+                </Route>
             </Route>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/register' element={<RegisterPage />} />
         </Routes>
     )
 }
