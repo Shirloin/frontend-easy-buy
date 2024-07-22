@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             localStorage.setItem('authentication', token)
         } else {
             delete axios.defaults.headers.common['Authorization']
-            localStorage.removeItem('authorization')
+            localStorage.removeItem('authentication')
         }
     }, [token])
 
