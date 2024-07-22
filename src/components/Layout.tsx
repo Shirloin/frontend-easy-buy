@@ -5,8 +5,10 @@ export default function Layout() {
     return (
         <>
             <div className="min-h-screen w-full flex flex-col">
-                <Navbar/>
-                <Outlet/>
+                <Navbar />
+                <div className="mt-16 ">
+                    <Outlet />
+                </div>
             </div>
         </>
     )

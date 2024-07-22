@@ -10,8 +10,8 @@ export default function AppRoutes() {
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
+                <Route index element={<HomePage />} />
                 <Route element={<ProtectedRoute />}>
-                    <Route path='/' element={<HomePage />} />
                 </Route>
             </Route>
             <Route element={<GuestRoute />} >

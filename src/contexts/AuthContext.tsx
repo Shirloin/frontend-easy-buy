@@ -7,6 +7,7 @@ type AuthContextType = {
     setToken: (newToken: string) => void
     user: IUser | null,
     setUser: (newUser: IUser) => void
+    isAuthenticated: boolean
 }
 
 const initAuthContextValue: AuthContextType = {
@@ -14,6 +15,7 @@ const initAuthContextValue: AuthContextType = {
     setToken: () => null,
     user: null,
     setUser: () => null,
+    isAuthenticated: false
 }
 
 const AuthContext = createContext<AuthContextType>(initAuthContextValue)
@@ -25,6 +27,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [token, setToken_] = useState(localStorage.getItem("authentication"))
     const [user, setUser_] = useState<IUser | null>(null)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }
@@ -37,15 +40,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (token) {
             axios.defaults.headers.common['Authorization'] = "Bearer " + token
             localStorage.setItem('authentication', token)
+            setIsAuthenticated(true)
         } else {
             delete axios.defaults.headers.common['Authorization']
             localStorage.removeItem('authentication')
+            setIsAuthenticated(false)
         }
     }, [token])
 
     const contextValue = useMemo(
         () => ({
-            token, setToken, user, setUser
+            token, setToken, user, setUser, isAuthenticated
         }),
         [token]
     )
