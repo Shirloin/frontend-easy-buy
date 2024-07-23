@@ -10,9 +10,9 @@ export default function Navbar() {
     return (
         <>
             <nav className="fixed h-20 flex w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
-                <a className="font-serif text-3xl font-semibold text-primary" href="/">
+                <Link className="font-serif text-3xl font-semibold text-primary " to="/">
                     comxmart
-                </a>
+                </Link>
                 <input
                     className="w-full rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
                     placeholder="Search..."
@@ -33,10 +33,10 @@ export default function Navbar() {
                                 </button>
                             </div>
                             <div className="flex">
-                                <button className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
+                                <Link to={"/seller"} className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
                                     <CiShop className="h-6 w-6" />
                                     <p className="text-sm font-semibold">Shop</p>
-                                </button>
+                                </Link>
                                 <button className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
                                     <div className="avatar">
                                         <div className="w-6 rounded-full">

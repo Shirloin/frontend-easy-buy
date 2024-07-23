@@ -4,9 +4,11 @@ import Sidebar from "./Sidebar";
 export default function SellerLayout() {
     return (
         <>
-            <div className="flex">
+            <div className="flex flex-grow">
                 <Sidebar />
-                <Outlet />
+                <div className="ml-56 flex flex-grow">
+                    <Outlet />
+                </div>
             </div>
         </>
     )

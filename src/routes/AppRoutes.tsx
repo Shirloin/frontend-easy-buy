@@ -7,6 +7,7 @@ import Layout from '../components/Layout'
 import { GuestRoute } from './GuestRoute'
 import SellerLayout from '../components/seller/SellerLayout'
 import SellerDashboardPage from '../pages/seller/DashboardPage'
+import AddProductPage from '../pages/seller/AddProductPage'
 export default function AppRoutes() {
 
     return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
                 <Route index element={<HomePage />} />
                 <Route path='seller' element={<SellerLayout />}>
                     <Route index element={<SellerDashboardPage />} />
+                    <Route path='add-product' element={<AddProductPage />} />
                 </Route>
                 <Route element={<ProtectedRoute />}>
                 </Route>
