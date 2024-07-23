@@ -25,9 +25,10 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [token, setToken_] = useState(localStorage.getItem("authentication"))
+    const initialToken = localStorage.getItem("authentication");
+    const [token, setToken_] = useState<string | null>(initialToken)
     const [user, setUser_] = useState<IUser | null>(null)
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialToken)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }

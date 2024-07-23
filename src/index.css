@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-  button {
-    @apply rounded-lg px-6 py-2 text-center text-sm font-bold;
+  a {
+    @apply text-black no-underline hover:text-black focus:outline-none;
+  }
+  .nav-auth-btn {
+    @apply flex max-w-20 items-center justify-center rounded-lg px-6 py-2 text-center text-sm font-bold;
   }
   input {
     @apply focus:outline-none;

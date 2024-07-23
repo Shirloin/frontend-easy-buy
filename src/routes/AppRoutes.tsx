@@ -5,12 +5,17 @@ import HomePage from '../pages/HomePage'
 import { ProtectedRoute } from './ProtectedRoute'
 import Layout from '../components/Layout'
 import { GuestRoute } from './GuestRoute'
+import SellerLayout from '../components/seller/SellerLayout'
+import SellerDashboardPage from '../pages/seller/DashboardPage'
 export default function AppRoutes() {
 
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
                 <Route index element={<HomePage />} />
+                <Route path='seller' element={<SellerLayout />}>
+                    <Route index element={<SellerDashboardPage />} />
+                </Route>
                 <Route element={<ProtectedRoute />}>
                 </Route>
             </Route>
