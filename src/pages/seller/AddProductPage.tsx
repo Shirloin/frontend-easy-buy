@@ -3,7 +3,6 @@ import ProductImageForm from "../../components/seller/add-product-page/ProductIm
 import ProductVariantForm from "../../components/seller/add-product-page/ProductVariantForm";
 
 export default function AddProductPage() {
-
     return (
         <>
             <div className="mx-auto w-full max-w-4xl py-6">
@@ -11,9 +10,13 @@ export default function AddProductPage() {
                 <ProductDetailForm />
                 <ProductImageForm />
                 <ProductVariantForm />
-                <div className="flex justify-end gap-4 mt-4 ">
-                    <button className="text-gray-500 ring-1 font-bold  ring-gray-300 max-w-40 px-16 py-2 rounded-md text-sm">Cancel</button>
-                    <button className="text-white bg-primary  font-bold   max-w-40 px-16 py-2 rounded-md text-sm">Save</button>
+                <div className="mt-4 flex justify-end gap-4">
+                    <button className="max-w-28 rounded-md px-12 py-2 text-sm font-bold text-gray-500 ring-1 ring-gray-300">
+                        Cancel
+                    </button>
+                    <button className="max-w-28 rounded-md bg-primary px-12 py-2 text-sm font-bold text-white">
+                        Save
+                    </button>
                 </div>
             </div>
         </>

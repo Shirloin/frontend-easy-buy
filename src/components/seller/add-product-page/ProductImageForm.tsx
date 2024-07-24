@@ -2,9 +2,7 @@ import { useState } from "react";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 export default function ProductImageForm() {
-
-    const [images, setImages] = useState(Array(5).fill(null))
-
+    const [images, setImages] = useState(Array(5).fill(null));
 
     return (
         <>
@@ -17,13 +15,10 @@ export default function ProductImageForm() {
                             px.
                         </p>
                     </div>
-                    <div className="w-full flex flex-wrap gap-4">
-                        {
-                            images.map((image, index) => (
-                                <ProductImageSelector index={index + 1} key={index} />
-
-                            ))
-                        }
+                    <div className="flex w-full flex-wrap gap-4">
+                        {images.map((image, index) => (
+                            <ProductImageSelector index={index + 1} key={index} />
+                        ))}
                     </div>
                 </div>
             </div>

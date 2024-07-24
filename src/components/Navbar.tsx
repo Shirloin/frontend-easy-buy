@@ -9,7 +9,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed h-20 flex w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
+            <nav className="fixed z-50 h-20 flex w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
                 <Link className="font-serif text-3xl font-semibold text-primary " to="/">
                     comxmart
                 </Link>
