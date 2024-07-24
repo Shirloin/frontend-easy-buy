@@ -8,7 +8,7 @@ export default function RegisterShopPage() {
                     <div className="relative ">
                         <img className="w-full h-60 rounded-md" src="https://plus.unsplash.com/premium_photo-1670738772747-c81429db3725?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyfHx8ZW58MHx8fHx8" alt="" />
 
-                        <label className="group absolute -bottom-16 left-32 rounded-full cursor-pointer">
+                        <label className="group absolute -bottom-12 left-32 rounded-full cursor-pointer">
                             <input className="hidden" type="file" accept="image/*" />
                             <div className="w-fit h-fit relative rounded-full">
                                 <div className="hidden group-hover:flex absolute inset-0 group-hover:bg-black group-hover:bg-opacity-70 rounded-full place-content-center ">
@@ -22,7 +22,7 @@ export default function RegisterShopPage() {
                             <p>Select Photo</p>
                         </label>
                     </div>
-                    <div className="p-6 w-full flex flex-col gap-10 mt-10">
+                    <div className="p-6 w-full flex flex-col gap-6 mt-6">
                         <div className="flex items-center gap-10 ">
                             <div className="max-w-60 w-full">
                                 <h1 className="font-bold text-xl">Shop Name</h1>
