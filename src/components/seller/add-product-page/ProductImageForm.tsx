@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 export default function ProductImageForm() {
+
+    const [images, setImages] = useState(Array(5).fill(null))
+
+
     return (
         <>
             <div className="shadow-all-sides mt-4 flex w-full flex-col gap-6 rounded-md p-6">
@@ -13,7 +18,12 @@ export default function ProductImageForm() {
                         </p>
                     </div>
                     <div className="w-full flex flex-wrap gap-4">
-                        <ProductImageSelector />
+                        {
+                            images.map((image, index) => (
+                                <ProductImageSelector index={index + 1} key={index} />
+
+                            ))
+                        }
                     </div>
                 </div>
             </div>
@@ -21,13 +31,13 @@ export default function ProductImageForm() {
     );
 }
 
-function ProductImageSelector() {
+function ProductImageSelector({ index }: { index: number }) {
     return (
         <>
             <label className="flex h-28 w-28 flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-300 text-center hover:cursor-pointer hover:border-primary">
                 <input className="hidden" type="file" accept="image/*" />
                 <MdOutlineAddPhotoAlternate className="h-8 w-8" />
-                <p className="font-semibold">Photo 1</p>
+                <p className="font-semibold">Photo {index}</p>
             </label>
         </>
     );
