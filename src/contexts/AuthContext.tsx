@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import IUser from "../interfaces/IUser";
+import AuthService from "../services/AuthService";
 
 type AuthContextType = {
     token: string | null

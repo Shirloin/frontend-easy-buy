@@ -5,8 +5,10 @@ export const GuestRoute = () => {
     const { isAuthenticated } = useAuth()
     const location = useLocation()
 
+    const from = location.state?.from || "/";
+
     return isAuthenticated ? (
-        <Navigate to="/" state={{ from: location }} replace />
+        <Navigate to={from} state={{ from: location }} replace />
     ) : (
         <Outlet />
     )

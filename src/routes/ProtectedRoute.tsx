@@ -2,11 +2,11 @@ import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 
 export const ProtectedRoute = () => {
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, token } = useAuth()
     const location = useLocation()
 
     return isAuthenticated ? (
-            <Outlet />
+        <Outlet />
     ) : (
         <Navigate to="/login" state={{ from: location }} replace />
     )
