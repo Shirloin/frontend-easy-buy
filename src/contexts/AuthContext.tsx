@@ -9,6 +9,8 @@ type AuthContextType = {
     user: IUser | null,
     setUser: (newUser: IUser) => void
     isAuthenticated: boolean
+    isLoading: boolean
+    setIsLoading: (val: boolean) => void
 }
 
 const initAuthContextValue: AuthContextType = {
@@ -16,7 +18,9 @@ const initAuthContextValue: AuthContextType = {
     setToken: () => null,
     user: null,
     setUser: () => null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    isLoading: false,
+    setIsLoading: () => null
 }
 
 const AuthContext = createContext<AuthContextType>(initAuthContextValue)
@@ -30,6 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [token, setToken_] = useState<string | null>(initialToken)
     const [user, setUser_] = useState<IUser | null>(null)
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialToken)
+    const [isLoading, setIsLoading] = useState(false)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }
@@ -40,21 +45,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         if (token) {
+            setIsAuthenticated(true)
             axios.defaults.headers.common['Authorization'] = "Bearer " + token
             localStorage.setItem('authentication', token)
-            setIsAuthenticated(true)
         } else {
+            setIsAuthenticated(false)
             delete axios.defaults.headers.common['Authorization']
             localStorage.removeItem('authentication')
-            setIsAuthenticated(false)
         }
     }, [token])
 
     const contextValue = useMemo(
         () => ({
-            token, setToken, user, setUser, isAuthenticated
+            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading
         }),
-        [token]
+        [token, user, isAuthenticated, isLoading]
     )
 
     return (

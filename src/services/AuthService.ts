@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export default class AuthService {
-  static async getToken() {
-    return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/token`);
+  static async validate_token() {
+    return await axios.get(
+      `${import.meta.env.VITE_API_BASE_URL}/api/validate_token`,
+    );
   }
 
   static async register(username: string, email: string, password: string) {
@@ -20,5 +22,9 @@ export default class AuthService {
       username,
       password,
     });
+  }
+
+  static async logOut() {
+    return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/logout`);
   }
 }

@@ -15,20 +15,17 @@ export default function AppRoutes() {
     return (
         <Routes>
             <Route path='/' element={<Layout />}>
-                <Route index element={<HomePage />} />
 
                 <Route element={<ProtectedRoute />}>
+                    <Route index element={<HomePage />} />
                     <Route path='/create-shop' element={<RegisterShopPage />} />
                     <Route path='seller' element={<SellerLayout />}>
-
                         <Route element={<SellerRoute />}>
                             <Route index element={<SellerDashboardPage />} />
                             <Route path='add-product' element={<AddProductPage />} />
                         </Route>
                     </Route>
                 </Route>
-
-
             </Route>
             <Route element={<GuestRoute />} >
                 <Route path='login' element={<LoginPage />} />

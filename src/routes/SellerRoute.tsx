@@ -1,29 +1,22 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom"
-import { useAuth } from "../contexts/AuthContext"
 import { useEffect, useState } from "react"
-import UserService from "../services/UserService"
+import ShopService from "../services/ShopService"
 
 export const SellerRoute = () => {
-    const { user } = useAuth()
     const [hasShop, setHasShop] = useState(false)
     const location = useLocation()
 
     useEffect(() => {
-        if (user) {
-            const checkHasShop = async () => {
-                try {
-                    const response = await UserService.getShop(user._id);
-                    setHasShop(response.data !== null);
-                } catch (error) {
-                    console.error("Failed to check shop existence", error);
-                    setHasShop(false);
-                }
-            };
-            checkHasShop();
-        } else {
-            setHasShop(false);
-        }
-    }, [user])
+        const checkHasShop = async () => {
+            try {
+                const response = await ShopService.getUserShop();
+                setHasShop(response.data.shop !== null);
+            } catch (error) {
+                setHasShop(false);
+            }
+        };
+        checkHasShop();
+    }, [])
 
     return hasShop ? (
         <Outlet />
