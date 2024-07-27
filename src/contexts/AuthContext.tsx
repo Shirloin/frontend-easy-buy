@@ -1,7 +1,6 @@
 import axios from "axios";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import IUser from "../interfaces/IUser";
-import AuthService from "../services/AuthService";
 
 type AuthContextType = {
     token: string | null
@@ -11,6 +10,8 @@ type AuthContextType = {
     isAuthenticated: boolean
     isLoading: boolean
     setIsLoading: (val: boolean) => void
+    hasShop: boolean
+    setHasShop: (val: boolean) => void
 }
 
 const initAuthContextValue: AuthContextType = {
@@ -20,7 +21,9 @@ const initAuthContextValue: AuthContextType = {
     setUser: () => null,
     isAuthenticated: false,
     isLoading: false,
-    setIsLoading: () => null
+    setIsLoading: () => null,
+    hasShop: false,
+    setHasShop: () => null
 }
 
 const AuthContext = createContext<AuthContextType>(initAuthContextValue)
@@ -35,6 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser_] = useState<IUser | null>(null)
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialToken)
     const [isLoading, setIsLoading] = useState(false)
+    const [hasShop, setHasShop] = useState<boolean>(user?.shop !== null)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }
@@ -46,10 +50,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         if (token) {
             setIsAuthenticated(true)
+            setHasShop(user?.shop !== null)
             axios.defaults.headers.common['Authorization'] = "Bearer " + token
             localStorage.setItem('authentication', token)
         } else {
             setIsAuthenticated(false)
+            setHasShop(false)
             delete axios.defaults.headers.common['Authorization']
             localStorage.removeItem('authentication')
         }
@@ -57,9 +63,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const contextValue = useMemo(
         () => ({
-            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading
+            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop
         }),
-        [token, user, isAuthenticated, isLoading]
+        [token, user, isAuthenticated, isLoading, hasShop]
     )
 
     return (

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import AuthService from "../services/AuthService"
 
 export const ProtectedRoute = () => {
-    const { isAuthenticated, token, setToken } = useAuth()
+    const { isAuthenticated, token, setToken, hasShop } = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -22,6 +22,9 @@ export const ProtectedRoute = () => {
         }
         validateToken()
     }, [])
+    if (location.pathname === "/create-shop" && hasShop) {
+        return <Navigate to="/seller" state={{ from: location }} replace />
+    }
 
     return isAuthenticated ? (
         <Outlet />
