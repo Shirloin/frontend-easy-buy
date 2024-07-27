@@ -4,7 +4,7 @@ import ShopService from "../services/ShopService"
 import { useAuth } from "../contexts/AuthContext"
 
 export const SellerRoute = () => {
-    const { hasShop, setHasShop } = useAuth()
+    const { hasShop, setHasShop, setShop } = useAuth()
     const location = useLocation()
 
     useEffect(() => {
@@ -14,9 +14,11 @@ export const SellerRoute = () => {
                 const shop = response.data.shop
                 if (shop != null) {
                     setHasShop(true)
+                    setShop(shop)
                 }
                 else {
                     setHasShop(false);
+                    setShop(null)
                 }
             } catch (error) {
                 console.log(error)

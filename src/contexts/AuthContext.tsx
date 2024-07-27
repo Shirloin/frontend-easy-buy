@@ -1,12 +1,15 @@
 import axios from "axios";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import IUser from "../interfaces/IUser";
+import { IShop } from "../interfaces/IShop";
 
 type AuthContextType = {
     token: string | null
     setToken: (newToken: string) => void
     user: IUser | null,
     setUser: (newUser: IUser) => void
+    shop: IShop | null | undefined,
+    setShop: (newShop: IShop | null | undefined) => void
     isAuthenticated: boolean
     isLoading: boolean
     setIsLoading: (val: boolean) => void
@@ -19,6 +22,8 @@ const initAuthContextValue: AuthContextType = {
     setToken: () => null,
     user: null,
     setUser: () => null,
+    shop: null,
+    setShop: () => null,
     isAuthenticated: false,
     isLoading: false,
     setIsLoading: () => null,
@@ -39,6 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialToken)
     const [isLoading, setIsLoading] = useState(false)
     const [hasShop, setHasShop] = useState<boolean>(user?.shop !== null)
+    const [shop, setShop] = useState<IShop | null | undefined>(user?.shop)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }
@@ -63,9 +69,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const contextValue = useMemo(
         () => ({
-            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop
+            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop, shop, setShop
         }),
-        [token, user, isAuthenticated, isLoading, hasShop]
+        [token, user, isAuthenticated, isLoading, hasShop, shop]
     )
 
     return (

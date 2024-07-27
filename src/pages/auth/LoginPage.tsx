@@ -8,7 +8,7 @@ export default function LoginPage() {
 
     const navigate = useNavigate()
 
-    const { setToken, setUser, isLoading, setIsLoading, isAuthenticated } = useAuth()
+    const { setToken, setUser, isLoading, setIsLoading, isAuthenticated, setShop } = useAuth()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -20,6 +20,7 @@ export default function LoginPage() {
             if (res.status === 200) {
                 setToken(res.data.token)
                 setUser(res.data.user)
+                setShop(res.data.user.shop)
                 toast.success(res.data.message)
             }
         } catch (error: any) {

@@ -5,7 +5,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiMail, CiShop } from "react-icons/ci";
 
 export default function Navbar() {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, shop } = useAuth();
 
     return (
         <>
@@ -35,7 +35,7 @@ export default function Navbar() {
                             <div className="flex">
                                 <Link to={"/seller"} className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
                                     <CiShop className="h-6 w-6" />
-                                    <p className="text-sm font-semibold">Shop</p>
+                                    <p className="text-sm font-semibold">{shop ? shop.name : "Shop"}</p>
                                 </Link>
                                 <button className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
                                     <div className="avatar">
