@@ -11,6 +11,7 @@ export const ProtectedRoute = () => {
     useEffect(() => {
         const validateToken = async () => {
             try {
+                console.log("validate token")
                 const response = await AuthService.validate_token()
             } catch (error: any) {
                 if (error.response.status === 403) {
