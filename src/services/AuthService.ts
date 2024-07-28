@@ -1,9 +1,15 @@
 import axios from "axios";
+import { useAuth } from "../contexts/AuthContext";
 
 export default class AuthService {
-  static async validate_token() {
-    return await axios.get(
+  static validate_token() {
+    return axios.get(
       `${import.meta.env.VITE_API_BASE_URL}/api/validate_token`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authentication"),
+        },
+      },
     );
   }
 
@@ -25,6 +31,10 @@ export default class AuthService {
   }
 
   static async logOut() {
-    return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/logout`);
+    return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/logout`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authentication"),
+      },
+    });
   }
 }

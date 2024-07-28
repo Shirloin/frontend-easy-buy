@@ -55,14 +55,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         if (token) {
+            axios.defaults.headers.common['Authorization'] = "Bearer " + token
             setIsAuthenticated(true)
             setHasShop(user?.shop !== null)
-            axios.defaults.headers.common['Authorization'] = "Bearer " + token
             localStorage.setItem('authentication', token)
         } else {
+            delete axios.defaults.headers.common['Authorization']
             setIsAuthenticated(false)
             setHasShop(false)
-            delete axios.defaults.headers.common['Authorization']
             localStorage.removeItem('authentication')
         }
     }, [token])
