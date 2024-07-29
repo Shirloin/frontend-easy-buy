@@ -1,8 +1,23 @@
+import { useState } from "react";
 import ProductDetailForm from "../../components/seller/add-product-page/ProductDetailForm";
 import ProductImageForm from "../../components/seller/add-product-page/ProductImageForm";
 import ProductVariantForm from "../../components/seller/add-product-page/ProductVariantForm";
+import useProductStore from "../../hooks/useProductStore";
+import ProductService from "../../services/ProductService";
 
 export default function AddProductPage() {
+
+    const { product, productVariants, productImages } = useProductStore()
+
+    const handleSubmit = async () => {
+        try {
+            const response = await ProductService.createProduct(product, productVariants, productImages)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <div className="mx-auto w-full max-w-4xl py-6">
@@ -14,7 +29,7 @@ export default function AddProductPage() {
                     <button className="max-w-28 rounded-md px-12 py-2 text-sm font-bold text-gray-500 ring-1 ring-gray-300">
                         Cancel
                     </button>
-                    <button className="max-w-28 rounded-md bg-primary px-12 py-2 text-sm font-bold text-white">
+                    <button onClick={handleSubmit} className="max-w-28 rounded-md bg-primary px-12 py-2 text-sm font-bold text-white">
                         Save
                     </button>
                 </div>

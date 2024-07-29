@@ -5,13 +5,16 @@ import AuthService from "../services/AuthService"
 import { useQuery } from "@tanstack/react-query"
 
 export const ProtectedRoute = () => {
-    const { isAuthenticated, token, setToken, hasShop } = useAuth()
+    const { isAuthenticated, token, setToken, hasShop, setUser } = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
 
     const validateToken = async () => {
+
         try {
             const response = await AuthService.validate_token()
+            const user = response.data.user
+            setUser(user)
             return response.data
         } catch (error: any) {
             if (error.response.status === 403 || error.response.status === 401) {

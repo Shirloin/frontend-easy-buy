@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import useProductStore from "../../../hooks/useProductStore";
 
 interface IVariant {
     name: string;
@@ -8,6 +9,7 @@ interface IVariant {
 
 export default function ProductVariantForm() {
     const [variants, setVariants] = useState<IVariant[]>([]);
+    const { productVariants, addProductVariant, updateProductVariant, removeProductVariant } = useProductStore()
 
     const addVariants = () => {
         setVariants([...variants, { name: "", price: 0, stock: 0 }]);
@@ -30,7 +32,7 @@ export default function ProductVariantForm() {
                     </div>
                 </div>
                 <div className="flex w-full flex-col items-start justify-center gap-4">
-                    {variants.map((variant, index) => {
+                    {productVariants.map((variant, index) => {
                         return (
                             <div key={index} className="flex w-full flex-col gap-4">
                                 <div className="flex w-full items-center justify-between">
@@ -38,7 +40,7 @@ export default function ProductVariantForm() {
                                         Product Variant {index + 1}
                                     </h1>
                                     <button
-                                        onClick={() => removeVariant(index)}
+                                        onClick={() => removeProductVariant(index)}
                                         className="rounded-md px-8 py-2 text-center font-semibold text-red-500 ring-1 ring-red-500"
                                     >
                                         Remove
@@ -54,6 +56,9 @@ export default function ProductVariantForm() {
                                     <input
                                         className="w-full rounded-md p-2 ring-1 ring-gray-200"
                                         type="text"
+                                        placeholder="Product Variant Name"
+                                        value={variant.name}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => updateProductVariant(index, "name", e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-4 flex w-full items-center justify-between gap-10">
@@ -66,6 +71,9 @@ export default function ProductVariantForm() {
                                     <input
                                         className="w-full rounded-md p-2 ring-1 ring-gray-200"
                                         type="number"
+                                        placeholder="Product Variant Price"
+                                        value={variant.price}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => updateProductVariant(index, "price", e.target.value)}
                                     />
                                 </div>
                                 <div className="mb-4 flex w-full items-center justify-between gap-10">
@@ -78,13 +86,16 @@ export default function ProductVariantForm() {
                                     <input
                                         className="w-full rounded-md p-2 ring-1 ring-gray-200"
                                         type="number"
+                                        placeholder="Product Variant Stock"
+                                        value={variant.stock}
+                                        onChange={(e: ChangeEvent<HTMLInputElement>) => updateProductVariant(index, "stock", e.target.value)}
                                     />
                                 </div>
                             </div>
                         );
                     })}
                     <button
-                        onClick={addVariants}
+                        onClick={addProductVariant}
                         className="rounded-md bg-white px-8 py-2 text-center font-semibold text-primary ring-1 ring-primary"
                     >
                         + Add Variant

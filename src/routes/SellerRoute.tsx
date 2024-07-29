@@ -11,14 +11,10 @@ export const SellerRoute = () => {
     const checkHasShop = async () => {
         try {
             const response = await ShopService.getUserShop();
-            const shop = response.data.shop
-            if (shop != null) {
+            const newShop = response.data.shop
+            if (newShop != null) {
                 setHasShop(true)
-                setShop(shop)
-            }
-            else {
-                setHasShop(false);
-                setShop(null)
+                setShop(newShop)
             }
             return response.data
         } catch (error) {

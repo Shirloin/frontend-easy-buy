@@ -8,7 +8,6 @@ type AuthContextType = {
     setToken: (newToken: string) => void
     user: IUser | null,
     setUser: (newUser: IUser) => void
-    shop: IShop | null | undefined,
     setShop: (newShop: IShop | null | undefined) => void
     isAuthenticated: boolean
     isLoading: boolean
@@ -22,7 +21,6 @@ const initAuthContextValue: AuthContextType = {
     setToken: () => null,
     user: null,
     setUser: () => null,
-    shop: null,
     setShop: () => null,
     isAuthenticated: false,
     isLoading: false,
@@ -44,7 +42,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialToken)
     const [isLoading, setIsLoading] = useState(false)
     const [hasShop, setHasShop] = useState<boolean>(user?.shop !== null)
-    const [shop, setShop] = useState<IShop | null | undefined>(user?.shop)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }
@@ -52,6 +49,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const setUser = (newUser: IUser) => {
         setUser_(newUser)
     }
+    const setShop = (newShop: IShop | null | undefined) => {
+        if (user) {
+            setUser_({ ...user, shop: newShop })
+        }
+    }
+
 
     useEffect(() => {
         if (token) {
@@ -69,9 +72,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     const contextValue = useMemo(
         () => ({
-            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop, shop, setShop
+            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop, setShop
         }),
-        [token, user, isAuthenticated, isLoading, hasShop, shop]
+        [token, user, isAuthenticated, isLoading, hasShop]
     )
 
     return (

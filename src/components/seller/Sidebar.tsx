@@ -2,6 +2,7 @@ import { GoInbox } from "react-icons/go";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { MdOutlineDashboard } from "react-icons/md";
+import { TbCubePlus } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
@@ -18,7 +19,11 @@ export default function Sidebar() {
                 </Link>
                 <Link to={"/seller/products"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
                     <GoInbox className="h-6 w-6" />
-                    <p>Product</p>
+                    <p>Products</p>
+                </Link>
+                <Link to={"/seller/add-product"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
+                    <TbCubePlus className="h-6 w-6" />
+                    <p>Add Product</p>
                 </Link>
                 <Link to={"/seller/orders"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
                     <LiaClipboardListSolid className="h-6 w-6" />

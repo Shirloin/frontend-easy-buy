@@ -5,5 +5,5 @@ export default interface IUser {
   username: string;
   email: string;
   image_url: string;
-  shop: IShop;
+  shop: IShop | null | undefined;
 }

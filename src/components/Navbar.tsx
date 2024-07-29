@@ -2,16 +2,18 @@ import { IoCartOutline } from "react-icons/io5";
 import { useAuth } from "../contexts/AuthContext";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiMail, CiShop } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
-    const { isAuthenticated, shop } = useAuth();
+    const { isAuthenticated, user } = useAuth();
+
 
     return (
         <>
             <nav className="fixed z-50 h-20 flex w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
-                <a className="font-serif text-3xl font-semibold text-primary " href="/">
+                <Link className="font-serif text-3xl font-semibold text-primary " to="/">
                     comxmart
-                </a>
+                </Link>
                 <input
                     className="w-full rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
                     placeholder="Search..."
@@ -32,32 +34,32 @@ export default function Navbar() {
                                 </button>
                             </div>
                             <div className="flex">
-                                <a href={"/seller"} className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
-                                    <CiShop className="h-6 w-6" />
-                                    <p className="text-sm font-semibold">{shop ? shop.name : "Shop"}</p>
-                                </a>
-                                <button className="relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
+                                <Link to={"/seller"} className="max-w-32 relative flex gap-2 rounded-lg p-2 justify-center items-center hover:bg-slate-200">
+                                    <CiShop className="min-h-6 min-w-6" />
+                                    <p className="text-sm font-semibold truncate max-w-20">{user && user.shop ? user.shop.name : "Shop"}</p>
+                                </Link>
+                                <button className="max-w-32 relative flex gap-2 rounded-lg p-2 justify-start items-center hover:bg-slate-200">
                                     <div className="avatar">
                                         <div className="w-6 rounded-full">
                                             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                                         </div>
                                     </div>
-                                    <p className="font-semibold text-sm">Shirloin</p>
+                                    <p className="font-semibold text-sm truncate max-w-20">{user ? user.username : "Shirloin"}</p>
                                 </button>
                             </div>
                         </>
                     ) : (
                         <>
-                            <a href={"/register"}>
+                            <Link to={"/register"}>
                                 <div className="nav-auth-btn text-primary ring-1 ring-primary">
                                     Register
                                 </div>
-                            </a>
-                            <a href={"/login"}>
+                            </Link>
+                            <Link to={"/login"}>
                                 <div className="nav-auth-btn bg-primary text-white ring-1 ring-primary">
                                     Login
                                 </div>
-                            </a>
+                            </Link>
                         </>
                     )}
                 </div>
