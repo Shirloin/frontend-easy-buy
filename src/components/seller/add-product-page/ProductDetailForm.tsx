@@ -22,8 +22,8 @@ export default function ProductDetailForm() {
     return (
         <>
             <div className="shadow-all-sides mt-4 flex w-full flex-col gap-6 rounded-md p-6">
-                <div className="flex items-center gap-10">
-                    <div className="max-w-60">
+                <div className="flex items-center lg:gap-10 gap-4">
+                    <div className="max-w-60 w-full">
                         <h1 className="font-bold">Product Name</h1>
                         <p className="text-xs">
                             Product name min.5 characters including brand, product type,
@@ -38,8 +38,8 @@ export default function ProductDetailForm() {
                         onChange={(e: ChangeEvent<HTMLInputElement>) => { setProductName(e.target.value) }}
                     />
                 </div>
-                <div className="flex items-center gap-10">
-                    <div className="max-w-60">
+                <div className="flex items-center lg:gap-10 gap-4">
+                    <div className="max-w-60 w-full">
                         <h1 className="font-bold">Product Category</h1>
                         <p className="text-xs">
                             Product category min.5 characters including brand, product type,
@@ -47,7 +47,7 @@ export default function ProductDetailForm() {
                         </p>
                     </div>
                     <div ref={dropdownRef} className=" relative w-full">
-                        <button onClick={() => setDropdownOpen(true)} className="w-full rounded-md border-2 border-gray-200 p-2 flex justify-between items-center">
+                        <button onClick={() => setDropdownOpen(!dropdownOpen)} className="w-full rounded-md border-2 border-gray-200 p-2 flex justify-between items-center">
                             <p>{product.category ? product.category : "Product Category"}</p>
                         </button>
                         {
@@ -71,8 +71,8 @@ export default function ProductDetailForm() {
                     </div>
 
                 </div>
-                <div className="flex items-center gap-10">
-                    <div className="max-w-60">
+                <div className="flex items-center lg:gap-10 gap-4">
+                    <div className="max-w-60 w-full">
                         <h1 className="font-bold">Product Description</h1>
                         <p className="text-xs">
                             Make sure product description including the detail of your product

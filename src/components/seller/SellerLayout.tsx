@@ -6,7 +6,7 @@ export default function SellerLayout() {
         <>
             <div className="flex flex-grow">
                 <Sidebar />
-                <div className="ml-56 flex flex-grow">
+                <div className="lg:ml-56 flex flex-grow sm:px-6">
                     <Outlet />
                 </div>
             </div>
