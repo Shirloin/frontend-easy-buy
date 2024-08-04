@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import useProductStore from "../../../hooks/useProductStore";
+import useCreateProductStore from "../../../hooks/useCreateProductStore";
 
 export default function ProductDetailForm() {
     const categories = ["Shoes", "Fashion", "Electronics"];
@@ -7,7 +7,7 @@ export default function ProductDetailForm() {
     const [dropdownOpen, setDropdownOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const { product, setProductName, setProductCategory, setProductDescription } = useProductStore()
+    const { product, setProductName, setProductCategory, setProductDescription } = useCreateProductStore()
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {

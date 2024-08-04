@@ -2,12 +2,12 @@ import { useState } from "react";
 import ProductDetailForm from "../../components/seller/add-product-page/ProductDetailForm";
 import ProductImageForm from "../../components/seller/add-product-page/ProductImageForm";
 import ProductVariantForm from "../../components/seller/add-product-page/ProductVariantForm";
-import useProductStore from "../../hooks/useProductStore";
+import useCreateProductStore from "../../hooks/useCreateProductStore";
 import ProductService from "../../services/ProductService";
 
 export default function AddProductPage() {
 
-    const { product, productVariants, productImages } = useProductStore()
+    const { product, productVariants, productImages } = useCreateProductStore()
 
     const handleSubmit = async () => {
         try {

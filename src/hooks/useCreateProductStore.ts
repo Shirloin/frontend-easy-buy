@@ -17,9 +17,12 @@ type CreateProductState = {
     value: string | number,
   ) => void;
   removeProductVariant: (index: number) => void;
+  addProductImage: () => void;
+  updateProductImage: (index: number, value: string) => void;
+  removeProductImage: (index: number) => void;
 };
 
-const useProductStore = create<CreateProductState>((set) => ({
+const useCreateProductStore = create<CreateProductState>((set) => ({
   product: {
     name: "",
     description: "",
@@ -77,6 +80,29 @@ const useProductStore = create<CreateProductState>((set) => ({
       productVariants: state.productVariants.filter((_, i) => i !== index),
     }));
   },
+  addProductImage: () =>
+    set((state) => ({
+      productImages: [
+        ...state.productImages,
+        {
+          image_url: "",
+        },
+      ],
+    })),
+  updateProductImage: (index: number, value: string) => {
+    set((state) => {
+      const updatedImages = [...state.productImages];
+      if (updatedImages[index]) {
+        updatedImages[index] = { ...updatedImages[index], image_url: value };
+      }
+      return { productImages: updatedImages };
+    });
+  },
+  removeProductImage: (index: number) => {
+    set((state) => ({
+      productImages: state.productImages.filter((_, i) => i !== index),
+    }));
+  },
 }));
 
-export default useProductStore;
+export default useCreateProductStore;

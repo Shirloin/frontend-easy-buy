@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import useProductStore from "../../../hooks/useProductStore";
+import useCreateProductStore from "../../../hooks/useCreateProductStore";
 
 interface IVariant {
     name: string;
@@ -9,7 +9,7 @@ interface IVariant {
 
 export default function ProductVariantForm() {
     const [variants, setVariants] = useState<IVariant[]>([]);
-    const { productVariants, addProductVariant, updateProductVariant, removeProductVariant } = useProductStore()
+    const { productVariants, addProductVariant, updateProductVariant, removeProductVariant } = useCreateProductStore()
 
     const addVariants = () => {
         setVariants([...variants, { name: "", price: 0, stock: 0 }]);
