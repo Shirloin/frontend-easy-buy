@@ -19,8 +19,8 @@ export default class ProductService {
     });
   }
 
-  static async getAllProductsByUser(userId: string) {
-    return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/user/${userId}/products`, {
+  static async getAllProductsByShop(shopId: string) {
+    return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/shop/${shopId}/products`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("authentication"),
       },

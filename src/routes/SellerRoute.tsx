@@ -1,5 +1,4 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom"
-import { useEffect, useState } from "react"
 import ShopService from "../services/ShopService"
 import { useAuth } from "../contexts/AuthContext"
 import { useQuery } from "@tanstack/react-query"
