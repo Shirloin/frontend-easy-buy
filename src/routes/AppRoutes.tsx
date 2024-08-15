@@ -10,6 +10,7 @@ import SellerDashboardPage from '../pages/seller/DashboardPage'
 import AddProductPage from '../pages/seller/AddProductPage'
 import RegisterShopPage from '../pages/seller/RegisterShopPage'
 import { SellerRoute } from './SellerRoute'
+import ProductPage from '../pages/seller/ProductPage'
 export default function AppRoutes() {
 
     return (
@@ -22,6 +23,7 @@ export default function AppRoutes() {
                         <Route element={<SellerRoute />}>
                             <Route index element={<SellerDashboardPage />} />
                             <Route path='add-product' element={<AddProductPage />} />
+                            <Route path='products' element={<ProductPage />} />
                         </Route>
                     </Route>
                 </Route>
