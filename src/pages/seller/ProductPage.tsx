@@ -1,13 +1,9 @@
 import ProductTable from "../../components/seller/product-page/ProductTable";
-import { useAuth } from "../../contexts/AuthContext";
-import { useGetAllProductsByShop } from "../../lib/useProductQuery";
+import { useGetMyShopProduct } from "../../lib/useProductQuery";
 
 export default function ProductPage() {
 
-    const { user } = useAuth()
-    console.log(user)
-
-    const { data, isLoading, isError } = useGetAllProductsByShop(user?.shop?._id || "");
+    const { data: products, isLoading, isError } = useGetMyShopProduct();
     if (isError) {
         throw isError
     }
@@ -22,7 +18,7 @@ export default function ProductPage() {
                                 <h1>Loading...</h1>
                             </>
                         ) : (
-                            <ProductTable />
+                            <ProductTable products={products} />
                         )
                     }
                 </div>

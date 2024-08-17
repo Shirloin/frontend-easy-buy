@@ -26,4 +26,11 @@ export default class ProductService {
       },
     })
   }
+  static async getMyShopProduct() {
+    return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/shop/products`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authentication"),
+      },
+    })
+  }
 }

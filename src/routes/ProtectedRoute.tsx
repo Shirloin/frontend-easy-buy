@@ -24,7 +24,7 @@ export const ProtectedRoute = () => {
             }
         }
     }
-    const { data, isError } = useQuery({ queryKey: ['data'], queryFn: validateToken })
+    const { data, isError } = useQuery({ queryKey: ['validateToken'], queryFn: validateToken })
 
     if (isError) {
         return <Navigate to="/login" state={{ from: location }} replace />;

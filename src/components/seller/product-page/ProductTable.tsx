@@ -7,6 +7,7 @@ interface ProductTableProps {
 }
 
 export default function ProductTable({ products }: ProductTableProps) {
+    console.log(products)
     return (
         <>
             <div className="overflow-x-auto">
@@ -14,9 +15,12 @@ export default function ProductTable({ products }: ProductTableProps) {
                     {/* head */}
                     <ProductTableHeader />
                     <tbody>
-                        <ProductTableRow index={1} />
-                        <ProductTableRow index={2} />
-                        <ProductTableRow index={3} />
+                        {/* {
+                            products && products.map((product) => (
+                                <ProductTableRow key={product._id} index={1} />
+
+                            ))
+                        } */}
                     </tbody>
                 </table>
             </div>

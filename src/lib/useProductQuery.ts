@@ -12,7 +12,22 @@ export function useGetAllProductsByShop(shopId: string) {
         }
     }
     return useQuery({
-        queryKey: ['products'],
+        queryKey: ['products', shopId],
+        queryFn: fetchData
+    })
+}
+
+export function useGetMyShopProduct() {
+    const fetchData = async () => {
+        try {
+            const response = await ProductService.getMyShopProduct()
+            return response.data.products as IProduct[]
+        } catch (error) {
+            throw new Error("Failed to fetch all products by user")
+        }
+    }
+    return useQuery({
+        queryKey: ['myShopProducts'],
         queryFn: fetchData
     })
 }

@@ -13,7 +13,7 @@ type AuthContextType = {
     isLoading: boolean
     setIsLoading: (val: boolean) => void
     hasShop: boolean
-    setHasShop: (val: boolean) => void
+    setHasShop: (val: boolean) => void;
 }
 
 const initAuthContextValue: AuthContextType = {
@@ -26,7 +26,7 @@ const initAuthContextValue: AuthContextType = {
     isLoading: false,
     setIsLoading: () => null,
     hasShop: false,
-    setHasShop: () => null
+    setHasShop: () => null,
 }
 
 const AuthContext = createContext<AuthContextType>(initAuthContextValue)
@@ -41,38 +41,42 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser_] = useState<IUser | null>(null)
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!initialToken)
     const [isLoading, setIsLoading] = useState(false)
-    const [hasShop, setHasShop] = useState<boolean>(user?.shop !== null)
+    const [hasShop, setHasShop_] = useState<boolean>(user?.shop !== null)
     const setToken = (newToken: string) => {
         setToken_(newToken)
     }
 
     const setUser = (newUser: IUser) => {
-        setUser_(newUser)
-    }
+        setUser_(newUser);
+        setHasShop_(!!newUser.shop);
+    };
+
     const setShop = (newShop: IShop | null | undefined) => {
         if (user) {
-            setUser_({ ...user, shop: newShop })
+            const updatedUser = { ...user, shop: newShop };
+            setUser_(updatedUser);
+            setHasShop_(!!newShop);
         }
-    }
+    };
 
 
     useEffect(() => {
         if (token) {
             axios.defaults.headers.common['Authorization'] = "Bearer " + token
             setIsAuthenticated(true)
-            setHasShop(user?.shop !== null)
+            setHasShop_(user?.shop !== null)
             localStorage.setItem('authentication', token)
         } else {
             delete axios.defaults.headers.common['Authorization']
             setIsAuthenticated(false)
-            setHasShop(false)
+            setHasShop_(false)
             localStorage.removeItem('authentication')
         }
     }, [token])
 
     const contextValue = useMemo(
         () => ({
-            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop, setShop
+            token, setToken, user, setUser, isAuthenticated, isLoading, setIsLoading, hasShop, setHasShop: setHasShop_, setShop
         }),
         [token, user, isAuthenticated, isLoading, hasShop]
     )
