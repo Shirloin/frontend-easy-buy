@@ -35,7 +35,7 @@ export default function ProductImageForm() {
                             <label key={index} className="group relative flex h-28 w-28 flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-300 text-center hover:cursor-pointer hover:border-primary">
 
                                 {
-                                    image.image_url === "" ? (
+                                    image.imageUrl === "" ? (
                                         <>
                                             <input onChange={(e) => handleImageChange(e, index)} className="hidden" type="file" accept="image/*" />
                                             <MdOutlineAddPhotoAlternate className="h-8 w-8" />
@@ -46,7 +46,7 @@ export default function ProductImageForm() {
                                             <button onClick={() => removeProductImage(index)} className="group-hover:flex hidden absolute bg-black inset-0 bg-opacity-50 rounded-md">
                                                 <TbTrash className="h-5 w-5 text-white" />
                                             </button>
-                                            <img src={image.image_url} alt="" />
+                                            <img src={image.imageUrl} alt="" />
                                         </>
                                     )
                                 }

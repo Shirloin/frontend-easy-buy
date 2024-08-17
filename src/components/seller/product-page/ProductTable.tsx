@@ -15,12 +15,12 @@ export default function ProductTable({ products }: ProductTableProps) {
                     {/* head */}
                     <ProductTableHeader />
                     <tbody>
-                        {/* {
+                        {
                             products && products.map((product) => (
-                                <ProductTableRow key={product._id} index={1} />
+                                <ProductTableRow key={product._id} product={product} index={1} />
 
                             ))
-                        } */}
+                        }
                     </tbody>
                 </table>
             </div>

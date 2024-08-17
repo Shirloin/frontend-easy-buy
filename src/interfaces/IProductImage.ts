@@ -7,5 +7,5 @@ export interface IProductImage {
 }
 
 export interface ICreateProductImage {
-  image_url: string;
+  imageUrl: string;
 }

@@ -18,13 +18,13 @@ export default function ProductTableRow({ index, product }: ProductTableRowProps
                         <div className="avatar">
                             <div className="mask mask-squircle h-12 w-12">
                                 <img
-                                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                    src={product?.productImages[0].imageUrl}
                                     alt="Avatar Tailwind CSS Component" />
                             </div>
                         </div>
                         <div>
-                            <div className="font-bold">Hart Hagerty</div>
-                            <div className="text-sm opacity-50">United States</div>
+                            <div className="font-bold">{product?.name}</div>
+                            <div className="text-sm opacity-50">{product?.description}</div>
                         </div>
                     </div>
                 </td>

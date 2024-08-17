@@ -85,7 +85,7 @@ const useCreateProductStore = create<CreateProductState>((set) => ({
       productImages: [
         ...state.productImages,
         {
-          image_url: "",
+          imageUrl: "",
         },
       ],
     })),
@@ -93,7 +93,7 @@ const useCreateProductStore = create<CreateProductState>((set) => ({
     set((state) => {
       const updatedImages = [...state.productImages];
       if (updatedImages[index]) {
-        updatedImages[index] = { ...updatedImages[index], image_url: value };
+        updatedImages[index] = { ...updatedImages[index], imageUrl: value };
       }
       return { productImages: updatedImages };
     });
