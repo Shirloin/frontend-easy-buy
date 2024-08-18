@@ -19,10 +19,8 @@ export default function ProductTable({ products = [] as IProduct[] }: ProductTab
                             <tbody >
                                 {
                                     products.map((product) => (
-                                        <>
-                                            <ProductTableRow key={product._id} product={product} index={1} />
+                                        <ProductTableRow key={product._id} product={product} index={1} />
 
-                                        </>
                                     ))
                                 }
 

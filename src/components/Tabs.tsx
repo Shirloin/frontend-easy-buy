@@ -2,10 +2,11 @@ import { ReactNode, useState } from "react"
 
 interface TabsProps {
     tabList: string[]
-    children: ReactNode[]
+    children: ReactNode[],
+    tabContentStyle: string
 }
 
-export default function Tabs({ tabList, children }: TabsProps) {
+export default function Tabs({ tabList, children, tabContentStyle }: TabsProps) {
 
     const [tabIndex, setTabIndex] = useState(0)
 
@@ -15,15 +16,17 @@ export default function Tabs({ tabList, children }: TabsProps) {
 
     return (
         <>
-            <div className="flex">
-                {
-                    tabList.map((tab, index) => {
-                        return <button onClick={() => onTabClick(index)} className={`px-4 pb-2 ${index === tabIndex ? "border-b-2 border-black" : ""}`}>{tab}</button>
-                    })
-                }
-            </div>
-            <div className="mt-4">
-                {children[tabIndex]}
+            <div>
+                <div className="flex sticky top-0 bg-white pt-4">
+                    {
+                        tabList.map((tab, index) => {
+                            return <button key={index} onClick={() => onTabClick(index)} className={`px-4 pb-2 ${index === tabIndex ? "border-b-2 border-black" : ""}`}>{tab}</button>
+                        })
+                    }
+                </div>
+                <div className={tabContentStyle}>
+                    {children[tabIndex]}
+                </div>
             </div>
         </>
     )

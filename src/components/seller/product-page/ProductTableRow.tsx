@@ -1,9 +1,5 @@
-import { FaRegEdit } from "react-icons/fa"
 import { IProduct } from "../../../interfaces/IProduct"
-import { IProductVariant } from "../../../interfaces/IProductVariant"
 import { IoTrashOutline } from "react-icons/io5"
-import { MdOutlineModeEdit } from "react-icons/md"
-import { useState } from "react"
 import EditProductModal from "./EditProductModal"
 
 interface ProductTableRowProps {
@@ -13,10 +9,6 @@ interface ProductTableRowProps {
 
 export default function ProductTableRow({ index, product }: ProductTableRowProps) {
 
-    const [dropdown, setDropdown] = useState(false)
-    const toggleDropdown = () => {
-        setDropdown(!dropdown);
-    };
 
     return (
         <>
