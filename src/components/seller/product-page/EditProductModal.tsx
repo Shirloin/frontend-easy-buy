@@ -3,6 +3,7 @@ import { IProduct } from "../../../interfaces/IProduct";
 import Tabs from "../../Tabs";
 import EditProductDetailForm from "./EditProductDetailForm";
 import EditProductVariantForm from "./EditProductVariantForm";
+import EditProductImageForm from "./EditProductImageForm";
 
 interface EditProductModalProps {
     product: IProduct
@@ -31,7 +32,7 @@ export default function EditProductModal({ product }: EditProductModalProps) {
                     <Tabs tabList={tabList} tabContentStyle="p-4">
                         <EditProductDetailForm product={product} />
                         <EditProductVariantForm product={product} />
-                        <div>Content for Tab 3</div>
+                        <EditProductImageForm product={product} />
                     </Tabs>
                 </div>
                 <form method="dialog" className="modal-backdrop">

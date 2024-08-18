@@ -32,6 +32,9 @@ export default function EditProductVariantForm({ product }: { product: IProduct 
         const updatedVariants = variants.filter((_, i) => i !== index);
         setVariants(updatedVariants);
     }
+    const handleSubmit = () => {
+
+    }
 
     return (
         <>
@@ -40,12 +43,12 @@ export default function EditProductVariantForm({ product }: { product: IProduct 
                     return (
                         <div key={index} className="flex w-full flex-col gap-4">
                             <div className="flex w-full items-center justify-between">
-                                <h1 className="text-lg font-bold">
+                                <h1 className=" font-bold">
                                     Product Variant {index + 1}
                                 </h1>
                                 <button
                                     onClick={() => deleteProductVariant(index)}
-                                    className="rounded-md px-8 py-2 text-center font-semibold text-red-500 ring-1 ring-red-500"
+                                    className="rounded-md px-4 py-2 text-center font-semibold text-red-500 ring-1 ring-red-500"
                                 >
                                     Remove
                                 </button>
@@ -100,9 +103,12 @@ export default function EditProductVariantForm({ product }: { product: IProduct 
                 })}
                 <button
                     onClick={addProductVariant}
-                    className="rounded-md bg-white px-8 py-2 text-center font-semibold text-primary ring-1 ring-primary"
+                    className="rounded-md w-full bg-white px-4 py-2 text-center font-semibold text-primary ring-1 ring-primary"
                 >
                     + Add Variant
+                </button>
+                <button onClick={handleSubmit} className="w-full rounded-md bg-primary px-12 py-2 text-sm font-bold text-white">
+                    Save
                 </button>
             </div>
         </>
