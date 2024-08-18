@@ -1,5 +1,10 @@
+import { FaRegEdit } from "react-icons/fa"
 import { IProduct } from "../../../interfaces/IProduct"
 import { IProductVariant } from "../../../interfaces/IProductVariant"
+import { IoTrashOutline } from "react-icons/io5"
+import { MdOutlineModeEdit } from "react-icons/md"
+import { useState } from "react"
+import EditProductModal from "./EditProductModal"
 
 interface ProductTableRowProps {
     index?: number
@@ -7,12 +12,18 @@ interface ProductTableRowProps {
 }
 
 export default function ProductTableRow({ index, product }: ProductTableRowProps) {
+
+    const [dropdown, setDropdown] = useState(false)
+    const toggleDropdown = () => {
+        setDropdown(!dropdown);
+    };
+
     return (
         <>
             <tr>
-                <th>
+                <td>
                     {index}
-                </th>
+                </td>
                 <td>
                     <div className="flex items-center gap-3">
                         <div className="avatar">
@@ -24,20 +35,22 @@ export default function ProductTableRow({ index, product }: ProductTableRowProps
                         </div>
                         <div>
                             <div className="font-bold">{product?.name}</div>
-                            <div className="text-sm opacity-50">{product?.description}</div>
+                            <div className="text-sm opacity-50">{product?.productVariants[0].name}</div>
                         </div>
                     </div>
                 </td>
                 <td>
-                    Zemlak, Daniel and Leannon
+                    {product?.productVariants[0].price}
                     <br />
-                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                    {/* <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
                 </td>
-                <td>Purple</td>
-                <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                <td>{product?.productCategory.name}</td>
+                <td className="flex space-x-2">
+                    <EditProductModal product={product!} />
+                    <button className="p-3 rounded-md hover:bg-red-500 bg-red-500 text-white"><IoTrashOutline className="w-4 h-4" /></button>
+                </td>
             </tr>
+
         </>
     )
 }

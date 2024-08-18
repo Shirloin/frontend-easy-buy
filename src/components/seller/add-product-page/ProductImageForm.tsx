@@ -46,7 +46,7 @@ export default function ProductImageForm() {
                                             <button onClick={() => removeProductImage(index)} className="group-hover:flex hidden absolute bg-black inset-0 bg-opacity-50 rounded-md">
                                                 <TbTrash className="h-5 w-5 text-white" />
                                             </button>
-                                            <img src={image.imageUrl} alt="" />
+                                            <img className="w-full h-full object-cover rounded-md" src={image.imageUrl} alt="" />
                                         </>
                                     )
                                 }
