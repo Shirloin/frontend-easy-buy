@@ -28,8 +28,8 @@ export default function EditProductModal({ product }: EditProductModalProps) {
             <button onClick={openModal} className="p-3 rounded-md hover:bg-blue-500 bg-blue-500 text-white"><MdOutlineModeEdit className="w-4 h-4" /></button>
 
             <dialog id="my_modal_2" className="modal py-10">
-                <div className="modal-box  p-0 min-h-full">
-                    <Tabs tabList={tabList} tabContentStyle="p-4">
+                <div className="modal-box max-w-xl  p-0 min-h-full">
+                    <Tabs tabList={tabList} tabContentStyle="py-4 px-6">
                         <EditProductDetailForm product={product} />
                         <EditProductVariantForm product={product} />
                         <EditProductImageForm product={product} />

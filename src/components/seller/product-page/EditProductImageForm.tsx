@@ -1,48 +1,19 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { IProduct } from "../../../interfaces/IProduct";
 import { ICreateProductImage, IProductImage } from "../../../interfaces/IProductImage";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { TbTrash } from "react-icons/tb";
 import { IoAddOutline } from "react-icons/io5";
+import { useEditProductImageStore } from "../../../hooks/useEditProductImageStore";
 
 type ImageType = IProductImage | ICreateProductImage
 
 export default function EditProductImageForm({ product }: { product: IProduct }) {
-    const [images, setImages] = useState<ImageType[]>(product.productImages)
+    const { images, addProductImage, handleImageChange, removeProductImage, setProductImages, handleSubmit } = useEditProductImageStore((state) => state);
 
-
-    const addProductImage = () => {
-        const newImage: ICreateProductImage = {
-            imageUrl: ""
-        }
-        setImages([...images, newImage])
-    }
-
-    const handleImageChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-        const file = e.target.files?.[0]
-        if (file) {
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                const url = reader.result as string
-                const updatedImages = [...images];
-                updatedImages[index] = {
-                    ...updatedImages[index],
-                    imageUrl: url
-                };
-                setImages(updatedImages);
-            }
-            reader.readAsDataURL(file)
-        }
-    }
-
-    const removeProductImage = (index: number) => {
-        const updatedImages = images.filter((_, i) => i !== index);
-        setImages(updatedImages);
-    }
-
-    const handleSubmit = () => {
-
-    }
+    useEffect(() => {
+        setProductImages(product.productImages);
+    }, [product.productImages, setProductImages]);
 
     return (
         <>

@@ -1,15 +1,16 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { IProduct } from "../../../interfaces/IProduct";
+import { useEditProductDetailStore } from "../../../hooks/useEditProductDetailStore";
 
 export default function EditProductDetailForm({ product }: { product: IProduct }) {
 
-    const [name, setName] = useState(product.name)
-    const [description, setDescription] = useState(product.description)
-    const [category, setCategory] = useState(product.productCategory.name)
+    const { name, setName, description, setDescription, category, setCategory, handleSubmit, setProduct } = useEditProductDetailStore((state) => state);
 
-    const handleSubmit = () => {
-
-    }
+    useEffect(() => {
+        if (product) {
+            setProduct(product)
+        }
+    }, [product, setProduct])
 
     return (
         <>

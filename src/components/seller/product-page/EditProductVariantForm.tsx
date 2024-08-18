@@ -1,40 +1,17 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { IProduct } from "../../../interfaces/IProduct";
 import { ICreateProductVariant, IProductVariant } from "../../../interfaces/IProductVariant";
+import { useEditProductVariantFormStore } from "../../../hooks/useEditProductVariantStore";
 
 type VariantType = IProductVariant | ICreateProductVariant;
 
 export default function EditProductVariantForm({ product }: { product: IProduct }) {
 
-    const initialVariants: ICreateProductVariant = {
-        name: "",
-        price: 0,
-        stock: 0,
-    }
+    const { variants, addProductVariant, updateProductVariant, deleteProductVariant, setProductVariants, handleSubmit } = useEditProductVariantFormStore((state) => state);
 
-    const [variants, setVariants] = useState<VariantType[]>(product.productVariants)
-
-    const addProductVariant = () => {
-        const newVariant: ICreateProductVariant = initialVariants
-        setVariants([...variants, newVariant])
-    }
-
-    const updateProductVariant = (index: number, field: string, val: any) => {
-        const updatedVariants = [...variants];
-        updatedVariants[index] = {
-            ...updatedVariants[index],
-            [field]: field === "price" || field === "stock" ? Number(val) : val
-        };
-        setVariants(updatedVariants);
-    }
-
-    const deleteProductVariant = (index: number) => {
-        const updatedVariants = variants.filter((_, i) => i !== index);
-        setVariants(updatedVariants);
-    }
-    const handleSubmit = () => {
-
-    }
+    useEffect(() => {
+        setProductVariants(product.productVariants);
+    }, [product.productVariants, setProductVariants]);
 
     return (
         <>
