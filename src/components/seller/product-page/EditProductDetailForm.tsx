@@ -1,20 +1,9 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { IProduct } from "../../../interfaces/IProduct";
 import useEditProductStore from "../../../hooks/useEditProductStore";
 
 export default function EditProductDetailForm() {
-  const {
-    product,
-    setProduct,
-    setProductCategory,
-    setProductName,
-    setProductDescription,
-  } = useEditProductStore();
-
-  const handleSubmit = () => {
-    console.log(product);
-  };
-
+  const { product, setProductCategory, setProductName, setProductDescription } =
+    useEditProductStore();
   return (
     <>
       <div className="flex flex-col space-y-4">
@@ -52,12 +41,6 @@ export default function EditProductDetailForm() {
             setProductCategory(e.target.value);
           }}
         />
-        <button
-          onClick={handleSubmit}
-          className="rounded-md bg-primary px-12 py-2 text-sm font-bold text-white"
-        >
-          Save
-        </button>
       </div>
     </>
   );

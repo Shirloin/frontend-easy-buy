@@ -5,6 +5,7 @@ import EditProductDetailForm from "./EditProductDetailForm";
 import EditProductVariantForm from "./EditProductVariantForm";
 import EditProductImageForm from "./EditProductImageForm";
 import useEditProductStore from "../../../hooks/useEditProductStore";
+import ProductService from "../../../services/ProductService";
 
 interface EditProductModalProps {
   product: IProduct;
@@ -27,8 +28,13 @@ export default function EditProductModal({
     "Product Variant",
     "Product Image",
   ];
-  const handleSubmit = () => {
-    console.log(product);
+  const handleSubmit = async () => {
+    try {
+      const response = await ProductService.updateProduct(product);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -47,6 +53,14 @@ export default function EditProductModal({
             <EditProductVariantForm />
             <EditProductImageForm />
           </Tabs>
+          <div className="mb-4 flex w-full max-w-xl justify-start gap-4 px-6">
+            <button
+              onClick={handleSubmit}
+              className="w-full rounded-md bg-primary px-12 py-2 text-sm font-bold text-white"
+            >
+              Save
+            </button>
+          </div>
         </div>
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
