@@ -6,6 +6,7 @@ import EditProductVariantForm from "./EditProductVariantForm";
 import EditProductImageForm from "./EditProductImageForm";
 import useEditProductStore from "../../../hooks/useEditProductStore";
 import ProductService from "../../../services/ProductService";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface EditProductModalProps {
   product: IProduct;
@@ -15,6 +16,7 @@ export default function EditProductModal({
   product: oldProduct,
 }: EditProductModalProps) {
   const { product, setProduct } = useEditProductStore();
+  const queryClient = useQueryClient();
 
   const openModal = () => {
     setProduct(oldProduct);
@@ -32,6 +34,11 @@ export default function EditProductModal({
     try {
       const response = await ProductService.updateProduct(product);
       console.log(response);
+      const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
+      if (modal) {
+        modal.close();
+      }
+      queryClient.invalidateQueries({ queryKey: ["myShopProducts"] });
     } catch (error) {
       console.log(error);
     }

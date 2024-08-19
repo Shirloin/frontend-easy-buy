@@ -36,7 +36,9 @@ export default class ProductService {
 
   static async updateProduct(product: IProduct) {
     return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/product`, {
-      product,
+      product: product,
+      productVariants: product.productVariants,
+      productImages: product.productImages,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("authentication"),
       },

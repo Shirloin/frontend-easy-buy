@@ -25,6 +25,7 @@ export const useEditProductImageStore = create<EditProductImageState>((set, get)
             const reader = new FileReader();
             reader.onloadend = () => {
                 const url = reader.result as string;
+                console.log(url)
                 set((state) => {
                     const updatedImages = [...state.images];
                     updatedImages[index] = { ...updatedImages[index], imageUrl: url };

@@ -33,7 +33,7 @@ const useEditProductStore = create<EditProductState>((set) => ({
         description: "",
         productVariants: [],
         productImages: [],
-        productCategory: {} as IProductCategory,
+        productCategory: { name: "" } as IProductCategory,
         shop: {} as IShop
     },
     setProduct: (product: IProduct) => set({ product }),
