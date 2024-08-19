@@ -25,7 +25,6 @@ export default function EditProductImageForm() {
       const reader = new FileReader();
       reader.onloadend = () => {
         const url = reader.result as string;
-        console.log(url);
         updateProductImage(index, url);
       };
       reader.readAsDataURL(file);
