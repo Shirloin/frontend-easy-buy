@@ -4,41 +4,54 @@ import Tabs from "../../Tabs";
 import EditProductDetailForm from "./EditProductDetailForm";
 import EditProductVariantForm from "./EditProductVariantForm";
 import EditProductImageForm from "./EditProductImageForm";
+import useEditProductStore from "../../../hooks/useEditProductStore";
 
 interface EditProductModalProps {
-    product: IProduct
+  product: IProduct;
 }
 
-export default function EditProductModal({ product }: EditProductModalProps) {
-    const openModal = () => {
-        const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
-        if (modal) {
-            modal.showModal();
-        }
-    };
+export default function EditProductModal({
+  product: oldProduct,
+}: EditProductModalProps) {
+  const { product, setProduct } = useEditProductStore();
 
-    const tabList: string[] = [
-        "Product Detail",
-        "Product Variant",
-        "Product Image"
-    ]
+  const openModal = () => {
+    setProduct(oldProduct);
+    const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
+    if (modal) {
+      modal.showModal();
+    }
+  };
+  const tabList: string[] = [
+    "Product Detail",
+    "Product Variant",
+    "Product Image",
+  ];
+  const handleSubmit = () => {
+    console.log(product);
+  };
 
-    return (
-        <>
-            <button onClick={openModal} className="p-3 rounded-md hover:bg-blue-500 bg-blue-500 text-white"><MdOutlineModeEdit className="w-4 h-4" /></button>
+  return (
+    <>
+      <button
+        onClick={openModal}
+        className="rounded-md bg-blue-500 p-3 text-white hover:bg-blue-500"
+      >
+        <MdOutlineModeEdit className="h-4 w-4" />
+      </button>
 
-            <dialog id="my_modal_2" className="modal py-10">
-                <div className="modal-box max-w-xl  p-0 min-h-full">
-                    <Tabs tabList={tabList} tabContentStyle="py-4 px-6">
-                        <EditProductDetailForm product={product} />
-                        <EditProductVariantForm product={product} />
-                        <EditProductImageForm product={product} />
-                    </Tabs>
-                </div>
-                <form method="dialog" className="modal-backdrop">
-                    <button>close</button>
-                </form>
-            </dialog>
-        </>
-    );
+      <dialog id="my_modal_2" className="modal py-10">
+        <div className="modal-box min-h-full max-w-xl p-0">
+          <Tabs tabList={tabList} tabContentStyle="py-4 px-6">
+            <EditProductDetailForm />
+            <EditProductVariantForm />
+            <EditProductImageForm />
+          </Tabs>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+    </>
+  );
 }

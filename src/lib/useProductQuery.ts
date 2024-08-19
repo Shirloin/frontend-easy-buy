@@ -21,7 +21,6 @@ export function useGetMyShopProduct() {
     const fetchData = async () => {
         try {
             const response = await ProductService.getMyShopProduct()
-            console.log(response)
             return response.data.products as IProduct[]
         } catch (error) {
             throw new Error("Failed to fetch all products by user")

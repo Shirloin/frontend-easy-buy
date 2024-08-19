@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICreateProduct } from "../interfaces/IProduct";
+import { ICreateProduct, IProduct } from "../interfaces/IProduct";
 import { ICreateProductImage } from "../interfaces/IProductImage";
 import { ICreateProductVariant } from "../interfaces/IProductVariant";
 
@@ -28,6 +28,15 @@ export default class ProductService {
   }
   static async getMyShopProduct() {
     return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/shop/products`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authentication"),
+      },
+    })
+  }
+
+  static async updateProductDetail(product: IProduct) {
+    return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/products`, {
+      product,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("authentication"),
       },
