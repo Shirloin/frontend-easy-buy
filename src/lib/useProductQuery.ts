@@ -101,3 +101,18 @@ export function useDeleteProduct() {
         }
     });
 }
+
+export function useGetLatestProduct() {
+    const fetchData = async () => {
+        try {
+            const response = await ProductService.getLatestProduct()
+            return response.data.products as IProduct[]
+        } catch (error) {
+            throw new Error("Failed to fetch latest products by user")
+        }
+    }
+    return useQuery({
+        queryKey: ['latestProduct'],
+        queryFn: fetchData
+    })
+}

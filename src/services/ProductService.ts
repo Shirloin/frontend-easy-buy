@@ -58,4 +58,11 @@ export default class ProductService {
       },
     })
   }
+  static async getLatestProduct() {
+    return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/product/latest-product`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authentication"),
+      },
+    })
+  }
 }

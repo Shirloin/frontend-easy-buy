@@ -1,7 +1,11 @@
+import LatestProductSection from "../components/home-page/LatestProductSection";
+
 export default function HomePage() {
-    return (
-        <>
-            <h1 className="text-7xl">Home Page</h1>
-        </>
-    )
+  return (
+    <>
+      <div className="mx-auto flex w-full max-w-7xl flex-col p-10">
+        <LatestProductSection />
+      </div>
+    </>
+  );
 }
