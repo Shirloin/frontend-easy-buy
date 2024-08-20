@@ -7,6 +7,8 @@ import EditProductImageForm from "./EditProductImageForm";
 import useEditProductStore from "../../../hooks/useEditProductStore";
 import ProductService from "../../../services/ProductService";
 import { useQueryClient } from "@tanstack/react-query";
+import { useUpdateProduct } from "../../../lib/useProductQuery";
+import toast from "react-hot-toast";
 
 interface EditProductModalProps {
   product: IProduct;
@@ -16,7 +18,7 @@ export default function EditProductModal({
   product: oldProduct,
 }: EditProductModalProps) {
   const { product, setProduct } = useEditProductStore();
-  const queryClient = useQueryClient();
+  const updateProductMutation = useUpdateProduct();
 
   const openModal = () => {
     setProduct(oldProduct);
@@ -32,15 +34,15 @@ export default function EditProductModal({
   ];
   const handleSubmit = async () => {
     try {
-      const response = await ProductService.updateProduct(product);
-      console.log(response);
+      const message = await updateProductMutation.mutateAsync(product);
+      toast.success(message);
       const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
       if (modal) {
         modal.close();
       }
-      queryClient.invalidateQueries({ queryKey: ["myShopProducts"] });
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 

@@ -2,6 +2,8 @@ import { IProduct } from "../../../interfaces/IProduct";
 import { IoTrashOutline } from "react-icons/io5";
 import EditProductModal from "./EditProductModal";
 import { useState, useRef, useEffect } from "react";
+import { useDeleteProduct } from "../../../lib/useProductQuery";
+import toast from "react-hot-toast";
 
 interface ProductTableRowProps {
   index?: number;
@@ -12,6 +14,18 @@ export default function ProductTableRow({
   index,
   product,
 }: ProductTableRowProps) {
+  const deleteProductMutation = useDeleteProduct();
+
+  const handleDelete = async () => {
+    try {
+      const message = await deleteProductMutation.mutateAsync(product!._id);
+      toast.success(message);
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
       <tr>
@@ -42,7 +56,10 @@ export default function ProductTableRow({
         <td>{product?.productCategory.name}</td>
         <td className="flex space-x-2">
           <EditProductModal product={product!} />
-          <button className="rounded-md bg-red-500 p-3 text-white hover:bg-red-500">
+          <button
+            onClick={handleDelete}
+            className="rounded-md bg-red-500 p-3 text-white hover:bg-red-500"
+          >
             <IoTrashOutline className="h-4 w-4" />
           </button>
         </td>

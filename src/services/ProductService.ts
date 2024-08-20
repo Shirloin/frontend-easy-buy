@@ -35,10 +35,24 @@ export default class ProductService {
   }
 
   static async updateProduct(product: IProduct) {
-    return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/product`, {
-      product: product,
+    const createProduct: ICreateProduct = {
+      name: product.name,
+      description: product.description,
+      category: product.productCategory.name
+    }
+
+    return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/product/${product._id}`, {
+      product: createProduct,
       productVariants: product.productVariants,
       productImages: product.productImages,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("authentication"),
+      },
+    })
+  }
+
+  static async deleteProduct(productId: string) {
+    return axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/product/${productId}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("authentication"),
       },
