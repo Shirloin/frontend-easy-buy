@@ -4,19 +4,23 @@ import ProductImageForm from "../../components/seller/add-product-page/ProductIm
 import ProductVariantForm from "../../components/seller/add-product-page/ProductVariantForm";
 import useCreateProductStore from "../../hooks/useCreateProductStore";
 import ProductService from "../../services/ProductService";
+import toast from "react-hot-toast";
+import { useCreateProduct } from "../../lib/useProductQuery";
 
 export default function AddProductPage() {
   const { product, productVariants, productImages } = useCreateProductStore();
+  const createProductMutation = useCreateProduct();
 
   const handleSubmit = async () => {
     try {
-      const response = await ProductService.createProduct(
+      const message = await createProductMutation.mutateAsync({
         product,
         productVariants,
         productImages,
-      );
-      console.log(response);
-    } catch (error) {
+      });
+      toast.success(message);
+    } catch (error: any) {
+      toast.error(error.message);
       console.log(error);
     }
   };

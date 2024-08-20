@@ -1,6 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { IProduct } from "../interfaces/IProduct";
+import { ICreateProduct, IProduct } from "../interfaces/IProduct";
 import ProductService from "../services/ProductService";
+import { ICreateProductVariant, IProductVariant } from "../interfaces/IProductVariant";
+import { ICreateProductImage, IProductImage } from "../interfaces/IProductImage";
+
+
+
 
 export function useGetAllProductsByShop(shopId: string) {
     const fetchData = async () => {
@@ -32,9 +37,32 @@ export function useGetMyShopProduct() {
     })
 }
 
+export function useCreateProduct() {
+    const createProduct = async ({
+        product,
+        productVariants,
+        productImages,
+    }: {
+        product: ICreateProduct;
+        productVariants: ICreateProductVariant[];
+        productImages: ICreateProductImage[];
+    }) => {
+        try {
+            const response = await ProductService.createProduct(product, productVariants, productImages);
+            return response.data.message;
+        } catch (error: any) {
+            throw new Error(error.response.data.message);
+        }
+    }
+
+    return useMutation({
+        mutationKey: ['createProduct'],
+        mutationFn: createProduct
+    });
+}
+
 export function useUpdateProduct() {
     const queryClient = useQueryClient();
-
     const updateProduct = async (product: IProduct) => {
         try {
             const response = await ProductService.updateProduct(product);

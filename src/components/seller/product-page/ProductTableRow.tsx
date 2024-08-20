@@ -48,12 +48,12 @@ export default function ProductTableRow({
             </div>
           </div>
         </td>
-        <td>
+        <td className="font-bold">
           {product?.productVariants[0].price}
           <br />
           {/* <span className="badge badge-ghost badge-sm">Desktop Support Technician</span> */}
         </td>
-        <td>{product?.productCategory.name}</td>
+        <td className="font-bold">{product?.productCategory.name}</td>
         <td className="flex space-x-2">
           <EditProductModal product={product!} />
           <button
