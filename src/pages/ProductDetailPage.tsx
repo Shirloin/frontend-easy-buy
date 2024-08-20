@@ -19,12 +19,16 @@ export default function ProductDetailPage() {
     <>
       <div className="relative mx-auto flex w-full max-w-7xl flex-col p-10">
         <div className="flex flex-grow justify-between gap-8">
-          <ProductDetailImageSection
-            productImages={product?.productImages}
-            isLoading={isLoading}
-          />
-          <ProductDetailSection product={product!} />
-          <ProductDetailActionSection />
+          <div className="flex flex-col">
+            <div className="relative flex flex-grow justify-between gap-8">
+              <ProductDetailImageSection
+                productImages={product?.productImages}
+                isLoading={isLoading}
+              />
+              <ProductDetailSection product={product!} isLoading={isLoading} />
+            </div>
+          </div>
+          <ProductDetailActionSection isLoading={isLoading} />
         </div>
       </div>
     </>

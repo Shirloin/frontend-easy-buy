@@ -31,7 +31,7 @@ export default function ProductDetailImageSection({
 
   return (
     <>
-      <div className="">
+      <div className="sticky top-28 h-fit">
         <img
           className="h-80 w-80 rounded-xl object-cover"
           src={productImages![imageIndex].imageUrl}
