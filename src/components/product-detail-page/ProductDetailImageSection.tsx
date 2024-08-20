@@ -6,15 +6,21 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 interface ProductDetailImageSectionProps {
   productImages?: IProductImage[];
+  isLoading?: boolean;
 }
 
 export default function ProductDetailImageSection({
   productImages,
+  isLoading,
 }: ProductDetailImageSectionProps) {
   const [imageIndex, setImageIndex] = useState(0);
   const [swiper, setSwiper] = useState<any>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+
+  if (isLoading) {
+    return ProductDetailImageLoading();
+  }
 
   const handleSlideChange = () => {
     if (swiper) {
@@ -67,6 +73,27 @@ export default function ProductDetailImageSection({
             >
               <FaAngleRight className="h-4 w-4" />
             </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ProductDetailImageLoading() {
+  return (
+    <>
+      <div className="">
+        <div className="skeleton h-80 w-80 rounded-xl" />
+        <div className="relative mt-2 flex w-80">
+          <div className="flex gap-2">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <div key={index}>
+                <div
+                  className={`skeleton h-14 w-14 cursor-pointer rounded-md object-cover`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

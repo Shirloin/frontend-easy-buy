@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
         <div className="p-2">
           <p className="text-base">{product?.name}</p>
-          <p className="font-bold">Rp{product?.productVariants[0].price}</p>
+          <p className="font-bold">${product?.productVariants[0].price}</p>
           <div className="mt-2 flex items-center gap-2">
             <img
               className="h-5 w-5 rounded-full object-cover"
