@@ -11,12 +11,14 @@ import AddProductPage from "../pages/seller/AddProductPage";
 import RegisterShopPage from "../pages/seller/RegisterShopPage";
 import { SellerRoute } from "./SellerRoute";
 import ProductPage from "../pages/seller/ProductPage";
+import ProductDetailPage from "../pages/ProductDetailPage";
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route element={<ProtectedRoute />}>
-          <Route index element={<HomePage />} />
           <Route path="create-shop" element={<RegisterShopPage />} />
           <Route path="seller" element={<SellerLayout />}>
             <Route element={<SellerRoute />}>

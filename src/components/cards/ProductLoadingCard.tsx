@@ -1,5 +1,3 @@
-import { IProduct } from "../../interfaces/IProduct";
-
 export default function ProductLoadingCard() {
   return (
     <>

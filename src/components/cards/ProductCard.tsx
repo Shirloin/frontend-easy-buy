@@ -7,7 +7,10 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
-      <div className="h-80 w-44 rounded-md bg-white shadow-md">
+      <a
+        href={`/product/${product?._id}`}
+        className="h-80 w-44 rounded-md bg-white shadow-md"
+      >
         <img
           className="h-44 w-44 rounded-md object-cover"
           src={product?.productImages[0].imageUrl}
@@ -27,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </p>
           </div>
         </div>
-      </div>
+      </a>
     </>
   );
 }

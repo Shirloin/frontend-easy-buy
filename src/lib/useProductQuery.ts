@@ -108,11 +108,26 @@ export function useGetLatestProduct() {
             const response = await ProductService.getLatestProduct()
             return response.data.products as IProduct[]
         } catch (error) {
-            throw new Error("Failed to fetch latest products by user")
+            throw new Error("Failed to fetch latest products ")
         }
     }
     return useQuery({
         queryKey: ['latestProduct'],
+        queryFn: fetchData
+    })
+}
+
+export function useGetProductDetail(productId: string) {
+    const fetchData = async () => {
+        try {
+            const response = await ProductService.getProductDetail(productId)
+            return response.data.product as IProduct
+        } catch (error) {
+            throw new Error("Failed to fetch product detail")
+        }
+    }
+    return useQuery({
+        queryKey: ['productDetail'],
         queryFn: fetchData
     })
 }

@@ -3,7 +3,7 @@ import ProductCard from "../cards/ProductCard";
 import ProductLoadingCard from "../cards/ProductLoadingCard";
 
 export default function LatestProductSection() {
-  const { data: products, isLoading, isError } = useGetLatestProduct();
+  const { data: products, isLoading } = useGetLatestProduct();
 
   return (
     <>
@@ -11,7 +11,7 @@ export default function LatestProductSection() {
         <h1 className="text-2xl font-bold">New Product</h1>
         <div className="my-4 flex flex-wrap gap-4">
           {isLoading &&
-            Array.from({ length: 10 }).map((_, index) => (
+            Array.from({ length: 20 }).map((_, index) => (
               <ProductLoadingCard key={index} />
             ))}
           {products &&
