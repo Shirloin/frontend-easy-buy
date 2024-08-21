@@ -11,11 +11,14 @@ export const useValidateToken = () => {
             setUser(user);
             setShop(user.shop)
             setHasShop(user.shop !== null)
+            return user
         } catch (error: any) {
+            console.log(error)
             if (error.response.status === 403 || error.response.status === 401) {
-                setToken("");
+                // setToken("");
             }
         }
+        return {}
     };
     return useQuery({
         queryKey: ["validateToken"],

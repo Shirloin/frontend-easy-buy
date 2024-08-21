@@ -6,30 +6,45 @@ import { TbCubePlus } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-    return (
-        <>
-            <div className="fixed  h-full w-56 flex-col gap-4 border-r-2 px-4 py-6 lg:flex hidden">
-                <Link to={"/seller"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
-                    <MdOutlineDashboard className="h-6 w-6" />
-                    <p>Dashboard</p>
-                </Link>
-                <Link to={"/seller/chat"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
-                    <IoChatboxEllipsesOutline className="h-6 w-6" />
-                    <p>Chat</p>
-                </Link>
-                <Link to={"/seller/products"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
-                    <GoInbox className="h-6 w-6" />
-                    <p>Products</p>
-                </Link>
-                <Link to={"/seller/add-product"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
-                    <TbCubePlus className="h-6 w-6" />
-                    <p>Add Product</p>
-                </Link>
-                <Link to={"/seller/orders"} className="hover:bg-slate-100 flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold">
-                    <LiaClipboardListSolid className="h-6 w-6" />
-                    <p>Order</p>
-                </Link>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="fixed hidden h-full w-56 flex-col gap-4 border-r-2 px-4 py-6 lg:flex">
+        <a
+          href={"/seller"}
+          className="flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold hover:bg-slate-100"
+        >
+          <MdOutlineDashboard className="h-6 w-6" />
+          <p>Dashboard</p>
+        </a>
+        <a
+          href={"/seller/chat"}
+          className="flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold hover:bg-slate-100"
+        >
+          <IoChatboxEllipsesOutline className="h-6 w-6" />
+          <p>Chat</p>
+        </a>
+        <a
+          href={"/seller/products"}
+          className="flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold hover:bg-slate-100"
+        >
+          <GoInbox className="h-6 w-6" />
+          <p>Products</p>
+        </a>
+        <a
+          href={"/seller/add-product"}
+          className="flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold hover:bg-slate-100"
+        >
+          <TbCubePlus className="h-6 w-6" />
+          <p>Add Product</p>
+        </a>
+        <a
+          href={"/seller/orders"}
+          className="flex w-full gap-4 rounded-lg px-6 py-3 text-center font-semibold hover:bg-slate-100"
+        >
+          <LiaClipboardListSolid className="h-6 w-6" />
+          <p>Order</p>
+        </a>
+      </div>
+    </>
+  );
 }

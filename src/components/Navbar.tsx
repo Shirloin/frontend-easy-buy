@@ -10,9 +10,9 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
-        <Link className="font-serif text-3xl font-semibold text-primary" to="/">
+        <a className="font-serif text-3xl font-semibold text-primary" href="/">
           Mart
-        </Link>
+        </a>
         <input
           className="w-full rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
           placeholder="Search..."
@@ -33,15 +33,15 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="flex">
-                <Link
-                  to={"/seller"}
+                <a
+                  href={"/seller"}
                   className="relative flex max-w-32 items-center justify-center gap-2 rounded-lg p-2 hover:bg-slate-200"
                 >
                   <CiShop className="min-h-6 min-w-6" />
                   <p className="max-w-20 truncate text-sm font-semibold">
                     {user && user.shop ? user.shop.name : "Shop"}
                   </p>
-                </Link>
+                </a>
                 <button className="relative flex max-w-32 items-center justify-start gap-2 rounded-lg p-2 hover:bg-slate-200">
                   <div className="avatar">
                     <div className="w-6 rounded-full">
@@ -56,16 +56,16 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link to={"/register"}>
+              <a href={"/register"}>
                 <div className="nav-auth-btn text-primary ring-1 ring-primary">
                   Register
                 </div>
-              </Link>
-              <Link to={"/login"}>
+              </a>
+              <a href={"/login"}>
                 <div className="nav-auth-btn bg-primary text-white ring-1 ring-primary">
                   Login
                 </div>
-              </Link>
+              </a>
             </>
           )}
         </div>

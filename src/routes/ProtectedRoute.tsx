@@ -9,7 +9,7 @@ export const ProtectedRoute = () => {
   const { data, isError } = useValidateToken();
 
   if (isError) {
-    setToken("");
+    // setToken("");
     navigate("/login");
   }
 

@@ -16,7 +16,7 @@
     @apply ring-2 focus:outline-none focus:ring-primary;
   }
   hr {
-    @apply my-2 w-full border-b-[0.5];
+    @apply my-4 w-full border-b-[0.5];
   }
 }
 

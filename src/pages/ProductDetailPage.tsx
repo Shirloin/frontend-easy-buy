@@ -5,6 +5,7 @@ import ProductDetailSection from "../components/product-detail-page/ProductDetai
 import ProductDetailActionSection from "../components/product-detail-page/ProductDetailActionSection";
 import { useProductDetailStore } from "../hooks/useProductDetailStore";
 import { useEffect } from "react";
+import ShopSection from "../components/product-detail-page/ShopSection";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -35,7 +36,15 @@ export default function ProductDetailPage() {
                 productImages={product?.productImages}
                 isLoading={isLoading}
               />
-              <ProductDetailSection product={product!} isLoading={isLoading} />
+              <div>
+                <ProductDetailSection
+                  product={product!}
+                  isLoading={isLoading}
+                />
+                <hr />
+                <ShopSection shop={product?.shop} isLoading={isLoading} />
+                <hr />
+              </div>
             </div>
           </div>
           <ProductDetailActionSection isLoading={isLoading} />
