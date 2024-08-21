@@ -39,6 +39,7 @@ export default function ProductDetailImageSection({
         />
         <div className="relative mt-2 flex w-80">
           <Swiper
+            className="w-full"
             slidesPerView={5}
             direction="horizontal"
             spaceBetween={2}

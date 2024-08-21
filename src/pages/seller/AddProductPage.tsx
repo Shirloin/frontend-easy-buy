@@ -12,6 +12,7 @@ export default function AddProductPage() {
   const createProductMutation = useCreateProduct();
 
   const handleSubmit = async () => {
+    toast.loading("Please do not leave the page until it finish");
     try {
       const message = await createProductMutation.mutateAsync({
         product,
@@ -22,6 +23,8 @@ export default function AddProductPage() {
     } catch (error: any) {
       toast.error(error.message);
       console.log(error);
+    } finally {
+      toast.dismiss();
     }
   };
 
@@ -32,14 +35,17 @@ export default function AddProductPage() {
         <ProductDetailForm />
         <ProductImageForm />
         <ProductVariantForm />
-        <form onSubmit={handleSubmit} className="mt-4 flex justify-end gap-4">
+        <div className="mt-4 flex justify-end gap-4">
           {/* <button className="max-w-28 rounded-md px-12 py-2 text-sm font-bold text-gray-500 ring-1 ring-gray-300">
             Cancel
           </button> */}
-          <button className="max-w-28 rounded-md bg-primary px-12 py-2 text-sm font-bold text-white">
+          <button
+            onClick={handleSubmit}
+            className="max-w-28 rounded-md bg-primary px-12 py-2 text-sm font-bold text-white"
+          >
             Save
           </button>
-        </form>
+        </div>
       </div>
     </>
   );

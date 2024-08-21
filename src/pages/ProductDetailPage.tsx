@@ -36,7 +36,7 @@ export default function ProductDetailPage() {
                 productImages={product?.productImages}
                 isLoading={isLoading}
               />
-              <div>
+              <div className="w-full">
                 <ProductDetailSection
                   product={product!}
                   isLoading={isLoading}
