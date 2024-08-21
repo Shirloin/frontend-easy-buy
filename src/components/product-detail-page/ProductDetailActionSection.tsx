@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { IoIosHeartEmpty, IoMdShare } from "react-icons/io";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { useProductDetailStore } from "../../hooks/useProductDetailStore";
+import { formatNumber } from "../../util/Util";
 
 interface ProductDetailActionSectionProps {
   isLoading?: boolean;
@@ -10,7 +12,13 @@ interface ProductDetailActionSectionProps {
 export default function ProductDetailActionSection({
   isLoading,
 }: ProductDetailActionSectionProps) {
-  const [quantity, setQuantity] = useState(1);
+  const {
+    quantity,
+    addQuantity,
+    minusQuantity,
+    updateQuantity,
+    selectedVariant,
+  } = useProductDetailStore();
   if (isLoading) {
     return ProductDetailActionLoading();
   }
@@ -30,17 +38,23 @@ export default function ProductDetailActionSection({
             <input
               className="mx-2 w-10 text-center text-lg outline-none ring-0"
               type="number"
+              value={quantity}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                updateQuantity(Number(e.target.value))
+              }
             />
             <button className="h-6 w-6 rounded-md text-primary hover:bg-gray-200">
               <AiOutlinePlus className="h-4 w-4 self-center" />
             </button>
           </div>
           <div className="font-medium">Total Stock:</div>
-          <p className="font-bold">123</p>
+          <p className="font-bold">{selectedVariant?.stock}</p>
         </div>
         <div className="flex items-center justify-between">
           <p className="font-medium text-gray-400">SubTotal</p>
-          <p className="text-xl font-bold">$10</p>
+          <p className="text-xl font-bold">
+            Rp{formatNumber(selectedVariant?.price * quantity)}
+          </p>
         </div>
         <div className="flex flex-col gap-2">
           <button className="w-full rounded-md bg-primary py-1.5 text-center font-bold text-white">

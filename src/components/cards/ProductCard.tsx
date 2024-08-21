@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../interfaces/IProduct";
+import { formatNumber } from "../../util/Util";
 
 interface ProductCardProps {
   product?: IProduct;
@@ -19,7 +20,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
         <div className="p-2">
           <p className="line-clamp-2 text-sm">{product?.name}</p>
-          <p className="font-bold">${product?.productVariants[0].price}</p>
+          <p className="font-bold">
+            Rp{formatNumber(product!.productVariants[0].price)}
+          </p>
           <div className="mt-2 flex items-center gap-2">
             <img
               className="h-5 w-5 rounded-full object-cover"

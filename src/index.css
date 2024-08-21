@@ -15,6 +15,9 @@
   textarea {
     @apply ring-2 focus:outline-none focus:ring-primary;
   }
+  hr {
+    @apply my-2 w-full border-b-[0.5];
+  }
 }
 
 input::-webkit-outer-spin-button,
