@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 export default class AuthService {
   static validate_token() {
     return axios.get(
-      `${import.meta.env.VITE_API_BASE_URL}/api/validate_token`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/validate-token`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("authentication"),

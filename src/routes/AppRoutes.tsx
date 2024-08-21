@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 import HomePage from "../pages/HomePage";
@@ -12,19 +12,27 @@ import RegisterShopPage from "../pages/seller/RegisterShopPage";
 import { SellerRoute } from "./SellerRoute";
 import ProductPage from "../pages/seller/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import { DefaultRoute } from "./DefaultRoute";
+
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="/product/:id" element={<ProductDetailPage />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="create-shop" element={<RegisterShopPage />} />
-          <Route path="seller" element={<SellerLayout />}>
-            <Route element={<SellerRoute />}>
-              <Route index element={<SellerDashboardPage />} />
-              <Route path="add-product" element={<AddProductPage />} />
-              <Route path="products" element={<ProductPage />} />
+        <Route element={<DefaultRoute />}>
+          {/* Public Route */}
+          <Route index element={<HomePage />} />
+          <Route path="/product/:id" element={<ProductDetailPage />} />
+
+          <Route element={<ProtectedRoute />}>
+            {/* Protected Route */}
+            <Route path="create-shop" element={<RegisterShopPage />} />
+            <Route path="seller" element={<SellerLayout />}>
+              <Route element={<SellerRoute />}>
+                {/* Seller Route */}
+                <Route index element={<SellerDashboardPage />} />
+                <Route path="add-product" element={<AddProductPage />} />
+                <Route path="products" element={<ProductPage />} />
+              </Route>
             </Route>
           </Route>
         </Route>

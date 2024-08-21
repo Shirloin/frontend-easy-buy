@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IProduct } from "../../interfaces/IProduct";
 
 interface ProductCardProps {
@@ -7,8 +8,8 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
-      <a
-        href={`/product/${product?._id}`}
+      <Link
+        to={`/product/${product?._id}`}
         className="h-80 w-44 rounded-md bg-white shadow-md"
       >
         <img
@@ -30,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </p>
           </div>
         </div>
-      </a>
+      </Link>
     </>
   );
 }
