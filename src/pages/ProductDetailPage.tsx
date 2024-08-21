@@ -4,6 +4,7 @@ import ProductDetailImageSection from "../components/product-detail-page/Product
 import ProductDetailSection from "../components/product-detail-page/ProductDetailSection";
 import ProductDetailActionSection from "../components/product-detail-page/ProductDetailActionSection";
 import { useProductDetailStore } from "../hooks/useProductDetailStore";
+import { useEffect } from "react";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -15,11 +16,13 @@ export default function ProductDetailPage() {
     isLoading,
     isError,
   } = useGetProductDetail(id as string);
+  useEffect(() => {
+    if (product) {
+      setSelectedVariant(product.productVariants[0]);
+    }
+  }, [product, setSelectedVariant]);
   if (isError) {
     return <div>{isError}</div>;
-  }
-  if (product) {
-    setSelectedVariant(product.productVariants[0]);
   }
 
   return (

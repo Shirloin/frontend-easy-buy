@@ -30,7 +30,8 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
     selectVariant: (index: number, variant: IProductVariant) => {
         set((state) => ({
             selectedVariantIndex: index,
-            selectedVariant: variant
+            selectedVariant: variant,
+            quantity: 1
         }))
     },
     setSelectedVariant: (variant) => {
@@ -48,12 +49,12 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
     addQuantity: () => {
         set((state) => (
             {
-                quantity: Math.min(state.quantity + 1, 10)
+                quantity: state.quantity + 1
             }))
     },
     minusQuantity: () => {
         set((state) => ({
-            quantity: Math.min(state.quantity - 1, 1)
+            quantity: Math.max(state.quantity - 1, 1)
         }))
     },
     updateQuantity: (val: number) => {

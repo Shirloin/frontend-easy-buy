@@ -14,7 +14,8 @@ export default function ProductDetailSection({
   product,
   isLoading,
 }: ProductDetailSectionProps) {
-  const { selectedVariantIndex, selectVariant } = useProductDetailStore();
+  const { selectedVariantIndex, selectVariant, selectedVariant } =
+    useProductDetailStore();
 
   if (isLoading) {
     return ProductDetailLoading();
@@ -36,7 +37,7 @@ export default function ProductDetailSection({
           </div>
         </div>
         <p className="text-2xl font-bold">
-          Rp{formatNumber(product.productVariants[0].price)}
+          Rp{formatNumber(selectedVariant.price)}
         </p>
         <hr />
         <div>
