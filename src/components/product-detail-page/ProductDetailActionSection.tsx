@@ -4,6 +4,8 @@ import { IoIosHeartEmpty, IoMdShare } from "react-icons/io";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { useProductDetailStore } from "../../hooks/useProductDetailStore";
 import { formatNumber } from "../../util/Util";
+import { useAddToCart } from "../../lib/useCartQuery";
+import toast from "react-hot-toast";
 
 interface ProductDetailActionSectionProps {
   isLoading?: boolean;
@@ -12,7 +14,9 @@ interface ProductDetailActionSectionProps {
 export default function ProductDetailActionSection({
   isLoading,
 }: ProductDetailActionSectionProps) {
+  const addToCart = useAddToCart();
   const {
+    product,
     quantity,
     addQuantity,
     minusQuantity,
@@ -22,6 +26,22 @@ export default function ProductDetailActionSection({
   if (isLoading) {
     return ProductDetailActionLoading();
   }
+
+  const handleAddToCart = async () => {
+    try {
+      const productId = selectedVariant._id;
+      const shopId = product?.shop._id;
+      const message = await addToCart.mutateAsync({
+        productId,
+        shopId,
+        quantity,
+      });
+      toast.success(message);
+    } catch (error: any) {
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -74,7 +94,10 @@ export default function ProductDetailActionSection({
           </p>
         </div>
         <div className="mt-6 flex flex-col gap-2">
-          <button className="w-full rounded-md bg-primary py-1.5 text-center font-bold text-white">
+          <button
+            onClick={handleAddToCart}
+            className="w-full rounded-md bg-primary py-1.5 text-center font-bold text-white"
+          >
             Add To Cart
           </button>
           <button className="w-full rounded-md py-1.5 text-center font-bold text-primary ring-1 ring-primary">

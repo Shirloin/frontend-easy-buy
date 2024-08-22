@@ -1,15 +1,20 @@
 import { create } from "zustand"
 import { IProduct } from "../interfaces/IProduct"
 import { IProductVariant } from "../interfaces/IProductVariant"
+import { useAddToCart } from "../lib/useCartQuery"
+import { IProductCategory } from "../interfaces/IProductCategory"
+import { IProductImage } from "../interfaces/IProductImage"
+import { IShop } from "../interfaces/IShop"
 
 type ProductDetailStoreState = {
-    product?: IProduct
+    product: IProduct
     selectedVariantIndex: number
     selectedVariant: IProductVariant
     quantity: number
 }
 
 type ProductDetailAction = {
+    setProduct: (product: IProduct) => void
     selectVariant: (index: number, variant: IProductVariant) => void
     setSelectedVariant: (variant: IProductVariant) => void
     setSelectedVariantIndex: (val: number) => void
@@ -18,7 +23,21 @@ type ProductDetailAction = {
     updateQuantity: (val: number) => void
 }
 
-export const useProductDetailStore = create<ProductDetailStoreState & ProductDetailAction>((set) => ({
+export const useProductDetailStore = create<ProductDetailStoreState & ProductDetailAction>((set, get) => ({
+    product: {
+        _id: "",
+        name: "",
+        description: "",
+        productCategory: {} as IProductCategory,
+        productImages: [] as IProductImage[],
+        productVariants: [] as IProductVariant[],
+        shop: {} as IShop
+    },
+    setProduct: (product) => {
+        set((state) => ({
+            product: product
+        }))
+    },
     selectedVariantIndex: 0,
     selectedVariant: {
         _id: "",
@@ -44,7 +63,6 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
             selectedVariantIndex: val
         }))
     },
-
     quantity: 1,
     addQuantity: () => {
         set((state) => (
@@ -61,5 +79,5 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
         set((state) => ({
             quantity: val
         }))
-    }
+    },
 }))
