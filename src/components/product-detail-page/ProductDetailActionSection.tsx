@@ -6,6 +6,7 @@ import { useProductDetailStore } from "../../hooks/useProductDetailStore";
 import { formatNumber } from "../../util/Util";
 import { useAddToCart } from "../../lib/useCartQuery";
 import toast from "react-hot-toast";
+import Button from "../ui/Button";
 
 interface ProductDetailActionSectionProps {
   isLoading?: boolean;
@@ -76,13 +77,13 @@ export default function ProductDetailActionSection({
           <p className="font-bold">{selectedVariant?.stock}</p>
         </div>
         {quantity < 1 && (
-          <p className="text-wrap text-sm font-semibold tracking-tight text-error">
+          <p className="text-wrap text-sm font-semibold leading-tight tracking-tight text-error">
             Minimal quantity to purchase this product is 1 product
           </p>
         )}
 
         {quantity > selectedVariant.stock && (
-          <p className="text-wrap text-sm font-semibold tracking-tight text-error">
+          <p className="text-wrap text-sm font-semibold leading-tight tracking-tight text-error">
             Max quantity reached. Reduce your quantity
           </p>
         )}
@@ -94,15 +95,8 @@ export default function ProductDetailActionSection({
           </p>
         </div>
         <div className="mt-6 flex flex-col gap-2">
-          <button
-            onClick={handleAddToCart}
-            className="w-full rounded-md bg-primary py-1.5 text-center font-bold text-white"
-          >
-            Add To Cart
-          </button>
-          <button className="w-full rounded-md py-1.5 text-center font-bold text-primary ring-1 ring-primary">
-            Buy Now
-          </button>
+          <Button title="Add To Cart" onClick={handleAddToCart} />
+          <Button title="Buy Now" type="outline" onClick={handleAddToCart} />
         </div>
         <div className="mt-4 flex justify-between">
           <button className="flex items-center justify-center px-2 text-center text-sm font-bold">

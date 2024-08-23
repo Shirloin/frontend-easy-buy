@@ -22,9 +22,12 @@ export default function Navbar() {
           {isAuthenticated ? (
             <>
               <div className="flex">
-                <button className="relative rounded-lg p-2 hover:bg-slate-200">
+                <a
+                  href="/cart"
+                  className="relative rounded-lg p-2 hover:bg-slate-200"
+                >
                   <IoCartOutline className="h-6 w-6" />
-                </button>
+                </a>
                 <button className="relative rounded-lg p-2 hover:bg-slate-200">
                   <IoIosNotificationsOutline className="h-6 w-6" />
                 </button>

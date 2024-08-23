@@ -7,7 +7,6 @@ import {
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { TbTrash } from "react-icons/tb";
 import { IoAddOutline } from "react-icons/io5";
-import { useEditProductImageStore } from "../../../hooks/useEditProductImageStore";
 import useEditProductStore from "../../../hooks/useEditProductStore";
 
 type ImageType = IProductImage | ICreateProductImage;

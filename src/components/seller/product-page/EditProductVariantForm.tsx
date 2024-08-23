@@ -1,11 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { IProduct } from "../../../interfaces/IProduct";
 import {
   ICreateProductVariant,
   IProductVariant,
 } from "../../../interfaces/IProductVariant";
-import { useEditProductVariantFormStore } from "../../../hooks/useEditProductVariantStore";
 import useEditProductStore from "../../../hooks/useEditProductStore";
+import Button from "../../ui/Button";
 
 type VariantType = IProductVariant | ICreateProductVariant;
 
@@ -86,12 +85,12 @@ export default function EditProductVariantForm() {
             </div>
           );
         })}
-        <button
+        <Button
+          title="+ Add Variant"
           onClick={addProductVariant}
-          className="w-full rounded-md bg-white px-4 py-2 text-center font-semibold text-primary ring-1 ring-primary"
-        >
-          + Add Variant
-        </button>
+          type="outline"
+          className="w-full"
+        />
       </div>
     </>
   );

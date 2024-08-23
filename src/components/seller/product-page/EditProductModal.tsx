@@ -9,6 +9,7 @@ import ProductService from "../../../services/ProductService";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateProduct } from "../../../lib/useProductQuery";
 import toast from "react-hot-toast";
+import Button from "../../ui/Button";
 
 interface EditProductModalProps {
   product: IProduct;
@@ -63,12 +64,7 @@ export default function EditProductModal({
             <EditProductImageForm />
           </Tabs>
           <div className="mb-4 flex w-full max-w-xl justify-start gap-4 px-6">
-            <button
-              onClick={handleSubmit}
-              className="w-full rounded-md bg-primary px-12 py-2 text-sm font-bold text-white"
-            >
-              Save
-            </button>
+            <Button className="w-full" title="Save" onClick={handleSubmit} />
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">

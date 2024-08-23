@@ -6,6 +6,7 @@ import useCreateProductStore from "../../hooks/useCreateProductStore";
 import ProductService from "../../services/ProductService";
 import toast from "react-hot-toast";
 import { useCreateProduct } from "../../lib/useProductQuery";
+import Button from "../../components/ui/Button";
 
 export default function AddProductPage() {
   const { product, productVariants, productImages } = useCreateProductStore();
@@ -36,15 +37,18 @@ export default function AddProductPage() {
         <ProductImageForm />
         <ProductVariantForm />
         <div className="mt-4 flex justify-end gap-4">
-          {/* <button className="max-w-28 rounded-md px-12 py-2 text-sm font-bold text-gray-500 ring-1 ring-gray-300">
-            Cancel
-          </button> */}
-          <button
+          <Button
+            title="cancel"
             onClick={handleSubmit}
-            className="max-w-28 rounded-md bg-primary px-12 py-2 text-sm font-bold text-white"
-          >
-            Save
-          </button>
+            type="cancel"
+            className="max-w-28"
+          />
+          <Button
+            title="save"
+            onClick={handleSubmit}
+            type="default"
+            className="max-w-28"
+          />
         </div>
       </div>
     </>
