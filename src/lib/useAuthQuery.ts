@@ -10,7 +10,7 @@ export const useValidateToken = () => {
             const user = response?.data?.user;
             setUser(user);
             setShop(user.shop)
-            setHasShop(user.shop !== null)
+            setHasShop(user.shop !== undefined)
             return user
         } catch (error: any) {
             console.log(error)

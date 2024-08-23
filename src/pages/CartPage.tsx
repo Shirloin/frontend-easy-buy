@@ -1,5 +1,7 @@
 import toast from "react-hot-toast";
-import CartActionSection from "../components/cart-page/CartActionSection";
+import CartActionSection, {
+  CartActionLoading,
+} from "../components/cart-page/CartActionSection";
 import CartListSection, {
   CartListLoading,
 } from "../components/cart-page/CartListSection";
@@ -21,7 +23,7 @@ export default function CartPage() {
           <h1 className="text-3xl font-bold">Cart</h1>
           <div className="flex w-full flex-grow justify-between gap-4 py-6">
             <CartListSection carts={carts} isLoading={isLoading} />
-            <CartActionSection />
+            <CartActionSection carts={carts} isLoading={isLoading} />
           </div>
         </div>
       </div>
@@ -37,7 +39,7 @@ function CartLoading() {
           <h1 className="skeleton h-6 w-60"></h1>
           <div className="flex w-full flex-grow justify-between gap-4 py-6">
             <CartListLoading />
-            <CartActionSection />
+            <CartActionLoading />
           </div>
         </div>
       </div>

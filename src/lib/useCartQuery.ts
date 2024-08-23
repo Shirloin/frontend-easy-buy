@@ -6,6 +6,7 @@ export function useAddToCart() {
     const addToCart = async ({ variantId, shopId, quantity }: { variantId: string, shopId: string, quantity: number }) => {
         try {
             const response = await CartService.addToCart(variantId, shopId, quantity)
+            console.log(response.data.cart)
             return response.data.message
         } catch (error) {
             throw new Error("Fail To Add To Cart")
