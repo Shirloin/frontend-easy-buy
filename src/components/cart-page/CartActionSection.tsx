@@ -2,16 +2,9 @@ import { ICart } from "../../interfaces/ICart";
 import Button from "../ui/Button";
 interface CartActionSectionProps {
   carts: ICart[];
-  isLoading: boolean;
 }
 
-export default function CartActionSection({
-  carts,
-  isLoading,
-}: CartActionSectionProps) {
-  if (isLoading) {
-    return CartActionLoading();
-  }
+export default function CartActionSection({ carts }: CartActionSectionProps) {
   const handleSubmit = () => {};
   return (
     <>

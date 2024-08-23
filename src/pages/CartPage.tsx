@@ -6,11 +6,20 @@ import CartListSection, {
   CartListLoading,
 } from "../components/cart-page/CartListSection";
 import { useGetCart } from "../lib/useCartQuery";
+import { useEffect } from "react";
+import { useCartStore } from "../hooks/useCartStore";
 
 export default function CartPage() {
   const { data: carts = [], isLoading, isError } = useGetCart();
+  const { initializeCartItems } = useCartStore();
+
+  useEffect(() => {
+    if (carts.length > 0) {
+      initializeCartItems(carts);
+    }
+  }, [carts, initializeCartItems]);
   if (isLoading) {
-    return CartLoading();
+    return <CartLoading />;
   }
   if (isError) {
     console.log(isError);
@@ -22,8 +31,8 @@ export default function CartPage() {
         <div className="relative mx-auto flex w-full max-w-7xl flex-col px-10 py-4">
           <h1 className="text-3xl font-bold">Cart</h1>
           <div className="flex w-full flex-grow justify-between gap-4 py-6">
-            <CartListSection carts={carts} isLoading={isLoading} />
-            <CartActionSection carts={carts} isLoading={isLoading} />
+            <CartListSection carts={carts} />
+            <CartActionSection carts={carts} />
           </div>
         </div>
       </div>

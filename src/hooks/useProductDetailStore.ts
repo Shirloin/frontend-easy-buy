@@ -1,7 +1,6 @@
 import { create } from "zustand"
 import { IProduct } from "../interfaces/IProduct"
 import { IProductVariant } from "../interfaces/IProductVariant"
-import { useAddToCart } from "../lib/useCartQuery"
 import { IProductCategory } from "../interfaces/IProductCategory"
 import { IProductImage } from "../interfaces/IProductImage"
 import { IShop } from "../interfaces/IShop"
