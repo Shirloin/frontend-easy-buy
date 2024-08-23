@@ -1,9 +1,9 @@
 interface ButtonProps {
-  title: string;
+  title?: string;
   type?: "default" | "outline" | "cancel" | "danger" | "ghost";
   size?: "small" | "large";
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export default function Button({

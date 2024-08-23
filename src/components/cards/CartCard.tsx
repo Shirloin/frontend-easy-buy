@@ -1,7 +1,14 @@
-import { ChangeEvent } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { IoTrashOutline } from "react-icons/io5";
+import { ICart } from "../../interfaces/ICart";
+import { ICartItem } from "../../interfaces/ICartItem";
+import { formatNumber } from "../../util/Util";
 
-export default function CartCard() {
+interface CartCardProps {
+  cart: ICart;
+}
+
+export default function CartCard({ cart }: CartCardProps) {
   return (
     <>
       <div className="flex w-full flex-col justify-center gap-6 rounded-lg bg-white p-5">
@@ -9,22 +16,22 @@ export default function CartCard() {
           <input type="checkbox" className="h-5 w-5 accent-black ring-0" />
           <div className="flex items-center gap-2">
             <img
-              className="h-5 w-5 rounded-md"
-              src="https://images.unsplash.com/photo-1721332149346-00e39ce5c24f?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              className="h-6 w-6 rounded-md"
+              src={cart.shop.imageUrl}
               alt=""
             />
-            <p className="font-bold">SkyPass</p>
+            <p className="font-bold">{cart.shop.name}</p>
           </div>
         </div>
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {cart.items.map((item) => (
+          <CartItem key={item._id} item={item} />
+        ))}
       </div>
     </>
   );
 }
 
-function CartItem() {
+function CartItem({ item }: { item: ICartItem }) {
   const quantity = 1;
   return (
     <>
@@ -35,19 +42,22 @@ function CartItem() {
             <div className="flex items-start gap-2">
               <img
                 className="h-20 w-20 rounded-md"
-                src="https://images.unsplash.com/photo-1721332149346-00e39ce5c24f?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src={item.variant.product.productImages[0].imageUrl}
                 alt=""
               />
-              <div className="text-xs">
-                <p className="text-sm font-bold text-error">Stock: 15</p>
-                <p className="font-bold">SkyPass</p>
-                <p className="font-bold">SkyPass</p>
+              <div className="text-sm font-semibold">
+                <p className="text-error">Stock: {item.variant.stock}</p>
+                <p>{item.variant.product.name}</p>
+                <p>{item.variant.name}</p>
               </div>
             </div>
           </div>
-          <p className="font-bold">Rp1.000.000</p>
+          <p className="font-bold">Rp{formatNumber(item.variant.price)}</p>
         </div>
-        <div className="flex justify-end">
+        <div className="flex items-center justify-end gap-2">
+          <button>
+            <IoTrashOutline className="h-6 w-6 text-gray-400" />
+          </button>
           <div className="flex w-20 items-center justify-between rounded-md px-1 py-0.5 ring-1 ring-gray-500">
             <button
               className={`h-6 w-6 rounded-md ${quantity === 1 ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
@@ -57,7 +67,7 @@ function CartItem() {
             <input
               className={`mx-2 w-6 text-center text-sm outline-none ring-0`}
               type="number"
-              value={quantity}
+              //   value={quantity}
               //   onChange={(e: ChangeEvent<HTMLInputElement>) =>
               //     updateQuantity(Number(e.target.value))
               //   }
@@ -71,6 +81,49 @@ function CartItem() {
             </button>
           </div>
         </div>
+      </div>
+    </>
+  );
+}
+
+export function CartCardLoading() {
+  return (
+    <>
+      <div className="flex w-full flex-col justify-center gap-6 rounded-lg bg-white p-5">
+        <div className="flex items-center gap-6">
+          <div className="skeleton h-6 w-6" />
+          <div className="flex items-center gap-2">
+            <div className="skeleton h-6 w-6 rounded-md" />
+            <p className="skeleton h-6 w-40"></p>
+          </div>
+        </div>
+        {Array.from({ length: 10 }).map((_, index) => (
+          <CartItemLoading key={index} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+export function CartItemLoading() {
+  return (
+    <>
+      <div className="flex flex-col justify-between">
+        <div className="flex justify-between gap-6">
+          <div className="flex items-start gap-6">
+            <div className="skeleton h-6 w-6" />
+            <div className="flex items-start gap-2">
+              <div className="skeleton h-20 w-20 rounded-md" />
+              <div className="flex flex-col gap-2">
+                <div className="skeleton h-4 w-32" />
+                <div className="skeleton h-4 w-32" />
+                <div className="skeleton h-4 w-32" />
+              </div>
+            </div>
+          </div>
+          <p className="skeleton h-4 w-20"></p>
+        </div>
+        <div className="skeleton h-8 w-20 self-end"></div>
       </div>
     </>
   );

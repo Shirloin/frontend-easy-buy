@@ -10,7 +10,7 @@ import ShopSection from "../components/product-detail-page/ShopSection";
 export default function ProductDetailPage() {
   const { id } = useParams();
 
-  const { setSelectedVariant } = useProductDetailStore();
+  const { setSelectedVariant, setProduct } = useProductDetailStore();
 
   const {
     data: product,
@@ -19,9 +19,10 @@ export default function ProductDetailPage() {
   } = useGetProductDetail(id as string);
   useEffect(() => {
     if (product) {
+      setProduct(product);
       setSelectedVariant(product.productVariants[0]);
     }
-  }, [product, setSelectedVariant]);
+  }, [product, setSelectedVariant, setProduct]);
   if (isError) {
     return <div>{isError}</div>;
   }

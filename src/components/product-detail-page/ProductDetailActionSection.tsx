@@ -30,10 +30,10 @@ export default function ProductDetailActionSection({
 
   const handleAddToCart = async () => {
     try {
-      const productId = selectedVariant._id;
+      const variantId = selectedVariant._id;
       const shopId = product?.shop._id;
       const message = await addToCart.mutateAsync({
-        productId,
+        variantId,
         shopId,
         quantity,
       });

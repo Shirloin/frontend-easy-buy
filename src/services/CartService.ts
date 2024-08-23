@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default class CartService {
-    static async addToCart(productId: string, shopId: string, quantity: number) {
+    static async addToCart(variantId: string, shopId: string, quantity: number) {
         return axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/cart/add-to-cart`, {
-            productId: productId,
+            variantId: variantId,
             shopId: shopId,
             quantity: quantity,
             headers: {
@@ -11,4 +11,13 @@ export default class CartService {
             },
         })
     }
+    static async getCart() {
+        return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/cart`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("authentication"),
+            },
+        })
+    }
+
+
 }
