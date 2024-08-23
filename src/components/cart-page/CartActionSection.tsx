@@ -1,10 +1,18 @@
+import { useCartStore } from "../../hooks/useCartStore";
 import { ICart } from "../../interfaces/ICart";
+import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
 interface CartActionSectionProps {
   carts: ICart[];
 }
 
 export default function CartActionSection({ carts }: CartActionSectionProps) {
+  const { cartItems } = useCartStore();
+
+  const totalPrice = cartItems
+    .filter((item) => item.isSelected)
+    .reduce((total, item) => total + item.price * item.quantity, 0);
+
   const handleSubmit = () => {};
   return (
     <>
@@ -12,7 +20,7 @@ export default function CartActionSection({ carts }: CartActionSectionProps) {
         <p className="text-lg font-bold">Shopping Summary</p>
         <div className="mt-8 flex items-center justify-between">
           <p>Total</p>
-          <p className="text-lg font-bold">Rp1.300.000</p>
+          <p className="text-lg font-bold">Rp{formatNumber(totalPrice)}</p>
         </div>
         <hr />
         <Button

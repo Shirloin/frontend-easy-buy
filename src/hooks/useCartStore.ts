@@ -5,6 +5,7 @@ import { ICartItem } from "../interfaces/ICartItem";
 type CartItemState = {
     cartId: string
     itemId: string
+    price: number
     quantity: number
     isSelected: boolean;
 }
@@ -26,6 +27,7 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
             cart.items.map(item => ({
                 cartId: cart._id,
                 itemId: item._id,
+                price: item.variant.price,
                 isSelected: false,
                 quantity: item.quantity,
             }))

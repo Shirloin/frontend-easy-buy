@@ -41,7 +41,9 @@ export default function CartItemCard({ cartId, item }: CartItemCardProps) {
               </div>
             </div>
           </div>
-          <p className="font-bold">Rp{formatNumber(item.variant.price)}</p>
+          <p className="font-bold">
+            Rp{formatNumber(item.variant.price * (cartItem?.quantity ?? 1))}
+          </p>
         </div>
         <div className="flex items-center justify-end gap-2">
           <button>
