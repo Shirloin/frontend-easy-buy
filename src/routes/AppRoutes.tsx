@@ -1,4 +1,4 @@
-import { createBrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
 import HomePage from "../pages/HomePage";
@@ -8,11 +8,13 @@ import { GuestRoute } from "./GuestRoute";
 import SellerLayout from "../components/seller/SellerLayout";
 import SellerDashboardPage from "../pages/seller/DashboardPage";
 import AddProductPage from "../pages/seller/AddProductPage";
-import RegisterShopPage from "../pages/seller/RegisterShopPage";
+import RegisterShopPage from "../pages/seller/CreateShopPage";
 import { SellerRoute } from "./SellerRoute";
 import ProductPage from "../pages/seller/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import { DefaultRoute } from "./DefaultRoute";
+import CreateShopPage from "../pages/seller/CreateShopPage";
+import CartPage from "../pages/CartPage";
 
 export default function AppRoutes() {
   return (
@@ -25,7 +27,8 @@ export default function AppRoutes() {
 
           <Route element={<ProtectedRoute />}>
             {/* Protected Route */}
-            <Route path="create-shop" element={<RegisterShopPage />} />
+            <Route path="create-shop" element={<CreateShopPage />} />
+            <Route path="cart" element={<CartPage />} />
             <Route path="seller" element={<SellerLayout />}>
               <Route element={<SellerRoute />}>
                 {/* Seller Route */}
