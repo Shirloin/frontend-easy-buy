@@ -1,6 +1,7 @@
 interface ButtonProps {
   title: string;
-  type?: "default" | "outline" | "cancel" | "danger";
+  type?: "default" | "outline" | "cancel" | "danger" | "ghost";
+  size?: "small" | "large";
   className?: string;
   onClick: () => void;
 }
@@ -8,32 +9,49 @@ interface ButtonProps {
 export default function Button({
   title = "",
   type = "default",
+  size = "small",
   onClick,
   className = "",
 }: ButtonProps) {
-  const baseStyle =
-    "min-w-36 text-center rounded-md px-8 py-2 text-sm font-semibold capitalize";
+  const baseStyle = " text-center rounded-md text-sm capitalize";
   let typeStyle = "";
+
+  let sizeStyle = "";
+
+  switch (size) {
+    case "small":
+      sizeStyle = "font-semibold";
+      break;
+    case "large":
+      sizeStyle = "font-bold";
+      break;
+    default:
+      sizeStyle = "font-semibold";
+      break;
+  }
 
   switch (type) {
     case "outline":
-      typeStyle = "text-primary ring-1 ring-primary";
+      typeStyle = "min-w-36 px-8 py-2 text-primary ring-1 ring-primary";
       break;
     case "cancel":
-      typeStyle = "text-gray-500 ring-1 ring-gray-300";
+      typeStyle = "min-w-36 px-8 py-2 text-gray-500 ring-1 ring-gray-300";
       break;
     case "danger":
-      typeStyle = "text-red-500 ring-1 ring-red-500";
+      typeStyle = "min-w-36 px-8 py-2 text-red-500 ring-1 ring-red-500";
+      break;
+    case "ghost":
+      typeStyle = "w-fit text-primary";
       break;
     default:
-      typeStyle = "bg-primary text-white";
+      typeStyle = "min-w-36 bg-primary px-8 py-2 text-white";
   }
 
   return (
     <>
       <button
         onClick={onClick}
-        className={`${baseStyle} ${typeStyle} ${className}`}
+        className={`${baseStyle} ${sizeStyle} ${typeStyle} ${className}`}
       >
         {title}
       </button>
