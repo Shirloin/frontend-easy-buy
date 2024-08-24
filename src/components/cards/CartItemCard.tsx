@@ -6,6 +6,7 @@ import { useCartStore } from "../../hooks/useCartStore";
 import { ChangeEvent } from "react";
 import {
   useDecrementCartQuantity,
+  useDeleteCartItem,
   useIncrementCartQuantity,
   useUpdateCartQuantity,
 } from "../../lib/useCartQuery";
@@ -28,6 +29,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
   const updateCartQuantity = useUpdateCartQuantity();
   const incrementCartQuantity = useIncrementCartQuantity();
   const decrementCartQuantity = useDecrementCartQuantity();
+  const deleteCartItem = useDeleteCartItem();
 
   const cartItem = cartItems.find(
     (c) => c.cartId === cart._id && c.itemId === item._id,
@@ -80,6 +82,16 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     }
   };
 
+  const handleDeleteCartItem = async () => {
+    const itemId = item._id;
+    try {
+      const message = await deleteCartItem.mutateAsync({ cartItemId: itemId });
+      toast.success(message);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
       <div>
@@ -109,14 +121,14 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
           </p>
         </div>
         <div className="flex items-center justify-end gap-2">
-          <button>
+          <button onClick={handleDeleteCartItem}>
             <IoTrashOutline className="h-6 w-6 text-gray-400" />
           </button>
           <div className="flex w-20 items-center justify-between rounded-md px-1 py-0.5 ring-1 ring-gray-500">
             <button
               disabled={item.quantity <= 1}
               onClick={handleDecrementQuantity}
-              className={`h-6 w-6 rounded-md ${item.quantity === 1 ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
+              className={`h-6 w-6 rounded-md ${item.quantity <= 1 ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
             >
               <AiOutlineMinus className="h-4 w-4 self-center" />
             </button>
@@ -129,7 +141,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
             <button
               disabled={item.quantity >= item.variant.stock}
               onClick={handleIncrementQuantity}
-              className={`h-6 w-6 rounded-md ${item.quantity === item.variant.stock ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
+              className={`h-6 w-6 rounded-md ${item.quantity >= item.variant.stock ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
             >
               <AiOutlinePlus className="h-4 w-4 self-center" />
             </button>

@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import CartService from "../services/CartService"
 import { ICart } from "../interfaces/ICart"
 import { ICartItem } from "../interfaces/ICartItem"
@@ -73,5 +73,23 @@ export function useDecrementCartQuantity() {
     return useMutation({
         mutationKey: ["decrementCartQuantity"],
         mutationFn: DecrementCartQuantity
+    })
+}
+export function useDeleteCartItem() {
+    const queryClient = useQueryClient()
+    const deleteCartItem = async ({ cartItemId }: { cartItemId: string }) => {
+        try {
+            const response = await CartService.deleteCartItem(cartItemId)
+            return response.data.message as string
+        } catch (error: any) {
+            throw new Error(error.response.data.message)
+        }
+    }
+    return useMutation({
+        mutationKey: ["deleteCartItem"],
+        mutationFn: deleteCartItem,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getCart"] });
+        }
     })
 }
