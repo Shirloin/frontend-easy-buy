@@ -4,18 +4,38 @@ import { formatNumber } from "../../util/Util";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useCartStore } from "../../hooks/useCartStore";
 import { ChangeEvent } from "react";
+import { useUpdateCartQuantity } from "../../lib/useCartQuery";
+import { ICart } from "../../interfaces/ICart";
+import toast from "react-hot-toast";
 
 interface CartItemCardProps {
-  cartId: string;
+  cart: ICart;
   item: ICartItem;
 }
 
-export default function CartItemCard({ cartId, item }: CartItemCardProps) {
+export default function CartItemCard({ cart, item }: CartItemCardProps) {
   const { cartItems, toggleItemSelection, setQuantity } = useCartStore();
+  const updateCartQuantity = useUpdateCartQuantity();
 
   const cartItem = cartItems.find(
-    (c) => c.cartId === cartId && c.itemId === item._id,
+    (c) => c.cartId === cart._id && c.itemId === item._id,
   );
+
+  const onQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const quantity = Number(e.target.value);
+    setQuantity(cart._id, item._id, quantity);
+    try {
+      const variantId = item.variant._id;
+      const shopId = cart.shop._id;
+      await updateCartQuantity.mutateAsync({
+        variantId,
+        shopId,
+        quantity,
+      });
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -26,7 +46,7 @@ export default function CartItemCard({ cartId, item }: CartItemCardProps) {
               type="checkbox"
               className="h-5 w-5 accent-black ring-0"
               checked={cartItem?.isSelected ?? false}
-              onChange={() => toggleItemSelection(cartId, item._id)}
+              onChange={() => toggleItemSelection(cart._id, item._id)}
             />
             <div className="flex items-start gap-2">
               <img
@@ -59,9 +79,7 @@ export default function CartItemCard({ cartId, item }: CartItemCardProps) {
               className={`mx-2 w-6 text-center text-sm outline-none ring-0`}
               type="number"
               value={cartItem?.quantity ?? 1}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setQuantity(cartId, item._id, Number(e.target.value))
-              }
+              onChange={onQuantityChange}
             />
             <button
               disabled={item.quantity >= item.variant.stock}

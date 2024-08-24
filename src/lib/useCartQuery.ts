@@ -6,7 +6,6 @@ export function useAddToCart() {
     const addToCart = async ({ variantId, shopId, quantity }: { variantId: string, shopId: string, quantity: number }) => {
         try {
             const response = await CartService.addToCart(variantId, shopId, quantity)
-            console.log(response.data.cart)
             return response.data.message
         } catch (error) {
             throw new Error("Fail To Add To Cart")
@@ -30,5 +29,20 @@ export function useGetCart() {
     return useQuery({
         queryKey: ["getCart"],
         queryFn: fetchData
+    })
+}
+
+export function useUpdateCartQuantity() {
+    const UpdateCartQuantity = async ({ variantId, shopId, quantity }: { variantId: string, shopId: string, quantity: number }) => {
+        try {
+            const response = await CartService.updateCartQuantity(variantId, shopId, quantity)
+            return response.data.message as string
+        } catch (error: any) {
+            throw new Error(error.response.data.message)
+        }
+    }
+    return useMutation({
+        mutationKey: ["updateCartQuantity"],
+        mutationFn: UpdateCartQuantity
     })
 }

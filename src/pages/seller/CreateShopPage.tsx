@@ -12,15 +12,21 @@ export default function CreateShopPage() {
     useCreateShopStore();
 
   const onBannerImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
     if (e.target.files && e.target.files[0]) {
-      const url = URL.createObjectURL(e.target.files[0]);
-      setBannerImage(url);
+      reader.onloadend = () => {
+        const url = reader.result as string;
+        setBannerImage(url);
+      };
     }
   };
   const onShopImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
     if (e.target.files && e.target.files[0]) {
-      const url = URL.createObjectURL(e.target.files[0]);
-      setShopImage(url);
+      reader.onloadend = () => {
+        const url = reader.result as string;
+        setShopImage(url);
+      };
     }
   };
 

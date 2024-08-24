@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { ICart } from "../interfaces/ICart";
-import { ICartItem } from "../interfaces/ICartItem";
 
 type CartItemState = {
     cartId: string

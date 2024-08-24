@@ -37,7 +37,7 @@ export default function CartCard({ cart }: CartCardProps) {
           </div>
         </div>
         {cart.items.map((item) => (
-          <CartItemCard key={item._id} item={item} cartId={cart._id} />
+          <CartItemCard key={item._id} item={item} cart={cart} />
         ))}
       </div>
     </>
