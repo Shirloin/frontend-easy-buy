@@ -16,6 +16,8 @@ type CartStoreState = {
     toggleItemSelection: (cartId: string, itemId: string) => void
     setQuantity: (cartId: string, itemId: string, quantity: number) => void
     selectAll: (isSelected: boolean) => void
+    incrementCartItem: (cartId: string, itemId: string) => void
+    decrementCartItem: (cartId: string, itemId: string) => void
 }
 
 export const useCartStore = create<CartStoreState>((set, get) => ({
@@ -65,5 +67,20 @@ export const useCartStore = create<CartStoreState>((set, get) => ({
 
     selectAll: (isSelected: boolean) => set((state) => ({
         cartItems: state.cartItems.map(item => ({ ...item, isSelected })),
+    })),
+
+    incrementCartItem: (cartId: string, itemId: string) => set((state) => ({
+        cartItems: state.cartItems.map(item =>
+            item.cartId === cartId && item.itemId === itemId
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+        ),
+    })),
+    decrementCartItem: (cartId: string, itemId: string) => set((state) => ({
+        cartItems: state.cartItems.map(item =>
+            item.cartId === cartId && item.itemId === itemId
+                ? { ...item, quantity: item.quantity - 1 }
+                : item
+        ),
     })),
 }));

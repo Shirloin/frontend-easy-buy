@@ -4,7 +4,11 @@ import { formatNumber } from "../../util/Util";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useCartStore } from "../../hooks/useCartStore";
 import { ChangeEvent } from "react";
-import { useUpdateCartQuantity } from "../../lib/useCartQuery";
+import {
+  useDecrementCartQuantity,
+  useIncrementCartQuantity,
+  useUpdateCartQuantity,
+} from "../../lib/useCartQuery";
 import { ICart } from "../../interfaces/ICart";
 import toast from "react-hot-toast";
 
@@ -14,8 +18,16 @@ interface CartItemCardProps {
 }
 
 export default function CartItemCard({ cart, item }: CartItemCardProps) {
-  const { cartItems, toggleItemSelection, setQuantity } = useCartStore();
+  const {
+    cartItems,
+    toggleItemSelection,
+    setQuantity,
+    incrementCartItem,
+    decrementCartItem,
+  } = useCartStore();
   const updateCartQuantity = useUpdateCartQuantity();
+  const incrementCartQuantity = useIncrementCartQuantity();
+  const decrementCartQuantity = useDecrementCartQuantity();
 
   const cartItem = cartItems.find(
     (c) => c.cartId === cart._id && c.itemId === item._id,
@@ -26,11 +38,39 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     setQuantity(cart._id, item._id, quantity);
     try {
       const variantId = item.variant._id;
-      const shopId = cart.shop._id;
+      const cartId = cart._id;
       await updateCartQuantity.mutateAsync({
+        cartId,
         variantId,
-        shopId,
         quantity,
+      });
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+  const handleIncrementQuantity = async () => {
+    const variantId = item.variant._id;
+    const cartId = cart._id;
+    incrementCartItem(cartId, variantId);
+    console.log(cartItem?.quantity);
+    try {
+      // await incrementCartQuantity.mutateAsync({
+      //   cartId,
+      //   variantId,
+      // });
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleDecrementQuantity = async () => {
+    const variantId = item.variant._id;
+    const cartId = cart._id;
+    decrementCartItem(cartId, variantId);
+    try {
+      await decrementCartQuantity.mutateAsync({
+        cartId,
+        variantId,
       });
     } catch (error: any) {
       toast.error(error.message);
@@ -71,6 +111,8 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
           </button>
           <div className="flex w-20 items-center justify-between rounded-md px-1 py-0.5 ring-1 ring-gray-500">
             <button
+              disabled={item.quantity <= 1}
+              onClick={handleDecrementQuantity}
               className={`h-6 w-6 rounded-md ${item.quantity === 1 ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
             >
               <AiOutlineMinus className="h-4 w-4 self-center" />
@@ -83,7 +125,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
             />
             <button
               disabled={item.quantity >= item.variant.stock}
-              //   onClick={addQuantity}
+              onClick={handleIncrementQuantity}
               className={`h-6 w-6 rounded-md ${item.quantity === item.variant.stock ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
             >
               <AiOutlinePlus className="h-4 w-4 self-center" />
