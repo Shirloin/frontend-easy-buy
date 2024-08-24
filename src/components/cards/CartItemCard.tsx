@@ -35,10 +35,11 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
 
   const onQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const quantity = Number(e.target.value);
-    setQuantity(cart._id, item._id, quantity);
+    const variantId = item.variant._id;
+    const cartId = cart._id;
+    const itemId = item._id;
+    setQuantity(cartId, itemId, quantity);
     try {
-      const variantId = item.variant._id;
-      const cartId = cart._id;
       await updateCartQuantity.mutateAsync({
         cartId,
         variantId,
@@ -51,13 +52,14 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
   const handleIncrementQuantity = async () => {
     const variantId = item.variant._id;
     const cartId = cart._id;
-    incrementCartItem(cartId, variantId);
-    console.log(cartItem?.quantity);
+    const itemId = item._id;
+
+    incrementCartItem(cartId, itemId);
     try {
-      // await incrementCartQuantity.mutateAsync({
-      //   cartId,
-      //   variantId,
-      // });
+      await incrementCartQuantity.mutateAsync({
+        cartId,
+        variantId,
+      });
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -66,7 +68,8 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
   const handleDecrementQuantity = async () => {
     const variantId = item.variant._id;
     const cartId = cart._id;
-    decrementCartItem(cartId, variantId);
+    const itemId = item._id;
+    decrementCartItem(cartId, itemId);
     try {
       await decrementCartQuantity.mutateAsync({
         cartId,
