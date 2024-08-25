@@ -34,9 +34,9 @@ export function useGetCart() {
 }
 
 export function useUpdateCartQuantity() {
-    const UpdateCartQuantity = async ({ cartId, variantId, quantity }: { cartId: string, variantId: string, quantity: number }) => {
+    const UpdateCartQuantity = async ({ cartItemId, quantity }: { cartItemId: string, quantity: number }) => {
         try {
-            const response = await CartService.updateCartQuantity(cartId, variantId, quantity)
+            const response = await CartService.updateCartQuantity(cartItemId, quantity)
             return response.data.message as string
         } catch (error: any) {
             throw new Error(error.response.data.message)
@@ -48,9 +48,9 @@ export function useUpdateCartQuantity() {
     })
 }
 export function useIncrementCartQuantity() {
-    const IncrementCartQuantity = async ({ cartId, variantId }: { cartId: string, variantId: string }) => {
+    const IncrementCartQuantity = async ({ cartItemId }: { cartItemId: string }) => {
         try {
-            const response = await CartService.incrementCartQuantity(cartId, variantId)
+            const response = await CartService.incrementCartQuantity(cartItemId)
             return response.data.cart as ICartItem
         } catch (error: any) {
             throw new Error(error.response.data.message)
@@ -62,9 +62,9 @@ export function useIncrementCartQuantity() {
     })
 }
 export function useDecrementCartQuantity() {
-    const DecrementCartQuantity = async ({ cartId, variantId }: { cartId: string, variantId: string }) => {
+    const DecrementCartQuantity = async ({ cartItemId }: { cartItemId: string }) => {
         try {
-            const response = await CartService.decrementCartQuantity(cartId, variantId)
+            const response = await CartService.decrementCartQuantity(cartItemId)
             return response.data.cart as ICartItem
         } catch (error: any) {
             throw new Error(error.response.data.message)

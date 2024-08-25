@@ -37,15 +37,13 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
 
   const onQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const quantity = Number(e.target.value);
-    const variantId = item.variant._id;
     const cartId = cart._id;
     const itemId = item._id;
     setQuantity(cartId, itemId, quantity);
     try {
       await updateCartQuantity.mutateAsync({
-        cartId,
-        variantId,
-        quantity,
+        cartItemId: itemId,
+        quantity: quantity,
       });
     } catch (error: any) {
       toast.error(error.message);
@@ -59,8 +57,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     incrementCartItem(cartId, itemId);
     try {
       await incrementCartQuantity.mutateAsync({
-        cartId,
-        variantId,
+        cartItemId: itemId,
       });
     } catch (error: any) {
       toast.error(error.message);
@@ -74,8 +71,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     decrementCartItem(cartId, itemId);
     try {
       await decrementCartQuantity.mutateAsync({
-        cartId,
-        variantId,
+        cartItemId: itemId,
       });
     } catch (error: any) {
       toast.error(error.message);
@@ -126,9 +122,9 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
           </button>
           <div className="flex w-20 items-center justify-between rounded-md px-1 py-0.5 ring-1 ring-gray-500">
             <button
-              disabled={item.quantity <= 1}
+              disabled={!cartItem || cartItem.quantity <= 1}
               onClick={handleDecrementQuantity}
-              className={`h-6 w-6 rounded-md ${item.quantity <= 1 ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
+              className={`h-6 w-6 rounded-md ${!cartItem || cartItem.quantity <= 1 ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
             >
               <AiOutlineMinus className="h-4 w-4 self-center" />
             </button>
@@ -139,9 +135,9 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
               onChange={onQuantityChange}
             />
             <button
-              disabled={item.quantity >= item.variant.stock}
+              disabled={!cartItem || cartItem.quantity >= item.variant.stock}
               onClick={handleIncrementQuantity}
-              className={`h-6 w-6 rounded-md ${item.quantity >= item.variant.stock ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
+              className={`h-6 w-6 rounded-md ${!cartItem || cartItem.quantity >= item.variant.stock ? "cursor-not-allowed text-gray-200 hover:bg-none" : "text-primary hover:bg-gray-200"}`}
             >
               <AiOutlinePlus className="h-4 w-4 self-center" />
             </button>

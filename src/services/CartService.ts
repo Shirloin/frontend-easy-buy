@@ -19,29 +19,24 @@ export default class CartService {
         })
     }
 
-    static async updateCartQuantity(cartId: string, variantId: string, quantity: number) {
+    static async updateCartQuantity(cartItemId: string, quantity: number) {
         return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/cart/update-quantity`, {
-            cartId: cartId,
-            variantId: variantId,
+            cartItemId: cartItemId,
             quantity: quantity,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("authentication"),
             },
         })
     }
-    static async incrementCartQuantity(cartId: string, variantId: string) {
-        return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/cart/increment-quantity`, {
-            cartId: cartId,
-            variantId: variantId,
+    static async incrementCartQuantity(cartItemId: string) {
+        return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/cart/${cartItemId}/increment-quantity`, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("authentication"),
             },
         })
     }
-    static async decrementCartQuantity(cartId: string, variantId: string) {
-        return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/cart/decrement-quantity`, {
-            cartId: cartId,
-            variantId: variantId,
+    static async decrementCartQuantity(cartItemId: string) {
+        return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/cart/${cartItemId}/decrement-quantity`, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("authentication"),
             },
