@@ -1,5 +1,7 @@
+import toast from "react-hot-toast";
 import { useCartStore } from "../../hooks/useCartStore";
 import { ICart } from "../../interfaces/ICart";
+import { useDeleteCartItems } from "../../lib/useCartQuery";
 import CartCard, { CartCardLoading } from "../cards/CartCard";
 import Button from "../ui/Button";
 
@@ -8,9 +10,21 @@ interface CartListSectionProps {
 }
 
 export default function CartListSection({ carts }: CartListSectionProps) {
+  const deleteCartItems = useDeleteCartItems();
   const { cartItems, selectAll } = useCartStore();
   const totalItems = carts.reduce((sum, cart) => sum + cart.items.length, 0);
-  const handleRemove = () => {};
+  const anyItemSelected = cartItems.some((item) => item.isSelected);
+  const handleRemove = async () => {
+    const selectedItems = cartItems.filter((item) => item.isSelected);
+    const itemIds = selectedItems.map((item) => item.itemId);
+    try {
+      const message = await deleteCartItems.mutateAsync({
+        cartItemIds: itemIds,
+      });
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
   const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
     selectAll(event.target.checked);
   };
@@ -28,12 +42,14 @@ export default function CartListSection({ carts }: CartListSectionProps) {
             />
             <p className="font-bold">Choose All ({totalItems})</p>
           </div>
-          <Button
-            title="Remove"
-            onClick={handleRemove}
-            type="ghost"
-            size="large"
-          />
+          {anyItemSelected && (
+            <Button
+              title="Remove"
+              onClick={handleRemove}
+              type="ghost"
+              size="large"
+            />
+          )}
         </div>
         {carts.map((cart) => (
           <CartCard key={cart._id} cart={cart} />

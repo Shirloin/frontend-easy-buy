@@ -93,3 +93,21 @@ export function useDeleteCartItem() {
         }
     })
 }
+export function useDeleteCartItems() {
+    const queryClient = useQueryClient()
+    const deleteCartItems = async ({ cartItemIds }: { cartItemIds: string[] }) => {
+        try {
+            const response = await CartService.deleteCartItems(cartItemIds)
+            return response.data.message as string
+        } catch (error: any) {
+            throw new Error(error.response.data.message)
+        }
+    }
+    return useMutation({
+        mutationKey: ["deleteCartItems"],
+        mutationFn: deleteCartItems,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getCart"] });
+        }
+    })
+}

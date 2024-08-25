@@ -50,6 +50,16 @@ export default class CartService {
             },
         })
     }
+    static async deleteCartItems(cartItemIds: string[]) {
+        return axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/carts`, {
+            data: {
+                cartItemIds: cartItemIds,
+            },
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("authentication"),
+            },
+        })
+    }
 
 
 }
