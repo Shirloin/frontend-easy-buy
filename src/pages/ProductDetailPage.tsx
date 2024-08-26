@@ -33,7 +33,10 @@ export default function ProductDetailPage() {
         <div className="flex flex-grow justify-between gap-8">
           <div className="flex flex-grow flex-col">
             <div className="relative flex flex-grow justify-between gap-8">
-              <ProductDetailImageSection isLoading={isLoading} />
+              <ProductDetailImageSection
+                isLoading={isLoading}
+                productVariants={product?.productVariants}
+              />
               <div className="w-full">
                 <ProductDetailSection
                   product={product!}

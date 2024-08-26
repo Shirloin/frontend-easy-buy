@@ -15,7 +15,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       >
         <img
           className="h-44 w-44 rounded-md object-cover"
-          src={product?.productImages[0].imageUrl}
+          src={product?.productVariants[0].imageUrl}
           alt=""
         />
         <div className="p-2">
