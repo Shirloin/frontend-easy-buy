@@ -1,5 +1,5 @@
 import { MdLocationOn } from "react-icons/md";
-import AddressListModal from "./AddressListModal";
+import AddressListModal from "../modals/AddressListModal";
 
 export default function ShipmentAddressSection() {
   return (

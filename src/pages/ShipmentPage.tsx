@@ -1,5 +1,6 @@
 import ShipmentActionSection from "../components/shipment-page/ShipmentActionSection";
 import ShipmentAddressSection from "../components/shipment-page/ShipmentAddressSection";
+import ShipmentItemListSection from "../components/shipment-page/ShipmentItemListSection";
 
 export default function ShipmentPage() {
   return (
@@ -8,8 +9,9 @@ export default function ShipmentPage() {
         <div className="relative mx-auto flex w-full max-w-7xl flex-col px-10 py-4">
           <h1 className="text-3xl font-bold">Shipment</h1>
           <div className="flex w-full flex-grow justify-between gap-4 py-6">
-            <div className="flex flex-grow gap-4">
+            <div className="">
               <ShipmentAddressSection />
+              <ShipmentItemListSection />
             </div>
             <ShipmentActionSection />
           </div>

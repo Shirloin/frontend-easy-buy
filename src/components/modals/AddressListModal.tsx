@@ -1,5 +1,6 @@
 import AddressCard from "../cards/AddressCard";
 import Button from "../ui/Button";
+import AddNewAddressModal from "./AddNewAddressModal";
 
 export default function AddressListModal() {
   const openModal = () => {
@@ -31,12 +32,7 @@ export default function AddressListModal() {
               Address List
             </h3>
           </div>
-          <Button
-            title="Add New Address"
-            type="outline"
-            className="mt-4 w-full"
-            size="large"
-          />
+          <AddNewAddressModal />
           <div className="my-4 flex flex-col gap-4">
             <AddressCard />
           </div>
