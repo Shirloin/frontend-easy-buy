@@ -7,12 +7,10 @@ export default class ProductService {
   static async createProduct(
     product: ICreateProduct,
     productVariants: ICreateProductVariant[],
-    productImages: ICreateProductImage[],
   ) {
     return axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/product`, {
       product,
       productVariants,
-      productImages,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("authentication"),
       },
@@ -44,7 +42,6 @@ export default class ProductService {
     return axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/product/${product._id}`, {
       product: createProduct,
       productVariants: product.productVariants,
-      productImages: product.productImages,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("authentication"),
       },

@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { IProductImage } from "../../interfaces/IProductImage";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { IProductVariant } from "../../interfaces/IProductVariant";
 
 interface ProductDetailImageSectionProps {
-  productImages?: IProductImage[];
+  productVariants?: IProductVariant[];
   isLoading?: boolean;
 }
 
 export default function ProductDetailImageSection({
-  productImages,
+  productVariants,
   isLoading,
 }: ProductDetailImageSectionProps) {
   const [imageIndex, setImageIndex] = useState(0);
@@ -34,7 +34,7 @@ export default function ProductDetailImageSection({
       <div className="sticky top-28 h-fit">
         <img
           className="h-80 w-80 rounded-xl object-cover"
-          src={productImages![imageIndex].imageUrl}
+          src={productVariants![imageIndex].imageUrl}
           alt=""
         />
         <div className="relative mt-2 flex w-80">
@@ -50,12 +50,12 @@ export default function ProductDetailImageSection({
               setIsEnd(swiper.isEnd);
             }}
           >
-            {productImages?.map((image, index) => (
-              <SwiperSlide key={image._id}>
+            {productVariants?.map((variant, index) => (
+              <SwiperSlide key={variant._id}>
                 <img
                   onClick={() => setImageIndex(index)}
                   className={`h-16 w-16 cursor-pointer rounded-md object-cover ${index === imageIndex ? "border-2 border-primary" : ""}`}
-                  src={image.imageUrl}
+                  src={variant.imageUrl}
                   alt=""
                 />
               </SwiperSlide>

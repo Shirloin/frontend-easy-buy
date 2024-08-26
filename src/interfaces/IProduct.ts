@@ -1,5 +1,4 @@
 import { IProductCategory } from "./IProductCategory";
-import { ICreateProductImage, IProductImage } from "./IProductImage";
 import { ICreateProductVariant, IProductVariant } from "./IProductVariant";
 import { IShop } from "./IShop";
 
@@ -8,7 +7,6 @@ export interface IProduct {
   name: string;
   description: string;
   productVariants: IProductVariant[];
-  productImages: IProductImage[];
   productCategory: IProductCategory;
   shop: IShop;
 }
@@ -17,5 +15,4 @@ export interface ICreateProduct {
   description: string;
   category: string;
   productVariants?: ICreateProductVariant[]
-  productImages?: ICreateProductImage[]
 }

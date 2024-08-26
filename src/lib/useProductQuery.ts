@@ -41,14 +41,12 @@ export function useCreateProduct() {
     const createProduct = async ({
         product,
         productVariants,
-        productImages,
     }: {
         product: ICreateProduct;
         productVariants: ICreateProductVariant[];
-        productImages: ICreateProductImage[];
     }) => {
         try {
-            const response = await ProductService.createProduct(product, productVariants, productImages);
+            const response = await ProductService.createProduct(product, productVariants);
             return response.data.message;
         } catch (error: any) {
             throw new Error(error.response.data.message);

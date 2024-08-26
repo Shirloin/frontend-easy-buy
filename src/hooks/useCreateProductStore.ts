@@ -1,12 +1,10 @@
 import { create } from "zustand";
 import { ICreateProduct } from "../interfaces/IProduct";
 import { ICreateProductVariant } from "../interfaces/IProductVariant";
-import { ICreateProductImage } from "../interfaces/IProductImage";
 
 type CreateProductState = {
   product: ICreateProduct;
   productVariants: ICreateProductVariant[];
-  productImages: ICreateProductImage[];
   setProductName: (name: string) => void;
   setProductDescription: (description: string) => void;
   setProductCategory: (category: string) => void;
@@ -17,9 +15,7 @@ type CreateProductState = {
     value: string | number,
   ) => void;
   removeProductVariant: (index: number) => void;
-  addProductImage: () => void;
-  updateProductImage: (index: number, value: string) => void;
-  removeProductImage: (index: number) => void;
+
 };
 
 const useCreateProductStore = create<CreateProductState>((set) => ({
@@ -59,6 +55,7 @@ const useCreateProductStore = create<CreateProductState>((set) => ({
           name: "",
           price: 0,
           stock: 0,
+          imageUrl: ""
         },
       ],
     })),
@@ -78,29 +75,6 @@ const useCreateProductStore = create<CreateProductState>((set) => ({
   removeProductVariant: (index: number) => {
     set((state) => ({
       productVariants: state.productVariants.filter((_, i) => i !== index),
-    }));
-  },
-  addProductImage: () =>
-    set((state) => ({
-      productImages: [
-        ...state.productImages,
-        {
-          imageUrl: "",
-        },
-      ],
-    })),
-  updateProductImage: (index: number, value: string) => {
-    set((state) => {
-      const updatedImages = [...state.productImages];
-      if (updatedImages[index]) {
-        updatedImages[index] = { ...updatedImages[index], imageUrl: value };
-      }
-      return { productImages: updatedImages };
-    });
-  },
-  removeProductImage: (index: number) => {
-    set((state) => ({
-      productImages: state.productImages.filter((_, i) => i !== index),
     }));
   },
 }));

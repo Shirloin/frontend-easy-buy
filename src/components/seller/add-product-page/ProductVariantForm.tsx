@@ -1,6 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import useCreateProductStore from "../../../hooks/useCreateProductStore";
 import Button from "../../ui/Button";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+import { TbTrash } from "react-icons/tb";
 
 interface IVariant {
   name: string;
@@ -17,12 +19,19 @@ export default function ProductVariantForm() {
     removeProductVariant,
   } = useCreateProductStore();
 
-  const addVariants = () => {
-    setVariants([...variants, { name: "", price: 0, stock: 0 }]);
-  };
-
-  const removeVariant = (index: number) => {
-    setVariants([...variants.slice(0, index), ...variants.slice(index + 1)]);
+  const handleImageChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    index: number,
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const url = reader.result as string;
+        updateProductVariant(index, "imageUrl", url);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -101,6 +110,40 @@ export default function ProductVariantForm() {
                       updateProductVariant(index, "stock", e.target.value)
                     }
                   />
+                </div>
+                <div className="flex items-start gap-10">
+                  <div className="max-w-60">
+                    <h1 className="font-bold">Product Image</h1>
+                    <p className="text-xs">
+                      Photo format must be .jpg, .jpeg, .png and the size
+                      min.300 x 300 px.
+                    </p>
+                  </div>
+                  <label
+                    key={index}
+                    className="group relative flex h-28 w-28 flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-300 text-center hover:cursor-pointer hover:border-primary"
+                  >
+                    <input
+                      onChange={(e) => handleImageChange(e, index)}
+                      className="hidden"
+                      type="file"
+                      accept="image/*"
+                    />
+                    {!variant.imageUrl ? (
+                      <>
+                        <MdOutlineAddPhotoAlternate className="h-8 w-8" />
+                        <p className="font-semibold">Photo </p>
+                      </>
+                    ) : (
+                      <>
+                        <img
+                          className="h-full w-full rounded-md object-cover"
+                          src={variant.imageUrl}
+                          alt=""
+                        />
+                      </>
+                    )}
+                  </label>
                 </div>
               </div>
             );

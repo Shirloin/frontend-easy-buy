@@ -28,11 +28,7 @@ export default function EditProductModal({
       modal.showModal();
     }
   };
-  const tabList: string[] = [
-    "Product Detail",
-    "Product Variant",
-    "Product Image",
-  ];
+  const tabList: string[] = ["Product Detail", "Product Variant"];
   const handleSubmit = async () => {
     try {
       const message = await updateProductMutation.mutateAsync(product);
@@ -61,7 +57,6 @@ export default function EditProductModal({
           <Tabs tabList={tabList} tabContentStyle="py-4 px-6">
             <EditProductDetailForm />
             <EditProductVariantForm />
-            <EditProductImageForm />
           </Tabs>
           <div className="mb-4 flex w-full max-w-xl justify-start gap-4 px-6">
             <Button className="w-full" title="Save" onClick={handleSubmit} />

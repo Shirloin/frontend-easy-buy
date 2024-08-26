@@ -35,7 +35,7 @@ export default function ProductTableRow({
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">
                 <img
-                  src={product?.productImages[0].imageUrl}
+                  src={product?.productVariants[0].imageUrl}
                   alt="Avatar Tailwind CSS Component"
                 />
               </div>
