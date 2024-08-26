@@ -19,14 +19,14 @@ export default function Tabs({
 
   return (
     <>
-      <div>
+      <div className="w-full">
         <div className="sticky top-0 flex bg-white py-4">
           {tabList.map((tab, index) => {
             return (
               <button
                 key={index}
                 onClick={() => onTabClick(index)}
-                className={`px-4 pb-2 ${index === tabIndex ? "border-b-2 border-black" : ""}`}
+                className={`w-full border-b-2 px-4 pb-2 font-bold ${index === tabIndex ? "border-primary text-primary" : ""}`}
               >
                 {tab}
               </button>

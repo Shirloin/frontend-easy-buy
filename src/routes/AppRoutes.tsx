@@ -15,6 +15,7 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import { DefaultRoute } from "./DefaultRoute";
 import CreateShopPage from "../pages/seller/CreateShopPage";
 import CartPage from "../pages/CartPage";
+import ShipmentPage from "../pages/ShipmentPage";
 
 export default function AppRoutes() {
   return (
@@ -29,6 +30,7 @@ export default function AppRoutes() {
             {/* Protected Route */}
             <Route path="create-shop" element={<CreateShopPage />} />
             <Route path="cart" element={<CartPage />} />
+            <Route path="shipment" element={<ShipmentPage />} />
             <Route path="seller" element={<SellerLayout />}>
               <Route element={<SellerRoute />}>
                 {/* Seller Route */}
