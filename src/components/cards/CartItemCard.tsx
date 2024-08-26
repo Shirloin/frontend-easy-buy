@@ -102,7 +102,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
             <div className="flex items-start gap-2">
               <img
                 className="h-20 w-20 rounded-md object-cover"
-                src={item.variant.product.productImages[0].imageUrl}
+                src={item.variant.imageUrl}
                 alt=""
               />
               <div className="text-sm font-semibold">

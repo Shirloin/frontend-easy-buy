@@ -1,19 +1,26 @@
+import toast from "react-hot-toast";
 import { useCartStore } from "../../hooks/useCartStore";
-import { ICart } from "../../interfaces/ICart";
+import { useCreateTransaction } from "../../lib/useTransactionQuery";
 import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
-interface CartActionSectionProps {
-  carts: ICart[];
-}
-
-export default function CartActionSection({ carts }: CartActionSectionProps) {
+export default function CartActionSection() {
   const { cartItems } = useCartStore();
+  const createTransaction = useCreateTransaction();
 
   const totalPrice = cartItems
     .filter((item) => item.isSelected)
     .reduce((total, item) => total + item.price * item.quantity, 0);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    const selectedItems = cartItems.filter((item) => item.isSelected);
+    const cartIds = selectedItems.map((item) => item.cartId);
+    try {
+      const message = await createTransaction.mutateAsync({ cartIds });
+      toast.success(message);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
   return (
     <>
       <div className="sticky top-28 h-fit w-full min-w-96 max-w-96 rounded-xl bg-white p-4">

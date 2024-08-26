@@ -32,7 +32,7 @@ export default function CartPage() {
           <h1 className="text-3xl font-bold">Cart</h1>
           <div className="flex w-full flex-grow justify-between gap-4 py-6">
             <CartListSection carts={carts} />
-            <CartActionSection carts={carts} />
+            <CartActionSection />
           </div>
         </div>
       </div>
