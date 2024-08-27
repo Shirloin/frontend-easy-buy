@@ -1,8 +1,10 @@
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { IAddress, ICreateAddress } from "../interfaces/IAddress"
 import AddressService from "../services/AddressService"
 
 export function useCreateAddress() {
+    const queryClient = useQueryClient()
+
     const createAddress = async ({ address }: { address: ICreateAddress }) => {
         try {
             const response = await AddressService.createAddress(address)
@@ -13,7 +15,10 @@ export function useCreateAddress() {
     }
     return useMutation({
         mutationKey: ["createAddress"],
-        mutationFn: createAddress
+        mutationFn: createAddress,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getAddress"] });
+        }
     })
 }
 
@@ -47,6 +52,7 @@ export function useUpdateAddress() {
     })
 }
 export function useDeleteAddress() {
+    const queryClient = useQueryClient()
     const deleteAddress = async ({ addressId }: { addressId: string }) => {
         try {
             const response = await AddressService.deleteAddress(addressId)
@@ -57,6 +63,9 @@ export function useDeleteAddress() {
     }
     return useMutation({
         mutationKey: ["deleteAddress"],
-        mutationFn: deleteAddress
+        mutationFn: deleteAddress,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getAddress"] });
+        }
     })
 }

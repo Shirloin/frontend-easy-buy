@@ -14,5 +14,4 @@ export interface ICreateAddress {
     receiverPhone: string
     addressLabel: string
     address: string
-    user: IUser
 }

@@ -25,7 +25,7 @@ export default class AddressService {
     }
 
     static updateAddress(address: IAddress) {
-        return axios.post(
+        return axios.put(
             `${import.meta.env.VITE_API_BASE_URL}/api/address`,
             {
                 address: address,
@@ -36,7 +36,7 @@ export default class AddressService {
         );
     }
     static deleteAddress(addressId: string) {
-        return axios.post(
+        return axios.delete(
             `${import.meta.env.VITE_API_BASE_URL}/api/address/${addressId}`,
             {
                 headers: {

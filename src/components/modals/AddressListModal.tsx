@@ -1,8 +1,11 @@
+import { useGetAddress } from "../../lib/useAddressQuery";
 import AddressCard from "../cards/AddressCard";
 import Button from "../ui/Button";
 import AddNewAddressModal from "./AddNewAddressModal";
 
 export default function AddressListModal() {
+  const { data: addresses, isLoading, error } = useGetAddress();
+
   const openModal = () => {
     const modal = document.getElementById(
       "address-list-modal",
@@ -11,6 +14,12 @@ export default function AddressListModal() {
       modal.showModal();
     }
   };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   return (
     <>
@@ -34,7 +43,9 @@ export default function AddressListModal() {
           </div>
           <AddNewAddressModal />
           <div className="my-4 flex flex-col gap-4">
-            <AddressCard />
+            {addresses?.map((address) => (
+              <AddressCard key={address._id} address={address} />
+            ))}
           </div>
         </div>
       </dialog>

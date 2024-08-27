@@ -1,12 +1,38 @@
+import toast from "react-hot-toast";
+import { useCreateAddress } from "../../lib/useAddressQuery";
 import Button from "../ui/Button";
+import { useCreateAddressStore } from "../../hooks/useCreateAddressStore";
+import { ChangeEvent } from "react";
 
 export default function AddNewAddressModal() {
+  const createAddress = useCreateAddress();
+  const { address, setAddress } = useCreateAddressStore();
+
   const openModal = () => {
     const modal = document.getElementById(
       "add-new-address-modal",
     ) as HTMLDialogElement;
     if (modal) {
       modal.showModal();
+    }
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById(
+      "add-new-address-modal",
+    ) as HTMLDialogElement;
+    if (modal) {
+      modal.close();
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const message = await createAddress.mutateAsync({ address });
+      toast.success(message);
+      closeModal();
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
   return (
@@ -40,6 +66,10 @@ export default function AddNewAddressModal() {
               className="w-full rounded-md p-2 ring-1 ring-gray-200"
               type="text"
               placeholder="Receiver Name"
+              value={address.receiverName}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setAddress("receiverName", e.target.value)
+              }
             />
             <label htmlFor="phone" className="font-bold">
               Receiver Phone
@@ -47,8 +77,12 @@ export default function AddNewAddressModal() {
             <input
               id="phone"
               className="w-full rounded-md p-2 ring-1 ring-gray-200"
-              type="number"
+              type="text"
               placeholder="Receiver Phone"
+              value={address.receiverPhone}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setAddress("receiverPhone", e.target.value)
+              }
             />
             <label htmlFor="address-label" className="font-bold">
               Address Label
@@ -58,6 +92,10 @@ export default function AddNewAddressModal() {
               className="w-full rounded-md p-2 ring-1 ring-gray-200"
               type="text"
               placeholder="Address Label"
+              value={address.addressLabel}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setAddress("addressLabel", e.target.value)
+              }
             />
             <label htmlFor="complete-address" className="font-bold">
               Complete Address
@@ -66,9 +104,18 @@ export default function AddNewAddressModal() {
               id="complete-address"
               className="h-28 max-h-28 w-full rounded-md p-2 ring-1 ring-gray-200"
               placeholder="Complete Address"
+              value={address.address}
+              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setAddress("address", e.target.value)
+              }
             ></textarea>
 
-            <Button title="Save" size="large" className="my-4 py-2.5 text-lg" />
+            <Button
+              onClick={handleSubmit}
+              title="Save"
+              size="large"
+              className="my-4 py-2.5 text-lg"
+            />
           </div>
         </div>
       </dialog>

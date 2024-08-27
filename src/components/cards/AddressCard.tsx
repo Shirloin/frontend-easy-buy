@@ -1,17 +1,35 @@
+import toast from "react-hot-toast";
+import { IAddress } from "../../interfaces/IAddress";
+import { useDeleteAddress } from "../../lib/useAddressQuery";
 import Button from "../ui/Button";
 
-export default function AddressCard() {
+interface AddressCardProps {
+  address: IAddress;
+}
+
+export default function AddressCard({ address }: AddressCardProps) {
+  const deleteAddress = useDeleteAddress();
+
+  const handleDelete = async () => {
+    try {
+      const message = await deleteAddress.mutateAsync({
+        addressId: address._id,
+      });
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
-      <div className="flex w-full items-center rounded-lg px-6 py-4 shadow-all-sides">
+      <div className="flex w-full items-center justify-between rounded-lg px-6 py-4 shadow-all-sides">
         <div className="">
-          <p className="text-sm font-bold">Rumah</p>
-          <p className="text-lg font-bold">Riccardo</p>
-          <p className="leading-tight tracking-tight">62895613213611</p>
+          <p className="text-sm font-bold">{address.addressLabel}</p>
+          <p className="text-lg font-bold">{address.receiverName}</p>
           <p className="leading-tight tracking-tight">
-            Jl. Rw. Belong No.4, RT.1/RW.9, Kb. Jeruk, Kec. Kb. Jeruk, Kota
-            Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530
+            {address.receiverPhone}
           </p>
+          <p className="leading-tight tracking-tight">{address.address}</p>
           <div className="mt-4 flex gap-8">
             <Button
               title="Edit Address"
@@ -20,6 +38,7 @@ export default function AddressCard() {
               size="large"
             />
             <Button
+              onClick={handleDelete}
               title="Delete"
               type="ghost"
               className="text-green-500"
