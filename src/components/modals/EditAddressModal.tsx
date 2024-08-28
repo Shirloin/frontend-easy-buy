@@ -112,9 +112,9 @@ export default function EditAddressModal({
               id="complete-address"
               className="h-28 max-h-28 w-full rounded-md p-2 ring-1 ring-gray-200"
               placeholder="Complete Address"
-              value={address.address}
+              value={address.street}
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                setAddress("address", e.target.value)
+                setAddress("street", e.target.value)
               }
             ></textarea>
 

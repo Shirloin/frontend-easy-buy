@@ -36,7 +36,7 @@ export default function AddressCard({ address }: AddressCardProps) {
           <p className="leading-tight tracking-tight">
             {address.receiverPhone}
           </p>
-          <p className="leading-tight tracking-tight">{address.address}</p>
+          <p className="leading-tight tracking-tight">{address.street}</p>
           <div className="mt-4 flex gap-8">
             <EditAddressModal address={address} />
             <Button

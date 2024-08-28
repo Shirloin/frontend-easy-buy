@@ -3,6 +3,7 @@ import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
 import { useShipmentStore } from "../../hooks/useShipmentStore";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 export default function CartActionSection() {
   const { cartItems } = useCartStore();
   const { setCarts } = useShipmentStore();
@@ -14,8 +15,12 @@ export default function CartActionSection() {
 
   const handleSubmit = async () => {
     const selectedItems = cartItems.filter((item) => item.isSelected);
-    const carts = selectedItems.map((item) => item.cart);
-    setCarts(carts);
+    const selectedCarts = selectedItems.map((item) => item.cart);
+    if (!selectedCarts || selectedCarts.length < 1) {
+      toast.error("Please select product to checkout");
+      return;
+    }
+    setCarts(selectedCarts);
     navigate("/shipment");
   };
 
@@ -29,7 +34,7 @@ export default function CartActionSection() {
         </div>
         <hr />
         <Button
-          title="Buy"
+          title="Checkout"
           onClick={handleSubmit}
           className="w-full text-xl font-bold"
         />

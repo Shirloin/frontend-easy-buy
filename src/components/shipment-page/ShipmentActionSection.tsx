@@ -1,8 +1,32 @@
+import toast from "react-hot-toast";
+import { useShipmentStore } from "../../hooks/useShipmentStore";
+import { useCreateTransaction } from "../../lib/useTransactionQuery";
 import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function ShipmentActionSection() {
-  const handleSubmit = () => {};
+  const { carts, address } = useShipmentStore();
+  const createTransaction = useCreateTransaction();
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    if (!address) {
+      toast.error("Please select destination address first!");
+      return;
+    }
+    try {
+      const cartIds = carts?.map((cart) => cart._id) as string[];
+      const message = await createTransaction.mutateAsync({
+        cartIds: cartIds,
+        address: address,
+      });
+      toast.success(message);
+      navigate("/ ");
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -14,7 +38,7 @@ export default function ShipmentActionSection() {
         </div>
         <hr />
         <Button
-          title="Choose Payment"
+          title="Buy"
           onClick={handleSubmit}
           className="w-full text-xl font-bold"
         />

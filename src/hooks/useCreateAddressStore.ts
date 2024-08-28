@@ -13,7 +13,7 @@ type AddressStoreAction = {
 }
 
 const initialAddress: ICreateAddress = {
-    address: '',
+    street: '',
     addressLabel: '',
     receiverName: '',
     receiverPhone: ''
