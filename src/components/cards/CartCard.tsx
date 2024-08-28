@@ -11,8 +11,8 @@ export default function CartCard({ cart }: CartCardProps) {
   const isSelected = cart.items.every((item) =>
     cartItems.find(
       (cartItem) =>
-        cartItem.cartId === cart._id &&
-        cartItem.itemId === item._id &&
+        cartItem.cart._id === cart._id &&
+        cartItem.item._id === item._id &&
         cartItem.isSelected,
     ),
   );

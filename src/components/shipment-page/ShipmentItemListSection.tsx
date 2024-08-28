@@ -7,9 +7,7 @@ export default function ShipmentItemListSection() {
   return (
     <>
       <div className="my-4 flex flex-col gap-4">
-        <ShipmentCard />
-        <ShipmentCard />
-        <ShipmentCard />
+        {carts?.map((cart) => <ShipmentCard key={cart._id} cart={cart} />)}
       </div>
     </>
   );

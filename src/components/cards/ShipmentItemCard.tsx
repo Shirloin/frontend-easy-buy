@@ -1,6 +1,11 @@
+import { ICartItem } from "../../interfaces/ICartItem";
 import { formatNumber } from "../../util/Util";
 
-export default function ShipmentItemCard() {
+interface ShipmentItemCardProps {
+  item: ICartItem;
+}
+
+export default function ShipmentItemCard({ item }: ShipmentItemCardProps) {
   return (
     <>
       <div>
@@ -9,16 +14,18 @@ export default function ShipmentItemCard() {
             <div className="flex items-start gap-2">
               <img
                 className="h-20 w-20 rounded-md object-cover"
-                src={""}
+                src={item.variant.imageUrl}
                 alt=""
               />
               <div className="text-sm font-semibold">
-                <p>Nike Air Max 97</p>
-                <p>39</p>
+                <p>{item.variant.product.name}</p>
+                <p>{item.variant.name}</p>
               </div>
             </div>
           </div>
-          <p className="font-bold">3 X Rp{formatNumber(1349999)}</p>
+          <p className="font-bold">
+            {item.quantity} X Rp{formatNumber(item.variant.price)}
+          </p>
         </div>
       </div>
     </>

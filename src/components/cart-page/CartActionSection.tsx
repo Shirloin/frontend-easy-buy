@@ -1,11 +1,12 @@
-import toast from "react-hot-toast";
 import { useCartStore } from "../../hooks/useCartStore";
-import { useCreateTransaction } from "../../lib/useTransactionQuery";
 import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
+import { useShipmentStore } from "../../hooks/useShipmentStore";
+import { useNavigate } from "react-router-dom";
 export default function CartActionSection() {
   const { cartItems } = useCartStore();
-  const createTransaction = useCreateTransaction();
+  const { setCarts } = useShipmentStore();
+  const navigate = useNavigate();
 
   const totalPrice = cartItems
     .filter((item) => item.isSelected)
@@ -13,14 +14,11 @@ export default function CartActionSection() {
 
   const handleSubmit = async () => {
     const selectedItems = cartItems.filter((item) => item.isSelected);
-    const cartIds = selectedItems.map((item) => item.cartId);
-    try {
-      const message = await createTransaction.mutateAsync({ cartIds });
-      toast.success(message);
-    } catch (error: any) {
-      toast.error(error.message);
-    }
+    const carts = selectedItems.map((item) => item.cart);
+    setCarts(carts);
+    navigate("/shipment");
   };
+
   return (
     <>
       <div className="sticky top-28 h-fit w-full min-w-96 max-w-96 rounded-xl bg-white p-4">

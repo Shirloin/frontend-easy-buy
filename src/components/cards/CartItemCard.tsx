@@ -32,7 +32,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
   const deleteCartItem = useDeleteCartItem();
 
   const cartItem = cartItems.find(
-    (c) => c.cartId === cart._id && c.itemId === item._id,
+    (c) => c.cart._id === cart._id && c.item._id === item._id,
   );
 
   const onQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
