@@ -25,6 +25,16 @@ export default function AddressCard({ address }: AddressCardProps) {
     }
   };
 
+  const selectAddress = () => {
+    setAddress(address);
+    const modal = document.getElementById(
+      "address-list-modal",
+    ) as HTMLDialogElement;
+    if (modal) {
+      modal.close();
+    }
+  };
+
   return (
     <>
       <div
@@ -55,7 +65,7 @@ export default function AddressCard({ address }: AddressCardProps) {
             title="Choose"
             className="h-fit bg-green-600"
             size="large"
-            onClick={() => setAddress(address)}
+            onClick={selectAddress}
           />
         )}
       </div>

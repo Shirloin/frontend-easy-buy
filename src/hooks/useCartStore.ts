@@ -23,7 +23,6 @@ type CartStoreState = {
 
 export const useCartStore = create<CartStoreState>((set, get) => ({
     cartItems: [],
-
     initializeCartItems: (carts: ICart[]) => set({
         cartItems: carts.flatMap(cart =>
             cart.items.map(item => ({

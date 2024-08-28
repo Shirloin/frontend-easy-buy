@@ -24,5 +24,5 @@ export const useShipmentStore = create<ShipmentStoreAction & ShipmentStoreState>
         set((state) => ({
             carts: carts
         }))
-    }
+    },
 }))

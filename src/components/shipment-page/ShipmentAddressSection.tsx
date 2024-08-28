@@ -1,7 +1,6 @@
 import { MdLocationOn } from "react-icons/md";
 import AddressListModal from "../modals/AddressListModal";
 import { useShipmentStore } from "../../hooks/useShipmentStore";
-import Button from "../ui/Button";
 
 export default function ShipmentAddressSection() {
   const { address } = useShipmentStore();
@@ -23,7 +22,7 @@ export default function ShipmentAddressSection() {
                   </p>
                 </div>
                 <p className="font-semibold">
-                  {address?.address} {address?.receiverPhone}
+                  {address?.street} {address?.receiverPhone}
                 </p>
               </div>
             </>

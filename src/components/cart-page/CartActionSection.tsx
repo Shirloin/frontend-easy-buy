@@ -4,6 +4,8 @@ import Button from "../ui/Button";
 import { useShipmentStore } from "../../hooks/useShipmentStore";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { IShipment } from "../../interfaces/IShipment";
+import { ICart } from "../../interfaces/ICart";
 export default function CartActionSection() {
   const { cartItems } = useCartStore();
   const { setCarts } = useShipmentStore();
@@ -15,11 +17,35 @@ export default function CartActionSection() {
 
   const handleSubmit = async () => {
     const selectedItems = cartItems.filter((item) => item.isSelected);
-    const selectedCarts = selectedItems.map((item) => item.cart);
-    if (!selectedCarts || selectedCarts.length < 1) {
+    if (!selectedItems || selectedItems.length < 1) {
       toast.error("Please select product to checkout");
       return;
     }
+    const selectedCarts = selectedItems.reduce((acc, currentItem) => {
+      const cartIndex = acc.findIndex(
+        (cart) => cart._id === currentItem.cart._id,
+      );
+
+      if (cartIndex >= 0) {
+        acc[cartIndex].items.push({
+          ...currentItem.item,
+          quantity: currentItem.quantity,
+        });
+      } else {
+        acc.push({
+          ...currentItem.cart,
+          items: [
+            {
+              ...currentItem.item,
+              quantity: currentItem.quantity,
+            },
+          ],
+        });
+      }
+
+      return acc;
+    }, [] as ICart[]);
+
     setCarts(selectedCarts);
     navigate("/shipment");
   };

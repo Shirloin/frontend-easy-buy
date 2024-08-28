@@ -16,6 +16,7 @@ export default function ProductDetailActionSection({
   isLoading,
 }: ProductDetailActionSectionProps) {
   const addToCart = useAddToCart();
+
   const {
     product,
     quantity,
@@ -96,7 +97,6 @@ export default function ProductDetailActionSection({
         </div>
         <div className="mt-6 flex flex-col gap-2">
           <Button title="Add To Cart" onClick={handleAddToCart} />
-          <Button title="Buy Now" type="outline" onClick={handleAddToCart} />
         </div>
         <div className="mt-4 flex justify-between">
           <button className="flex items-center justify-center px-2 text-center text-sm font-bold">
