@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { IAddress } from "../../interfaces/IAddress";
 import { useDeleteAddress } from "../../lib/useAddressQuery";
 import Button from "../ui/Button";
+import EditAddressModal from "../modals/EditAddressModal";
 
 interface AddressCardProps {
   address: IAddress;
@@ -31,12 +32,7 @@ export default function AddressCard({ address }: AddressCardProps) {
           </p>
           <p className="leading-tight tracking-tight">{address.address}</p>
           <div className="mt-4 flex gap-8">
-            <Button
-              title="Edit Address"
-              type="ghost"
-              className="text-green-500"
-              size="large"
-            />
+            <EditAddressModal address={address} />
             <Button
               onClick={handleDelete}
               title="Delete"

@@ -38,6 +38,7 @@ export function useGetAddress() {
 }
 
 export function useUpdateAddress() {
+    const queryClient = useQueryClient()
     const updateAddress = async ({ address }: { address: IAddress }) => {
         try {
             const response = await AddressService.updateAddress(address)
@@ -48,7 +49,10 @@ export function useUpdateAddress() {
     }
     return useMutation({
         mutationKey: ["updateAddress"],
-        mutationFn: updateAddress
+        mutationFn: updateAddress,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getAddress"] });
+        }
     })
 }
 export function useDeleteAddress() {
