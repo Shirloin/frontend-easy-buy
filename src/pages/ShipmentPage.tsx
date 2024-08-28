@@ -9,7 +9,7 @@ export default function ShipmentPage() {
         <div className="relative mx-auto flex w-full max-w-7xl flex-col px-10 py-4">
           <h1 className="text-3xl font-bold">Shipment</h1>
           <div className="flex w-full flex-grow justify-between gap-4 py-6">
-            <div className="">
+            <div className="w-full">
               <ShipmentAddressSection />
               <ShipmentItemListSection />
             </div>

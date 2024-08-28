@@ -25,7 +25,7 @@ export default function AddressListModal() {
     <>
       <Button
         onClick={openModal}
-        title="Change Address"
+        title="Choose Address"
         type="outline"
         className="w-fit"
       />
