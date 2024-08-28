@@ -11,4 +11,11 @@ export default class TransactionService {
             },
         });
     }
+    static async getTransactionByShop() {
+        return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/transaction/shop/`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("authentication"),
+            },
+        });
+    }
 }

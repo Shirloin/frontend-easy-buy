@@ -8,7 +8,6 @@ import { GuestRoute } from "./GuestRoute";
 import SellerLayout from "../components/seller/SellerLayout";
 import SellerDashboardPage from "../pages/seller/DashboardPage";
 import AddProductPage from "../pages/seller/AddProductPage";
-import RegisterShopPage from "../pages/seller/CreateShopPage";
 import { SellerRoute } from "./SellerRoute";
 import ProductPage from "../pages/seller/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
@@ -17,6 +16,7 @@ import CreateShopPage from "../pages/seller/CreateShopPage";
 import CartPage from "../pages/CartPage";
 import ShipmentPage from "../pages/ShipmentPage";
 import { ShipmentRoute } from "./ShipmentRoute";
+import OrderPage from "../pages/seller/OrderPage";
 
 export default function AppRoutes() {
   return (
@@ -40,6 +40,7 @@ export default function AppRoutes() {
                 <Route index element={<SellerDashboardPage />} />
                 <Route path="add-product" element={<AddProductPage />} />
                 <Route path="products" element={<ProductPage />} />
+                <Route path="orders" element={<OrderPage />} />
               </Route>
             </Route>
           </Route>
