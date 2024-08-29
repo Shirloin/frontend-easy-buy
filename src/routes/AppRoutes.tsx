@@ -18,6 +18,7 @@ import ShipmentPage from "../pages/ShipmentPage";
 import { ShipmentRoute } from "./ShipmentRoute";
 import OrderPage from "../pages/seller/OrderPage";
 import SellerChatPage from "../pages/seller/ChatPage";
+import ChatPage from "../pages/ChatPage";
 
 export default function AppRoutes() {
   return (
@@ -32,6 +33,7 @@ export default function AppRoutes() {
             {/* Protected Route */}
             <Route path="create-shop" element={<CreateShopPage />} />
             <Route path="cart" element={<CartPage />} />
+            <Route path="chat" element={<ChatPage />} />
             <Route element={<ShipmentRoute />}>
               <Route path="shipment" element={<ShipmentPage />} />
             </Route>

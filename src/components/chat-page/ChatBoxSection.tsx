@@ -1,8 +1,8 @@
-import { CiPaperplane } from "react-icons/ci";
-import { useAuth } from "../../../contexts/AuthContext";
-import ChatBubbleStart from "./ChatBubbleStart";
-import ChatBubbleEnd from "./ChatBubbleEnd";
 import { useEffect, useRef } from "react";
+import ChatBubbleEnd from "../ui/ChatBubbleEnd";
+import ChatBubbleStart from "../ui/ChatBubbleStart";
+import { useAuth } from "../../contexts/AuthContext";
+import { CiPaperplane } from "react-icons/ci";
 
 export default function ChatBoxSection() {
   const { user } = useAuth();
@@ -28,7 +28,7 @@ export default function ChatBoxSection() {
         </div>
         <div
           ref={chatContainerRef}
-          className="flex h-full max-h-[420px] flex-grow flex-col overflow-y-auto p-4"
+          className="flex h-full max-h-full flex-grow flex-col overflow-y-auto p-4"
         >
           <ChatBubbleStart />
           <ChatBubbleEnd />
