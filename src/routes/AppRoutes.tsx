@@ -17,6 +17,7 @@ import CartPage from "../pages/CartPage";
 import ShipmentPage from "../pages/ShipmentPage";
 import { ShipmentRoute } from "./ShipmentRoute";
 import OrderPage from "../pages/seller/OrderPage";
+import SellerChatPage from "../pages/seller/ChatPage";
 
 export default function AppRoutes() {
   return (
@@ -38,6 +39,7 @@ export default function AppRoutes() {
               <Route element={<SellerRoute />}>
                 {/* Seller Route */}
                 <Route index element={<SellerDashboardPage />} />
+                <Route path="chat" element={<SellerChatPage />} />
                 <Route path="add-product" element={<AddProductPage />} />
                 <Route path="products" element={<ProductPage />} />
                 <Route path="orders" element={<OrderPage />} />
