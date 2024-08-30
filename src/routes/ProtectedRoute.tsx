@@ -6,10 +6,9 @@ export const ProtectedRoute = () => {
   const { isAuthenticated, setToken, hasShop } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const { data, isError } = useValidateToken();
+  const { data, error } = useValidateToken();
 
-  if (isError) {
-    setToken("");
+  if (error) {
     navigate("/login");
   }
 
