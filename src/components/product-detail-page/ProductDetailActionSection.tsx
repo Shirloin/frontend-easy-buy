@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { IoIosHeartEmpty, IoMdShare } from "react-icons/io";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
@@ -7,16 +7,24 @@ import { formatNumber } from "../../util/Util";
 import { useAddToCart } from "../../lib/useCartQuery";
 import toast from "react-hot-toast";
 import Button from "../ui/Button";
+import { useNavigate } from "react-router-dom";
+import { useChatStore } from "../../hooks/useChatStore";
+import { IShop } from "../../interfaces/IShop";
+import { useCreateChatRoom } from "../../lib/useChatQuery";
 
 interface ProductDetailActionSectionProps {
   isLoading?: boolean;
+  shop?: IShop;
 }
 
 export default function ProductDetailActionSection({
   isLoading,
+  shop,
 }: ProductDetailActionSectionProps) {
+  const navigate = useNavigate();
+  const { setRoom } = useChatStore();
   const addToCart = useAddToCart();
-
+  const createChatRoom = useCreateChatRoom();
   const {
     product,
     quantity,
@@ -25,6 +33,7 @@ export default function ProductDetailActionSection({
     updateQuantity,
     selectedVariant,
   } = useProductDetailStore();
+
   if (isLoading) {
     return ProductDetailActionLoading();
   }
@@ -42,6 +51,19 @@ export default function ProductDetailActionSection({
     } catch (error: any) {
       toast.error(error.message);
       console.log(error);
+    }
+  };
+
+  const handleChat = async () => {
+    if (!shop) return;
+    try {
+      const chatRoom = await createChatRoom.mutateAsync({ shopId: shop._id });
+      if (chatRoom) {
+        setRoom(chatRoom);
+        navigate("/chat");
+      }
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -99,7 +121,10 @@ export default function ProductDetailActionSection({
           <Button title="Add To Cart" onClick={handleAddToCart} />
         </div>
         <div className="mt-4 flex justify-between">
-          <button className="flex items-center justify-center px-2 text-center text-sm font-bold">
+          <button
+            onClick={handleChat}
+            className="flex items-center justify-center px-2 text-center text-sm font-bold"
+          >
             <IoChatboxEllipsesOutline className="mr-2 h-4 w-4" />
             <p>Chat</p>
           </button>

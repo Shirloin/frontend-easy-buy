@@ -48,7 +48,10 @@ export default function ProductDetailPage() {
               </div>
             </div>
           </div>
-          <ProductDetailActionSection isLoading={isLoading} />
+          <ProductDetailActionSection
+            shop={product?.shop}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </>

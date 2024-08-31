@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import ChatBoxSection from "../components/chat-page/ChatBoxSection";
 import ChatListSection from "../components/chat-page/ChatListSection";
-import Button from "../components/ui/Button";
 import { BsChatSquare } from "react-icons/bs";
 import { socket } from "../util/Socket";
 import { useGetAllUserChatRoom } from "../lib/useChatQuery";
@@ -49,6 +48,7 @@ export default function ChatPage() {
             {rooms && rooms.length > 0 ? (
               <>
                 <ChatListSection rooms={rooms} />
+
                 <ChatBoxSection />
               </>
             ) : (

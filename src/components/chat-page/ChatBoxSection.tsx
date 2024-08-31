@@ -3,8 +3,10 @@ import ChatBubbleEnd from "../ui/ChatBubbleEnd";
 import ChatBubbleStart from "../ui/ChatBubbleStart";
 import { useAuth } from "../../contexts/AuthContext";
 import { CiPaperplane } from "react-icons/ci";
+import { useChatStore } from "../../hooks/useChatStore";
 
 export default function ChatBoxSection() {
+  const { room } = useChatStore();
   const { user } = useAuth();
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
