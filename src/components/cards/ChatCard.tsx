@@ -1,3 +1,4 @@
+import { useChatStore } from "../../hooks/useChatStore";
 import { IChatRoom } from "../../interfaces/IChatRoom";
 import { socket } from "../../util/Socket";
 
@@ -6,7 +7,12 @@ interface ChatCardProps {
 }
 
 export default function ChatCard({ room }: ChatCardProps) {
+  const { setRoom, room: settedRoom } = useChatStore();
   const joinRoom = () => {
+    if (settedRoom) {
+      socket.emit("leave_room", settedRoom._id);
+    }
+    setRoom(room);
     socket.emit("join_room", room._id);
   };
   return (

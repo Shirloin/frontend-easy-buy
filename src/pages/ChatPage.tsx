@@ -1,38 +1,14 @@
-import { useEffect } from "react";
 import ChatBoxSection from "../components/chat-page/ChatBoxSection";
 import ChatListSection from "../components/chat-page/ChatListSection";
 import { BsChatSquare } from "react-icons/bs";
 import { socket } from "../util/Socket";
 import { useGetAllUserChatRoom } from "../lib/useChatQuery";
+import { useChatStore } from "../hooks/useChatStore";
 
 export default function ChatPage() {
+  const { room } = useChatStore();
   const { data: rooms, isLoading, error } = useGetAllUserChatRoom();
-  const leaveRoom = () => {
-    socket.emit("leave_room", "leave");
-  };
-  const send = () => {
-    socket.emit("send_message", {
-      room: "room1",
-      message: "testing message",
-    });
-  };
 
-  useEffect(() => {
-    function handleReceiveMessage(data: any) {
-      console.log("Received message from server:", data);
-    }
-
-    socket.on("connect", () => {
-      console.log("Socket connected:", socket.id);
-    });
-
-    socket.on("receive_message", handleReceiveMessage);
-
-    return () => {
-      console.log("Cleaning up event listeners");
-      socket.off("receive_message", handleReceiveMessage);
-    };
-  }, []);
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -42,14 +18,21 @@ export default function ChatPage() {
 
   return (
     <>
-      <div className="flex flex-grow bg-slate-200/50">
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col px-10 py-4">
+      <div className="flex flex-grow items-center bg-slate-200/50">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-10 py-4">
           <div className="flex h-[580px] w-full rounded-xl bg-white shadow-all-sides">
             {rooms && rooms.length > 0 ? (
               <>
                 <ChatListSection rooms={rooms} />
-
-                <ChatBoxSection state="User" />
+                {room._id ? (
+                  <ChatBoxSection state="User" />
+                ) : (
+                  <div className="flex flex-grow flex-col items-center justify-center">
+                    <p className="mt-4 text-xl font-semibold">
+                      Choose User Or Shop To Start Conversation
+                    </p>
+                  </div>
+                )}
               </>
             ) : (
               <div className="flex flex-grow flex-col items-center justify-center">

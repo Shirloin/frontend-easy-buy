@@ -23,7 +23,7 @@ export default function ChatBubbleStart({ chat }: ChatBubbleStart) {
               ? chat.sender.name
               : ""}
           <time className="text-xs opacity-50">
-            {chat.createdAt.toLocaleTimeString()}
+            {/* {chat.createdAt.toISOString()} */}
           </time>
         </div>
         <div className="chat-bubble">{chat.text}</div>
