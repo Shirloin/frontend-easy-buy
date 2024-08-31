@@ -1,4 +1,12 @@
-export default function ChatBubbleEnd() {
+import { IChat } from "../../interfaces/IChat";
+import { IShop } from "../../interfaces/IShop";
+import IUser from "../../interfaces/IUser";
+import { isShop, isUser } from "../../util/Util";
+
+interface ChatBubbleEndProps {
+  chat: IChat;
+}
+export default function ChatBubbleEnd({ chat }: ChatBubbleEndProps) {
   return (
     <>
       <div className="chat chat-end">
@@ -6,15 +14,21 @@ export default function ChatBubbleEnd() {
           <div className="w-10 rounded-full">
             <img
               alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              src={chat.sender.imageUrl}
             />
           </div>
         </div>
         <div className="chat-header">
-          Anakin
-          <time className="text-xs opacity-50">12:46</time>
+          {isUser(chat.sender)
+            ? chat.sender.username
+            : isShop(chat.sender)
+              ? chat.sender.name
+              : ""}
+          <time className="text-xs opacity-50">
+            {chat.createdAt.toLocaleTimeString()}
+          </time>
         </div>
-        <div className="chat-bubble">I hate you!</div>
+        <div className="chat-bubble">{chat.text}</div>
         <div className="chat-footer opacity-50">Seen at 12:46</div>
       </div>
     </>

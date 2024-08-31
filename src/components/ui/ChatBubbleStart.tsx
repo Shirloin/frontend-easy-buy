@@ -1,4 +1,10 @@
-export default function ChatBubbleStart() {
+import { IChat } from "../../interfaces/IChat";
+import { isShop, isUser } from "../../util/Util";
+
+interface ChatBubbleStart {
+  chat: IChat;
+}
+export default function ChatBubbleStart({ chat }: ChatBubbleStart) {
   return (
     <>
       <div className="chat chat-start">
@@ -6,15 +12,21 @@ export default function ChatBubbleStart() {
           <div className="w-10 rounded-full">
             <img
               alt="Tailwind CSS chat bubble component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              src={chat.sender.imageUrl}
             />
           </div>
         </div>
         <div className="chat-header">
-          Obi-Wan Kenobi
-          <time className="text-xs opacity-50">12:45</time>
+          {isUser(chat.sender)
+            ? chat.sender.username
+            : isShop(chat.sender)
+              ? chat.sender.name
+              : ""}
+          <time className="text-xs opacity-50">
+            {chat.createdAt.toLocaleTimeString()}
+          </time>
         </div>
-        <div className="chat-bubble">You were the Chosen One!</div>
+        <div className="chat-bubble">{chat.text}</div>
         <div className="chat-footer opacity-50">Delivered</div>
       </div>
     </>

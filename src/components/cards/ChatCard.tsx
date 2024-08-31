@@ -9,7 +9,6 @@ export default function ChatCard({ room }: ChatCardProps) {
   const joinRoom = () => {
     socket.emit("join_room", room._id);
   };
-  console.log(room);
   return (
     <>
       <button

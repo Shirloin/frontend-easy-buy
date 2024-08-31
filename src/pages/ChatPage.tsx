@@ -49,7 +49,7 @@ export default function ChatPage() {
               <>
                 <ChatListSection rooms={rooms} />
 
-                <ChatBoxSection />
+                <ChatBoxSection state="User" />
               </>
             ) : (
               <div className="flex flex-grow flex-col items-center justify-center">

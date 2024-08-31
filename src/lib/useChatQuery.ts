@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { IChatRoom } from "../interfaces/IChatRoom"
 import ChatService from "../services/ChatService"
+import { IChat } from "../interfaces/IChat"
 
 export function useGetAllUserChatRoom() {
     const fetchData = async () => {
@@ -16,21 +17,6 @@ export function useGetAllUserChatRoom() {
         queryFn: fetchData
     })
 }
-export function useGetRoom(shopId: string) {
-    const fetchData = async () => {
-        try {
-            const response = await ChatService.getChatRoom(shopId)
-            return response.data.chatRoom as IChatRoom
-        } catch (error: any) {
-            throw new Error(error.message)
-        }
-    }
-    return useQuery({
-        queryKey: ["getChatRoom"],
-        queryFn: fetchData,
-        enabled: !!shopId
-    })
-}
 
 export function useCreateChatRoom() {
     const createChatRoom = async ({ shopId }: { shopId: string }) => {
@@ -44,5 +30,20 @@ export function useCreateChatRoom() {
     return useMutation({
         mutationKey: ["createChatRoom"],
         mutationFn: createChatRoom
+    })
+}
+
+export function useGetChat(chatRoomId: string) {
+    const fetchData = async () => {
+        try {
+            const response = await ChatService.getChat(chatRoomId)
+            return response.data.chats as IChat[]
+        } catch (error: any) {
+            throw new Error(error.message)
+        }
+    }
+    return useQuery({
+        queryKey: ["getChat"],
+        queryFn: fetchData,
     })
 }

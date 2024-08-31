@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { IChatRoom } from "../interfaces/IChatRoom";
 
 type ChatStoreState = {
-    room?: IChatRoom
+    room: IChatRoom
 }
 
 type ChatStoreAction = {
@@ -10,6 +10,7 @@ type ChatStoreAction = {
 }
 
 export const useChatStore = create<ChatStoreState & ChatStoreAction>((set) => ({
+    room: {} as IChatRoom,
     setRoom: (room) => set({
         room: room
     })

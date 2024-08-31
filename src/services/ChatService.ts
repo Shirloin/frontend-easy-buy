@@ -8,19 +8,20 @@ export default class ChatService {
             },
         })
     }
-    static async getChatRoom(shopId: string) {
-        return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/chat-room`, {
-            data: {
-                shopId: shopId
-            },
+    static async createChatRoom(shopId: string) {
+        return axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chat-room`, {
+            shopId: shopId,
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("authentication"),
             },
         })
     }
-    static async createChatRoom(shopId: string) {
-        return axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chat-room`, {
-            shopId: shopId,
+
+    static async getChat(chatRoomId: string) {
+        return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/chat`, {
+            data: {
+                chatRoomId: chatRoomId
+            },
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("authentication"),
             },
