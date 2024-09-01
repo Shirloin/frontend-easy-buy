@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import ChatBubbleEnd from "../ui/ChatBubbleEnd";
 import ChatBubbleStart from "../ui/ChatBubbleStart";
 import { useAuth } from "../../contexts/AuthContext";
@@ -30,12 +30,6 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
-    }
-  }, [chats]);
-  useEffect(() => {
     if (initialChats) {
       setChats(initialChats);
     }
@@ -44,14 +38,19 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
     refetch();
   }, [room, refetch]);
   useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  }, [chats]);
+  useEffect(() => {
     function handleReceiveMessage(data: IChat) {
       setChats((prevChats) => [...prevChats, data]);
-      console.log("Received message from server:", data);
     }
 
-    socket.on("connect", () => {
-      console.log("Socket connected:", socket.id);
-    });
+    // socket.on("connect", () => {
+    //   console.log("Socket connected:", socket.id);
+    // });
 
     socket.on("receive_message", handleReceiveMessage);
 
@@ -67,7 +66,8 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
     console.log(error);
   }
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
       const senderId = state === "User" ? user!._id : user!.shop!._id;
       const chat = await createChat.mutateAsync({
@@ -111,7 +111,10 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
           })}
         </div>
 
-        <div className="flex w-full items-center px-4 py-2">
+        <form
+          onSubmit={handleSendMessage}
+          className="flex w-full items-center px-4 py-2"
+        >
           <input
             type="text"
             className="mr-4 h-10 w-full rounded-md p-2 ring-1 ring-primary"
@@ -121,13 +124,10 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
               setText(e.target.value)
             }
           />
-          <button
-            onClick={handleSendMessage}
-            className="min-h-10 min-w-10 rounded-full bg-primary text-center text-white"
-          >
+          <button className="min-h-10 min-w-10 rounded-full bg-primary text-center text-white">
             <CiPaperplane className="h-6 w-6" />
           </button>
-        </div>
+        </form>
       </div>
     </>
   );

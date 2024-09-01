@@ -23,7 +23,7 @@ export default function ChatPage() {
           <div className="flex h-[580px] w-full rounded-xl bg-white shadow-all-sides">
             {rooms && rooms.length > 0 ? (
               <>
-                <ChatListSection rooms={rooms} />
+                <ChatListSection rooms={rooms} state="User" />
                 {room._id ? (
                   <ChatBoxSection state="User" />
                 ) : (

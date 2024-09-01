@@ -4,16 +4,13 @@ import { socket } from "../../util/Socket";
 
 interface ChatCardProps {
   room: IChatRoom;
+  state: "User" | "Shop";
 }
 
-export default function ChatCard({ room }: ChatCardProps) {
-  const { setRoom, room: settedRoom } = useChatStore();
+export default function ChatCard({ room, state }: ChatCardProps) {
+  const { setRoom } = useChatStore();
   const joinRoom = () => {
-    if (settedRoom) {
-      socket.emit("leave_room", settedRoom._id);
-    }
     setRoom(room);
-    socket.emit("join_room", room._id);
   };
   return (
     <>
@@ -23,10 +20,14 @@ export default function ChatCard({ room }: ChatCardProps) {
       >
         <div className="avatar">
           <div className="w-8 rounded-full">
-            <img src={room.shop.imageUrl} />
+            <img
+              src={state === "User" ? room.shop.imageUrl : room.user.imageUrl}
+            />
           </div>
         </div>
-        <p className="text-xs font-bold">{room.shop.name}</p>
+        <p className="text-xs font-bold">
+          {state === "User" ? room.shop.name : room.user.username}
+        </p>
       </button>
     </>
   );
