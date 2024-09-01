@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import { IShop } from "../interfaces/IShop";
 import IUser from "../interfaces/IUser";
+import toast from "react-hot-toast";
 
 export function formatNumber(value: number): string {
     return value.toLocaleString('de-DE');

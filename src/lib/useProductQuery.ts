@@ -1,18 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ICreateProduct, IProduct } from "../interfaces/IProduct";
 import ProductService from "../services/ProductService";
-import { ICreateProductVariant, IProductVariant } from "../interfaces/IProductVariant";
-import { ICreateProductImage, IProductImage } from "../interfaces/IProductImage";
+import { ICreateProductVariant } from "../interfaces/IProductVariant";
+import { useHandleError } from "../hooks/useHandleError";
 
 
 
 
 export function useGetAllProductsByShop(shopId: string) {
+    const handleError = useHandleError()
     const fetchData = async () => {
         try {
             const response = await ProductService.getAllProductsByShop(shopId)
             return response.data as IProduct[]
         } catch (error) {
+            handleError(error)
             throw new Error("Failed to fetch all products by user")
         }
     }
@@ -23,12 +25,13 @@ export function useGetAllProductsByShop(shopId: string) {
 }
 
 export function useGetMyShopProduct() {
+    const handleError = useHandleError()
     const fetchData = async () => {
         try {
             const response = await ProductService.getMyShopProduct()
             return response.data.products as IProduct[]
         } catch (error) {
-            throw new Error("Failed to fetch all products by user")
+            handleError(error)
         }
     }
     return useQuery({
@@ -38,6 +41,7 @@ export function useGetMyShopProduct() {
 }
 
 export function useCreateProduct() {
+    const handleError = useHandleError()
     const createProduct = async ({
         product,
         productVariants,
@@ -49,7 +53,7 @@ export function useCreateProduct() {
             const response = await ProductService.createProduct(product, productVariants);
             return response.data.message;
         } catch (error: any) {
-            throw new Error(error.response.data.message);
+            handleError(error)
         }
     }
 
@@ -60,13 +64,14 @@ export function useCreateProduct() {
 }
 
 export function useUpdateProduct() {
+    const handleError = useHandleError()
     const queryClient = useQueryClient();
     const updateProduct = async (product: IProduct) => {
         try {
             const response = await ProductService.updateProduct(product);
             return response.data.message;
         } catch (error: any) {
-            throw new Error(error.response.data.message);
+            handleError(error)
         }
     }
 
@@ -81,13 +86,14 @@ export function useUpdateProduct() {
 
 export function useDeleteProduct() {
     const queryClient = useQueryClient();
+    const handleError = useHandleError()
 
     const deleteProduct = async (productId: string) => {
         try {
             const response = await ProductService.deleteProduct(productId);
             return response.data.message;
         } catch (error: any) {
-            throw new Error(error.response.data.message);
+            handleError(error)
         }
     }
 
@@ -101,12 +107,13 @@ export function useDeleteProduct() {
 }
 
 export function useGetLatestProduct() {
+    const handleError = useHandleError()
     const fetchData = async () => {
         try {
             const response = await ProductService.getLatestProduct()
             return response.data.products as IProduct[]
         } catch (error) {
-            throw new Error("Failed to fetch latest products ")
+            handleError(error)
         }
     }
     return useQuery({
@@ -116,12 +123,13 @@ export function useGetLatestProduct() {
 }
 
 export function useGetProductDetail(productId: string) {
+    const handleError = useHandleError()
     const fetchData = async () => {
         try {
             const response = await ProductService.getProductDetail(productId)
             return response.data.product as IProduct
         } catch (error) {
-            throw new Error("Failed to fetch product detail")
+            handleError(error)
         }
     }
     return useQuery({

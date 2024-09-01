@@ -21,6 +21,7 @@ type AuthContextType = {
   setIsLoading: (val: boolean) => void;
   hasShop: boolean;
   setHasShop: (val: boolean) => void;
+  logOut: () => void;
 };
 
 const initAuthContextValue: AuthContextType = {
@@ -34,6 +35,7 @@ const initAuthContextValue: AuthContextType = {
   setIsLoading: () => null,
   hasShop: false,
   setHasShop: () => null,
+  logOut: () => null,
 };
 
 const AuthContext = createContext<AuthContextType>(initAuthContextValue);
@@ -67,6 +69,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const logOut = () => {
+    localStorage.removeItem("authentication");
+    setToken("");
+  };
+
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
@@ -93,8 +100,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       hasShop,
       setHasShop: setHasShop_,
       setShop,
+      logOut,
     }),
-    [token, user, isAuthenticated, isLoading, hasShop, setShop],
+    [token, user, isAuthenticated, isLoading, hasShop, setShop, logOut],
   );
 
   return (

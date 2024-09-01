@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../contexts/AuthContext";
 import AuthService from "../services/AuthService";
 import ShopService from "../services/ShopService";
+import { useHandleError } from "../hooks/useHandleError";
 
 export const useValidateToken = () => {
-    const { setToken, setUser, setHasShop, setShop } = useAuth();
+    const { setUser, setHasShop, setShop } = useAuth();
+    const handleError = useHandleError();
     const validateToken = async () => {
         try {
             const response = await AuthService.validate_token();
@@ -14,10 +16,7 @@ export const useValidateToken = () => {
             setHasShop(user.shop !== undefined)
             return user
         } catch (error: any) {
-            if (error.response.status === 403 || error.response.status === 401) {
-                localStorage.removeItem("authentication");
-                setToken("");
-            }
+            handleError(error)
         }
         return {}
     };
@@ -28,7 +27,8 @@ export const useValidateToken = () => {
 }
 
 export const useValidateShop = () => {
-    const { setHasShop, setShop, setToken } = useAuth();
+    const { setHasShop, setShop } = useAuth();
+    const handleError = useHandleError();
 
     const checkHasShop = async () => {
         try {
@@ -41,10 +41,7 @@ export const useValidateShop = () => {
             return response.data;
         } catch (error: any) {
             setHasShop(false)
-            if (error.response.status === 403 || error.response.status === 401) {
-                localStorage.removeItem("authentication");
-                setToken("");
-            }
+            handleError(error)
         }
     };
 

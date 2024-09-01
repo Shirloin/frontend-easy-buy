@@ -49,7 +49,6 @@ export default function ProductDetailActionSection({
       });
       toast.success(message);
     } catch (error: any) {
-      toast.error(error.message);
       console.log(error);
     }
   };
