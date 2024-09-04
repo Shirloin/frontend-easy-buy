@@ -1,17 +1,8 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import useCreateProductStore from "../../../hooks/useCreateProductStore";
 import Button from "../../ui/Button";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
-import { TbTrash } from "react-icons/tb";
-
-interface IVariant {
-  name: string;
-  price: number;
-  stock: number;
-}
-
 export default function ProductVariantForm() {
-  const [variants, setVariants] = useState<IVariant[]>([]);
   const {
     productVariants,
     addProductVariant,

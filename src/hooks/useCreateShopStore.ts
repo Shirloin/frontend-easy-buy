@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { ICreateShop, IShop } from "../interfaces/IShop";
-import { ChangeEvent } from "react";
+import { ICreateShop } from "../interfaces/IShop";
 
 type CreateShopState = {
     shop: ICreateShop

@@ -6,7 +6,7 @@ export const SellerRoute = () => {
   const { hasShop } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const { data, error } = useValidateShop();
+  const { error } = useValidateShop();
   if (error) {
     navigate("/");
   }

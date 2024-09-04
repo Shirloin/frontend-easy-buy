@@ -15,13 +15,13 @@ type ShipmentStoreAction = {
 export const useShipmentStore = create<ShipmentStoreAction & ShipmentStoreState>((set) => ({
     address: null,
     setAddress: (address) => {
-        set((state) => ({
+        set(() => ({
             address: address
         }))
     },
     carts: null,
     setCarts: (carts) => {
-        set((state) => ({
+        set(() => ({
             carts: carts
         }))
     },

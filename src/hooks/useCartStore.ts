@@ -21,7 +21,7 @@ type CartStoreState = {
     decrementCartItem: (cartId: string, itemId: string) => void
 }
 
-export const useCartStore = create<CartStoreState>((set, get) => ({
+export const useCartStore = create<CartStoreState>((set) => ({
     cartItems: [],
     initializeCartItems: (carts: ICart[]) => set({
         cartItems: carts.flatMap(cart =>

@@ -22,7 +22,7 @@ type ProductDetailAction = {
     updateQuantity: (val: number) => void
 }
 
-export const useProductDetailStore = create<ProductDetailStoreState & ProductDetailAction>((set, get) => ({
+export const useProductDetailStore = create<ProductDetailStoreState & ProductDetailAction>((set) => ({
     product: {
         _id: "",
         name: "",
@@ -33,7 +33,7 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
         shop: {} as IShop
     },
     setProduct: (product) => {
-        set((state) => ({
+        set(() => ({
             product: product
         }))
     },
@@ -43,22 +43,23 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
         name: "",
         price: 0,
         stock: 0,
+        imageUrl: "",
         product: {} as IProduct
     },
     selectVariant: (index: number, variant: IProductVariant) => {
-        set((state) => ({
+        set(() => ({
             selectedVariantIndex: index,
             selectedVariant: variant,
             quantity: 1
         }))
     },
     setSelectedVariant: (variant) => {
-        set((state) => ({
+        set(() => ({
             selectedVariant: variant
         }))
     },
     setSelectedVariantIndex: (val) => {
-        set((state) => ({
+        set(() => ({
             selectedVariantIndex: val
         }))
     },
@@ -75,7 +76,7 @@ export const useProductDetailStore = create<ProductDetailStoreState & ProductDet
         }))
     },
     updateQuantity: (val: number) => {
-        set((state) => ({
+        set(() => ({
             quantity: val
         }))
     },

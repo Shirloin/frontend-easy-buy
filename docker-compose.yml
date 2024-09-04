@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  frontend:
+    build: .
+    image: frontend-web-easy-buy
+    container_name: frontend-web-easy-buy
+    ports:
+      - "7654:3000"
+    env_file:
+      - .env

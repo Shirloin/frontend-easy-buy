@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import CartActionSection, {
   CartActionLoading,
 } from "../components/cart-page/CartActionSection";

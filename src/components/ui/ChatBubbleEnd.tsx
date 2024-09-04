@@ -1,6 +1,4 @@
 import { IChat } from "../../interfaces/IChat";
-import { IShop } from "../../interfaces/IShop";
-import IUser from "../../interfaces/IUser";
 import { isShop, isUser } from "../../util/Util";
 
 interface ChatBubbleEndProps {

@@ -50,7 +50,6 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     }
   };
   const handleIncrementQuantity = async () => {
-    const variantId = item.variant._id;
     const cartId = cart._id;
     const itemId = item._id;
 
@@ -65,7 +64,6 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
   };
 
   const handleDecrementQuantity = async () => {
-    const variantId = item.variant._id;
     const cartId = cart._id;
     const itemId = item._id;
     decrementCartItem(cartId, itemId);
@@ -82,7 +80,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     const itemId = item._id;
     try {
       const message = await deleteCartItem.mutateAsync({ cartItemId: itemId });
-      toast.success(message);
+      toast.success(message!);
     } catch (error: any) {
       toast.error(error.message);
     }

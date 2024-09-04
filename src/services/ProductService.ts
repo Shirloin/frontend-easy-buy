@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ICreateProduct, IProduct } from "../interfaces/IProduct";
-import { ICreateProductImage } from "../interfaces/IProductImage";
 import { ICreateProductVariant } from "../interfaces/IProductVariant";
 
 export default class ProductService {

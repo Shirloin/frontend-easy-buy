@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { IProduct } from "../../interfaces/IProduct";
 import { formatNumber } from "../../util/Util";
 

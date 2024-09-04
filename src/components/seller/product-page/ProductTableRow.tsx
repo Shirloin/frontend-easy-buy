@@ -1,7 +1,6 @@
 import { IProduct } from "../../../interfaces/IProduct";
 import { IoTrashOutline } from "react-icons/io5";
 import EditProductModal from "./EditProductModal";
-import { useState, useRef, useEffect } from "react";
 import { useDeleteProduct } from "../../../lib/useProductQuery";
 import toast from "react-hot-toast";
 

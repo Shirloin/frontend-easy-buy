@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     useState<boolean>(!!initialToken);
   const [isLoading, setIsLoading] = useState(false);
   const [hasShop, setHasShop_] = useState<boolean>(user?.shop !== null);
+
   const setToken = (newToken: string) => {
     setToken_(newToken);
   };
@@ -61,18 +62,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setHasShop_(!!newUser.shop);
   };
 
-  const setShop = (newShop: IShop | null | undefined) => {
-    if (user) {
-      const updatedUser = { ...user, shop: newShop };
-      setUser_(updatedUser);
-      setHasShop_(!!newShop);
-    }
-  };
+  const setShop = useMemo(
+    () => (newShop: IShop | null | undefined) => {
+      if (user) {
+        const updatedUser = { ...user, shop: newShop };
+        setUser_(updatedUser);
+        setHasShop_(!!newShop);
+      }
+    },
+    [user],
+  );
 
-  const logOut = () => {
-    localStorage.removeItem("authentication");
-    setToken("");
-  };
+  const logOut = useMemo(() => {
+    return () => {
+      localStorage.removeItem("authentication");
+      setToken("");
+    };
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -86,7 +92,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setHasShop_(false);
       localStorage.removeItem("authentication");
     }
-  }, [token]);
+  }, [token, user]);
 
   const contextValue = useMemo(
     () => ({

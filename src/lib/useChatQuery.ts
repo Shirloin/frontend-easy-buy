@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { IChatRoom } from "../interfaces/IChatRoom"
 import ChatService from "../services/ChatService"
 import { IChat, ICreateChat } from "../interfaces/IChat"

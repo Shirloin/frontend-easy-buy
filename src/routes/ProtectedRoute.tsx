@@ -3,10 +3,10 @@ import { useAuth } from "../contexts/AuthContext";
 import { useValidateToken } from "../lib/useAuthQuery";
 
 export const ProtectedRoute = () => {
-  const { isAuthenticated, setToken, hasShop } = useAuth();
+  const { isAuthenticated, hasShop } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const { data, error } = useValidateToken();
+  const { error } = useValidateToken();
 
   if (error) {
     navigate("/login");

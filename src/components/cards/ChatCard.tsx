@@ -1,6 +1,5 @@
 import { useChatStore } from "../../hooks/useChatStore";
 import { IChatRoom } from "../../interfaces/IChatRoom";
-import { socket } from "../../util/Socket";
 
 interface ChatCardProps {
   room: IChatRoom;

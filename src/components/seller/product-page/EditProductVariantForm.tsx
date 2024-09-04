@@ -1,13 +1,7 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import {
-  ICreateProductVariant,
-  IProductVariant,
-} from "../../../interfaces/IProductVariant";
+import { ChangeEvent } from "react";
 import useEditProductStore from "../../../hooks/useEditProductStore";
 import Button from "../../ui/Button";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
-
-type VariantType = IProductVariant | ICreateProductVariant;
 
 export default function EditProductVariantForm() {
   const {

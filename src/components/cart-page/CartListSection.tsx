@@ -18,7 +18,7 @@ export default function CartListSection({ carts }: CartListSectionProps) {
     const selectedItems = cartItems.filter((item) => item.isSelected);
     const itemIds = selectedItems.map((item) => item.item._id);
     try {
-      const message = await deleteCartItems.mutateAsync({
+      await deleteCartItems.mutateAsync({
         cartItemIds: itemIds,
       });
     } catch (error: any) {

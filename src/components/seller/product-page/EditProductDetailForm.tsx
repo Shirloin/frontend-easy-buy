@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent } from "react";
 import useEditProductStore from "../../../hooks/useEditProductStore";
 
 export default function EditProductDetailForm() {

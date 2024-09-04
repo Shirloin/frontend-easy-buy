@@ -17,7 +17,7 @@ export default function AddressCard({ address }: AddressCardProps) {
 
   const handleDelete = async () => {
     try {
-      const message = await deleteAddress.mutateAsync({
+      await deleteAddress.mutateAsync({
         addressId: address._id,
       });
     } catch (error: any) {

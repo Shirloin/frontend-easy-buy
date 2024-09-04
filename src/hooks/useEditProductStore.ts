@@ -1,12 +1,10 @@
 import { create } from "zustand";
-import { ICreateProduct, IProduct } from "../interfaces/IProduct";
+import { IProduct } from "../interfaces/IProduct";
 import { ICreateProductVariant, IProductVariant } from "../interfaces/IProductVariant";
-import { ICreateProductImage, IProductImage } from "../interfaces/IProductImage";
 import { IProductCategory } from "../interfaces/IProductCategory";
 import { IShop } from "../interfaces/IShop";
 
 type VariantType = IProductVariant | ICreateProductVariant;
-type ImageType = IProductImage | ICreateProductImage;
 
 type EditProductState = {
     product: IProduct;
@@ -21,9 +19,6 @@ type EditProductState = {
         value: string | number,
     ) => void;
     removeProductVariant: (index: number) => void;
-    addProductImage: () => void;
-    updateProductImage: (index: number, value: string) => void;
-    removeProductImage: (index: number) => void;
 };
 
 const useEditProductStore = create<EditProductState>((set) => ({
@@ -98,40 +93,6 @@ const useEditProductStore = create<EditProductState>((set) => ({
             product: {
                 ...state.product,
                 productVariants: state.product.productVariants.filter((_, i) => i !== index),
-            },
-        }));
-    },
-    addProductImage: () =>
-        set((state) => ({
-            product: {
-                ...state.product,
-                productImages: [
-                    ...state.product.productImages,
-                    {
-                        imageUrl: "",
-                    } as IProductImage,
-                ],
-            },
-        })),
-    updateProductImage: (index: number, value: string) => {
-        set((state) => {
-            const updatedImages = [...state.product.productImages];
-            if (updatedImages[index]) {
-                updatedImages[index] = { ...updatedImages[index], imageUrl: value };
-            }
-            return {
-                product: {
-                    ...state.product,
-                    productImages: updatedImages,
-                },
-            };
-        });
-    },
-    removeProductImage: (index: number) => {
-        set((state) => ({
-            product: {
-                ...state.product,
-                productImages: state.product.productImages.filter((_, i) => i !== index),
             },
         }));
     },

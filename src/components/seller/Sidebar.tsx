@@ -3,7 +3,6 @@ import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { MdOutlineDashboard } from "react-icons/md";
 import { TbCubePlus } from "react-icons/tb";
-import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (

@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { IoIosHeartEmpty, IoMdShare } from "react-icons/io";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";

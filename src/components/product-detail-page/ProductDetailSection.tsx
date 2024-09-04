@@ -1,9 +1,7 @@
 import { FaStar } from "react-icons/fa";
 import { IProduct } from "../../interfaces/IProduct";
 import { formatNumber } from "../../util/Util";
-import { useState } from "react";
 import { useProductDetailStore } from "../../hooks/useProductDetailStore";
-import { IProductVariant } from "../../interfaces/IProductVariant";
 
 interface ProductDetailSectionProps {
   product: IProduct;

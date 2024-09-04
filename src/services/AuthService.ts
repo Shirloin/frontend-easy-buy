@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAuth } from "../contexts/AuthContext";
 
 export default class AuthService {
   static validate_token() {

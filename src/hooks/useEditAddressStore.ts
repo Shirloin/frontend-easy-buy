@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { IAddress, ICreateAddress } from "../interfaces/IAddress"
+import { IAddress } from "../interfaces/IAddress"
 
 type AddressStoreState = {
     address: IAddress
@@ -15,7 +15,7 @@ type AddressStoreAction = {
 
 const initialAddress: IAddress = {
     _id: '',
-    address: '',
+    street: '',
     addressLabel: '',
     receiverName: '',
     receiverPhone: ''
@@ -32,7 +32,7 @@ export const useEditAddressStore = create<AddressStoreState & AddressStoreAction
         }));
     },
     setInitialAddress: (address) => {
-        set((state) => ({
+        set(() => ({
             address: address
         }))
     }

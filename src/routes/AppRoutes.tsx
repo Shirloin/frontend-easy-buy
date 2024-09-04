@@ -28,7 +28,6 @@ export default function AppRoutes() {
           {/* Public Route */}
           <Route index element={<HomePage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
-
           <Route element={<ProtectedRoute />}>
             {/* Protected Route */}
             <Route path="create-shop" element={<CreateShopPage />} />

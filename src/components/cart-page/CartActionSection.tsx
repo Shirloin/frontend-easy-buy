@@ -4,7 +4,6 @@ import Button from "../ui/Button";
 import { useShipmentStore } from "../../hooks/useShipmentStore";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { IShipment } from "../../interfaces/IShipment";
 import { ICart } from "../../interfaces/ICart";
 export default function CartActionSection() {
   const { cartItems } = useCartStore();

@@ -5,7 +5,6 @@ import { useAuth } from "../../contexts/AuthContext";
 import { CiPaperplane } from "react-icons/ci";
 import { useChatStore } from "../../hooks/useChatStore";
 import { useCreateChat, useGetChat } from "../../lib/useChatQuery";
-import { isShop, isUser } from "../../util/Util";
 import toast from "react-hot-toast";
 import { socket } from "../../util/Socket";
 import { IChat } from "../../interfaces/IChat";
@@ -70,7 +69,7 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
     e.preventDefault();
     try {
       const senderId = state === "User" ? user!._id : user!.shop!._id;
-      const chat = await createChat.mutateAsync({
+      await createChat.mutateAsync({
         text: text,
         senderId: senderId,
         chatRoomId: room._id,

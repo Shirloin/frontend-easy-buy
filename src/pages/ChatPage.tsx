@@ -1,7 +1,6 @@
 import ChatBoxSection from "../components/chat-page/ChatBoxSection";
 import ChatListSection from "../components/chat-page/ChatListSection";
 import { BsChatSquare } from "react-icons/bs";
-import { socket } from "../util/Socket";
 import { useGetAllUserChatRoom } from "../lib/useChatQuery";
 import { useChatStore } from "../hooks/useChatStore";
 

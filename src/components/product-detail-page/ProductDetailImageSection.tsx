@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { IProductVariant } from "../../interfaces/IProductVariant";
