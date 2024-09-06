@@ -10,7 +10,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
-        <Link className="font-serif text-2xl font-semibold text-primary" to="/">
+        <Link className="font-serif text-xl font-semibold text-primary" to="/">
           Easy Buy
         </Link>
         <input
