@@ -11,7 +11,7 @@ export default function Navbar() {
     <>
       <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
         <Link className="font-serif text-3xl font-semibold text-primary" to="/">
-          Mart
+          Easy Buy
         </Link>
         <input
           className="w-full rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
