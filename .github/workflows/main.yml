@@ -48,7 +48,7 @@ jobs:
           username: ${{secrets.VPS_USERNAME}}
           key: ${{secrets.VPS_SSH_KEY}}
           port: 22
-        script: |
-          cd easy-buy-frontend
-          docker pull ${{secrets.DOCKERHUB_USERNAME}}/frontend-easy-buy:latest
-          docker-compose up -d --build
+          script: |
+            cd easy-buy-frontend
+            docker pull ${{secrets.DOCKERHUB_USERNAME}}/frontend-easy-buy:latest
+            docker-compose up -d --build
