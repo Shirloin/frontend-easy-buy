@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: $/frontend-easy-buy:latest
+          tags: frontend-easy-buy:latest
           
           
         
