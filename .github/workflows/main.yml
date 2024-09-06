@@ -28,7 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: frontend-easy-buy:latest
-          
-          
-        
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/frontend-easy-buy:latest
