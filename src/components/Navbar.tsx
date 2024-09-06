@@ -10,11 +10,11 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
-        <Link className="font-serif text-xl font-semibold text-primary" to="/">
-          Easy Buy
+        <Link className="font-serif text-2xl font-semibold text-primary" to="/">
+          <p>Easy Buy</p>
         </Link>
         <input
-          className="w-full max-w-5xl rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
+          className="w-full max-w-3xl rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
           placeholder="Search..."
           type="text"
         />

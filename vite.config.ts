@@ -10,14 +10,14 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
   },
-  preview: {
-    port: 7654,
-    strictPort: true,
-  },
-  server: {
-    port: 7654,
-    strictPort: true,
-    host: true,
-    origin: "http://0.0.0.0:7654",
-  },
+  // preview: {
+  //   port: 7654,
+  //   strictPort: true,
+  // },
+  // server: {
+  //   port: 7654,
+  //   strictPort: true,
+  //   host: true,
+  //   origin: "http://0.0.0.0:7654",
+  // },
 })
