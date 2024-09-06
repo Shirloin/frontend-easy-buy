@@ -43,7 +43,7 @@ jobs:
       - #Deploy To VPS
         name: Deploy to VPS
         uses: appleboy/ssh-action@master
-        env:
+        with:
           host: ${{secrets.VPS_IP}}
           username: ${{secrets.VPS_USERNAME}}
           key: ${{secrets.VPS_SSH_KEY}}
