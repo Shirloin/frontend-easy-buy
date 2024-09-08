@@ -50,6 +50,9 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
     // socket.on("connect", () => {
     //   console.log("Socket connected:", socket.id);
     // });
+    socket.on("connect_error", (error) => {
+      console.error("WebSocket connection error:", error);
+    });
 
     socket.on("receive_message", handleReceiveMessage);
 

@@ -9,15 +9,20 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-10 border-b bg-white px-12 py-4">
-        <Link className="font-serif text-2xl font-semibold text-primary" to="/">
+      <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-6 border-b bg-white px-6 py-4 sm:gap-x-10 sm:px-12">
+        <Link
+          className="hidden w-fit font-serif text-2xl font-semibold text-primary md:flex"
+          to="/"
+        >
           <p>Easy Buy</p>
         </Link>
-        <input
-          className="w-full max-w-3xl rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
-          placeholder="Search..."
-          type="text"
-        />
+        <form className="w-full sm:max-w-xl lg:max-w-3xl" action="">
+          <input
+            className="w-full rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
+            placeholder="Search..."
+            type="text"
+          />
+        </form>
         <div className="flex gap-x-4">
           {isAuthenticated ? (
             <>

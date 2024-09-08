@@ -49,7 +49,7 @@ export default function LoginPage() {
       <div className="m-auto w-96 rounded-lg border border-black p-8 shadow-lg">
         <h1 className="mb-6 text-3xl font-bold">Login</h1>
         <input
-          className="my-2 w-full rounded-md p-2 ring-1 ring-black"
+          className="my-2 w-full rounded-md p-2 ring-1 ring-gray-300 focus:ring-primary"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setUsername(e.target.value);
           }}
@@ -58,7 +58,7 @@ export default function LoginPage() {
           placeholder="Username"
         />
         <input
-          className="my-2 w-full rounded-md p-2 ring-1 ring-black"
+          className="p-2ring-1 my-2 w-full rounded-md ring-gray-300 focus:ring-primary"
           type="password"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setPassword(e.target.value);
