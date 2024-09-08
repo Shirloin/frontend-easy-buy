@@ -19,6 +19,7 @@ import { ShipmentRoute } from "./ShipmentRoute";
 import OrderPage from "../pages/seller/OrderPage";
 import SellerChatPage from "../pages/seller/ChatPage";
 import ChatPage from "../pages/ChatPage";
+import SearchPage from "../pages/SearchPage";
 
 export default function AppRoutes() {
   return (
@@ -28,6 +29,7 @@ export default function AppRoutes() {
           {/* Public Route */}
           <Route index element={<HomePage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route element={<ProtectedRoute />}>
             {/* Protected Route */}
             <Route path="create-shop" element={<CreateShopPage />} />

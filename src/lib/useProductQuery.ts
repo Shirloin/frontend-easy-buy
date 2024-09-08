@@ -137,3 +137,20 @@ export function useGetProductDetail(productId: string) {
         queryFn: fetchData
     })
 }
+export function useSearchProduct(query: string) {
+    const handleError = useHandleError()
+    const fetchData = async () => {
+        try {
+            const response = await ProductService.searchProduct(query)
+            return response.data.products as IProduct[]
+        } catch (error) {
+            handleError(error)
+        }
+    }
+    return useQuery({
+        queryKey: ['searchProduct', query],
+        queryFn: fetchData,
+
+    })
+}
+

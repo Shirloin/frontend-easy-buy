@@ -69,4 +69,11 @@ export default class ProductService {
       },
     })
   }
+  static async searchProduct(query: string) {
+    return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/product/search`, {
+      params: {
+        query
+      }
+    })
+  }
 }

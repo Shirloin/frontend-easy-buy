@@ -2,10 +2,25 @@ import { IoCartOutline } from "react-icons/io5";
 import { useAuth } from "../contexts/AuthContext";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiMail, CiShop } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Navbar() {
   const { isAuthenticated, user } = useAuth();
+
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (search.length > 0) {
+      navigate(`/search?query=${search}`);
+      setSearch("");
+      queryClient.invalidateQueries({ queryKey: ["searchProduct"] });
+    }
+  };
 
   return (
     <>
@@ -16,11 +31,18 @@ export default function Navbar() {
         >
           <p>Easy Buy</p>
         </Link>
-        <form className="w-full sm:max-w-xl lg:max-w-3xl" action="">
+        <form
+          className="w-full sm:max-w-xl lg:max-w-3xl"
+          onSubmit={handleSubmit}
+        >
           <input
             className="w-full rounded-md px-3 py-1.5 ring-1 ring-gray-300 focus:ring-primary"
             placeholder="Search..."
             type="text"
+            value={search}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSearch(e.target.value)
+            }
           />
         </form>
         <div className="flex gap-x-4">
