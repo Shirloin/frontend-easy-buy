@@ -16,7 +16,7 @@ export const useSellerProductStore = create<SellerProductStoreState & SellerProd
     products: [],
     filteredProducts: [],
     searchQuery: "",
-    setProducts: (products) => set((state) => ({
+    setProducts: (products) => set(() => ({
         products,
         filteredProducts: products,
     })),

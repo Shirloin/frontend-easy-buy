@@ -118,7 +118,7 @@ export default function EditProductVariantForm() {
                   ) : (
                     <>
                       <img
-                        className="h-full w-full rounded-md object-cover"
+                        className="z-0 h-full w-full rounded-md object-cover"
                         src={variant.imageUrl}
                         alt=""
                       />

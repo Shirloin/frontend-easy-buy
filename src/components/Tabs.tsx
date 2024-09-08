@@ -20,7 +20,7 @@ export default function Tabs({
   return (
     <>
       <div className="w-full">
-        <div className="sticky top-0 flex bg-white py-4">
+        <div className="sticky top-0 z-50 flex bg-white py-4">
           {tabList.map((tab, index) => {
             return (
               <button

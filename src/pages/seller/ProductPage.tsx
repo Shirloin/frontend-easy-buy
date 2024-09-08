@@ -42,7 +42,9 @@ export default function ProductPage() {
             </div>
           </div>
         ) : (
-          <div>No Product</div>
+          <div className="mt-6 w-full rounded-lg px-6 py-4 text-center text-xl font-bold shadow-all-sides">
+            No Product
+          </div>
         )}
       </div>
     </>
