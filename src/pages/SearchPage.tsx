@@ -17,14 +17,14 @@ export default function SearchPage() {
   return (
     <>
       <div className="mx-auto flex w-full max-w-7xl flex-col p-10">
+        {isLoading &&
+          Array.from({ length: 10 }).map((_, index) => (
+            <ProductLoadingCard key={index} />
+          ))}
         {products && products.length > 0 && (
           <div>
             <h1 className="text-2xl font-bold">New Product</h1>
             <div className="my-4 flex flex-wrap gap-4">
-              {isLoading &&
-                Array.from({ length: 10 }).map((_, index) => (
-                  <ProductLoadingCard key={index} />
-                ))}
               {products &&
                 products.map((product) => (
                   <ProductCard key={product._id} product={product} />
