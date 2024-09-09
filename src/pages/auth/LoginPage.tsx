@@ -58,7 +58,7 @@ export default function LoginPage() {
           placeholder="Username"
         />
         <input
-          className="p-2ring-1 my-2 w-full rounded-md ring-gray-300 focus:ring-primary"
+          className="my-2 w-full rounded-md p-2 ring-1 ring-gray-300 focus:ring-primary"
           type="password"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setPassword(e.target.value);
