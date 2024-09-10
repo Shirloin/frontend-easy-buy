@@ -19,10 +19,13 @@ type CartStoreState = {
     selectAll: (isSelected: boolean) => void
     incrementCartItem: (cartId: string, itemId: string) => void
     decrementCartItem: (cartId: string, itemId: string) => void
+    removeCartItem: (cartId: string, itemId: string) => void
+    removeSelectedCartItems: () => void;
 }
 
 export const useCartStore = create<CartStoreState>((set) => ({
     cartItems: [],
+    totalPrice: 0,
     initializeCartItems: (carts: ICart[]) => set({
         cartItems: carts.flatMap(cart =>
             cart.items.map(item => ({
@@ -34,53 +37,80 @@ export const useCartStore = create<CartStoreState>((set) => ({
             }))
         )
     }),
+    toggleCartSelection: (cartId: string) => {
+        set((state) => {
+            const allSelected = state.cartItems
+                .filter(item => item.cart._id === cartId)
+                .every(item => item.isSelected);
 
-    toggleCartSelection: (cartId: string) => set((state) => {
-        const allSelected = state.cartItems
-            .filter(item => item.cart._id === cartId)
-            .every(item => item.isSelected);
-
-        return {
-            cartItems: state.cartItems.map(item =>
+            const updatedCartItems = state.cartItems.map(item =>
                 item.cart._id === cartId
                     ? { ...item, isSelected: !allSelected }
                     : item
+            );
+
+            return { cartItems: updatedCartItems };
+        });
+    },
+
+    toggleItemSelection: (cartId: string, itemId: string) => {
+        set((state) => ({
+            cartItems: state.cartItems.map(item =>
+                item.cart._id === cartId && item.item._id === itemId
+                    ? { ...item, isSelected: !item.isSelected }
+                    : item
             ),
-        };
-    }),
+        }));
+    },
 
-    toggleItemSelection: (cartId: string, itemId: string) => set((state) => ({
-        cartItems: state.cartItems.map(item =>
-            item.cart._id === cartId && item.item._id === itemId
-                ? { ...item, isSelected: !item.isSelected }
-                : item
-        ),
-    })),
+    setQuantity: (cartId: string, itemId: string, quantity: number) => {
+        set((state) => ({
+            cartItems: state.cartItems.map(item =>
+                item.cart._id === cartId && item.item._id === itemId
+                    ? { ...item, quantity }
+                    : item
+            ),
+        }));
+    },
 
-    setQuantity: (cartId: string, itemId: string, quantity: number) => set((state) => ({
-        cartItems: state.cartItems.map(item =>
-            item.cart._id === cartId && item.item._id === itemId
-                ? { ...item, quantity }
-                : item
-        ),
-    })),
+    selectAll: (isSelected: boolean) => {
+        set((state) => ({
+            cartItems: state.cartItems.map(item => ({ ...item, isSelected })),
+        }));
+    },
 
-    selectAll: (isSelected: boolean) => set((state) => ({
-        cartItems: state.cartItems.map(item => ({ ...item, isSelected })),
-    })),
+    incrementCartItem: (cartId: string, itemId: string) => {
+        set((state) => ({
+            cartItems: state.cartItems.map(item =>
+                item.cart._id === cartId && item.item._id === itemId
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            ),
+        }));
+    },
+    decrementCartItem: (cartId: string, itemId: string) => {
+        set((state) => ({
+            cartItems: state.cartItems.map(item =>
+                item.cart._id === cartId && item.item._id === itemId
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            ),
+        }));
+    },
+    removeCartItem: (cartId: string, itemId: string) => {
+        set((state) => {
+            const updatedCartItems = state.cartItems.filter(item =>
+                !(item.cart._id === cartId && item.item._id === itemId)
+            );
 
-    incrementCartItem: (cartId: string, itemId: string) => set((state) => ({
-        cartItems: state.cartItems.map(item =>
-            item.cart._id === cartId && item.item._id === itemId
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-        ),
-    })),
-    decrementCartItem: (cartId: string, itemId: string) => set((state) => ({
-        cartItems: state.cartItems.map(item =>
-            item.cart._id === cartId && item.item._id === itemId
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-        ),
-    })),
+            return { cartItems: updatedCartItems };
+        });
+    },
+    removeSelectedCartItems: () => {
+        set((state) => {
+            const updatedCartItems = state.cartItems.filter(item => !item.isSelected);
+
+            return { cartItems: updatedCartItems };
+        });
+    },
 }));

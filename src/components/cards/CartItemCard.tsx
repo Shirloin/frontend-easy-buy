@@ -25,6 +25,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     setQuantity,
     incrementCartItem,
     decrementCartItem,
+    removeCartItem,
   } = useCartStore();
   const updateCartQuantity = useUpdateCartQuantity();
   const incrementCartQuantity = useIncrementCartQuantity();
@@ -81,9 +82,11 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
   };
 
   const handleDeleteCartItem = async () => {
+    const cartId = cart._id;
     const itemId = item._id;
     try {
       const message = await deleteCartItem.mutateAsync({ cartItemId: itemId });
+      removeCartItem(cartId, itemId);
       toast.success(message!);
     } catch (error: any) {
       toast.error(error.message);
@@ -111,6 +114,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
                 <p className="text-error">Stock: {item.variant.stock}</p>
                 <p>{item.variant.product.name}</p>
                 <p>{item.variant.name}</p>
+                <p>Rp{formatNumber(item.variant.price)}</p>
               </div>
             </div>
           </div>

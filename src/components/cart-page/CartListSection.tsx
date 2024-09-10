@@ -11,7 +11,7 @@ interface CartListSectionProps {
 
 export default function CartListSection({ carts }: CartListSectionProps) {
   const deleteCartItems = useDeleteCartItems();
-  const { cartItems, selectAll } = useCartStore();
+  const { cartItems, selectAll, removeSelectedCartItems } = useCartStore();
   const totalItems = carts.reduce((sum, cart) => sum + cart.items.length, 0);
   const anyItemSelected = cartItems.some((item) => item.isSelected);
   const handleRemove = async () => {
@@ -21,6 +21,7 @@ export default function CartListSection({ carts }: CartListSectionProps) {
       await deleteCartItems.mutateAsync({
         cartItemIds: itemIds,
       });
+      removeSelectedCartItems();
     } catch (error: any) {
       toast.error(error.message);
     }
