@@ -106,7 +106,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     const cartId = cart._id;
     const itemId = item._id;
     decrementCartItem(cartId, itemId);
-    validate(cartItem!.quantity);
+    validate(cartItem!.quantity - 1);
   };
 
   const handleDeleteCartItem = async () => {
