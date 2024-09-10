@@ -3,11 +3,9 @@ import { ICartItem } from "../../interfaces/ICartItem";
 import { formatNumber } from "../../util/Util";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useCartStore } from "../../hooks/useCartStore";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import {
-  useDecrementCartQuantity,
   useDeleteCartItem,
-  useIncrementCartQuantity,
   useUpdateCartQuantity,
 } from "../../lib/useCartQuery";
 import { ICart } from "../../interfaces/ICart";
@@ -28,59 +26,87 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     removeCartItem,
   } = useCartStore();
   const updateCartQuantity = useUpdateCartQuantity();
-  const incrementCartQuantity = useIncrementCartQuantity();
-  const decrementCartQuantity = useDecrementCartQuantity();
   const deleteCartItem = useDeleteCartItem();
   const [error, setError] = useState("");
+  const actionRef = useRef<HTMLDivElement>(null);
 
   const cartItem = cartItems.find(
     (c) => c.cart._id === cart._id && c.item._id === item._id,
   );
 
+  const validate = useCallback(
+    (quantity: number) => {
+      if (quantity === undefined) return;
+
+      if (quantity < 1) {
+        setError("Quantity must be at least 1");
+      } else if (quantity > item.variant.stock) {
+        setError("Quantity must be lower than total stock");
+      } else {
+        setError("");
+      }
+    },
+    [item.variant.stock],
+  );
+
+  const updateQuantity = useCallback(async () => {
+    const itemId = item._id;
+    const cartId = cart._id;
+    try {
+      await updateCartQuantity.mutateAsync({
+        cartItemId: itemId,
+        quantity: cartItem!.quantity,
+      });
+    } catch (error: any) {
+      setQuantity(cartId, itemId, item.quantity);
+    } finally {
+      setError("");
+    }
+  }, [
+    cartItem,
+    updateCartQuantity,
+    item._id,
+    cart._id,
+    item.quantity,
+    setQuantity,
+  ]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        actionRef.current &&
+        !actionRef.current.contains(event.target as Node)
+      ) {
+        updateQuantity();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [updateQuantity]);
+
   const onQuantityChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const quantity = Number(e.target.value);
     const cartId = cart._id;
     const itemId = item._id;
-    const itemQuantity = item.quantity;
     setQuantity(cartId, itemId, quantity);
-    try {
-      await updateCartQuantity.mutateAsync({
-        cartItemId: itemId,
-        quantity: quantity,
-      });
-      setError("");
-    } catch (error: any) {
-      setError(error.message);
-      setQuantity(cartId, itemId, itemQuantity);
-    }
+    validate(quantity);
   };
+
   const handleIncrementQuantity = async () => {
     const cartId = cart._id;
     const itemId = item._id;
-
     incrementCartItem(cartId, itemId);
-    try {
-      await incrementCartQuantity.mutateAsync({
-        cartItemId: itemId,
-      });
-      setError("");
-    } catch (error: any) {
-      setError(error.message);
-    }
+    validate(cartItem!.quantity);
   };
 
   const handleDecrementQuantity = async () => {
     const cartId = cart._id;
     const itemId = item._id;
     decrementCartItem(cartId, itemId);
-    try {
-      await decrementCartQuantity.mutateAsync({
-        cartItemId: itemId,
-      });
-      setError("");
-    } catch (error: any) {
-      setError(error.message);
-    }
+    validate(cartItem!.quantity);
   };
 
   const handleDeleteCartItem = async () => {
@@ -125,7 +151,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
           </p>
         </div>
         <div className="flex flex-col items-end justify-center gap-2">
-          <div className="flex items-center justify-end gap-2">
+          <div ref={actionRef} className="flex items-center justify-end gap-2">
             <button onClick={handleDeleteCartItem}>
               <IoTrashOutline className="h-6 w-6 text-gray-400" />
             </button>
