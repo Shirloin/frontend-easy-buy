@@ -40,14 +40,13 @@ export function useGetCart() {
 }
 
 export function useUpdateCartQuantity() {
-    const handleError = useHandleError();
 
     const UpdateCartQuantity = async ({ cartItemId, quantity }: { cartItemId: string, quantity: number }) => {
         try {
             const response = await CartService.updateCartQuantity(cartItemId, quantity)
             return response.data.message as string
         } catch (error: any) {
-            handleError(error)
+            throw new Error(error.response.data.message)
         }
     }
     return useMutation({
@@ -56,14 +55,13 @@ export function useUpdateCartQuantity() {
     })
 }
 export function useIncrementCartQuantity() {
-    const handleError = useHandleError();
 
     const IncrementCartQuantity = async ({ cartItemId }: { cartItemId: string }) => {
         try {
             const response = await CartService.incrementCartQuantity(cartItemId)
             return response.data.cart as ICartItem
         } catch (error: any) {
-            handleError(error)
+            throw new Error(error.response.data.message)
         }
     }
     return useMutation({
@@ -72,14 +70,13 @@ export function useIncrementCartQuantity() {
     })
 }
 export function useDecrementCartQuantity() {
-    const handleError = useHandleError();
 
     const DecrementCartQuantity = async ({ cartItemId }: { cartItemId: string }) => {
         try {
             const response = await CartService.decrementCartQuantity(cartItemId)
             return response.data.cart as ICartItem
         } catch (error: any) {
-            handleError(error)
+            throw new Error(error.response.data.message)
         }
     }
     return useMutation({

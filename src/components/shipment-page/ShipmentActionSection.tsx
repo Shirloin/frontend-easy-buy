@@ -9,6 +9,15 @@ export default function ShipmentActionSection() {
   const { carts, address } = useShipmentStore();
   const createTransaction = useCreateTransaction();
   const navigate = useNavigate();
+  const totalPrice = carts!.reduce((total, cart) => {
+    return (
+      total +
+      cart.items.reduce((cartTotal, item) => {
+        return cartTotal + item.variant.price * item.quantity;
+      }, 0)
+    );
+  }, 0);
+
   const handleSubmit = async () => {
     if (!address) {
       toast.error("Please select destination address first!");
@@ -34,7 +43,7 @@ export default function ShipmentActionSection() {
         <p className="text-lg font-bold">Shopping Summary</p>
         <div className="mt-8 flex items-center justify-between">
           <p>Total Price (3 Products)</p>
-          <p className="text-lg font-bold">Rp{formatNumber(10000)}</p>
+          <p className="text-lg font-bold">Rp{formatNumber(totalPrice)}</p>
         </div>
         <hr />
         <Button

@@ -17,7 +17,7 @@ export default function SellerChatPage() {
 
   return (
     <>
-      <div className="mx-auto my-4 flex h-[580px] w-full self-center rounded-xl shadow-all-sides">
+      <div className="mx-auto my-4 flex h-[calc(100vh-120px)] w-full self-center rounded-xl shadow-all-sides">
         {rooms && rooms.length > 0 ? (
           <>
             <ChatListSection rooms={rooms} state="Shop" />

@@ -19,7 +19,7 @@ export default function ChatPage() {
     <>
       <div className="flex flex-grow items-center bg-slate-200/50">
         <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-10 py-4">
-          <div className="flex h-[580px] w-full rounded-xl bg-white shadow-all-sides">
+          <div className="flex h-[calc(100vh-120px)] w-full rounded-xl bg-white shadow-all-sides">
             {rooms && rooms.length > 0 ? (
               <>
                 <ChatListSection rooms={rooms} state="User" />
