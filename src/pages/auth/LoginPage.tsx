@@ -42,12 +42,12 @@ export default function LoginPage() {
     if (!isLoading && isAuthenticated) {
       navigate("/");
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, navigate]);
 
   return (
     <div className="flex min-h-screen w-full">
-      <div className="m-auto w-96 rounded-lg border border-black p-8 shadow-lg">
-        <h1 className="mb-6 text-3xl font-bold">Login</h1>
+      <div className="border-blagray-300ck m-auto w-96 rounded-lg border p-8 shadow-lg">
+        <h1 className="mb-6 text-3xl font-bold text-primary">Login</h1>
         <input
           className="my-2 w-full rounded-md p-2 ring-1 ring-gray-300 focus:ring-primary"
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +68,7 @@ export default function LoginPage() {
         />
         <button
           onClick={handleSubmit}
-          className="my-4 w-full rounded-md bg-black p-2 font-medium text-white"
+          className="my-4 w-full rounded-md bg-primary p-2 font-medium text-white"
         >
           Login
         </button>

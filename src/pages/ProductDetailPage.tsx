@@ -6,25 +6,22 @@ import ProductDetailActionSection from "../components/product-detail-page/Produc
 import { useProductDetailStore } from "../hooks/useProductDetailStore";
 import { useEffect } from "react";
 import ShopSection from "../components/product-detail-page/ShopSection";
+import RelatedProductSection from "../components/product/RelatedProductSection";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
 
   const { setSelectedVariant, setProduct } = useProductDetailStore();
 
-  const {
-    data: product,
-    isLoading,
-    isError,
-  } = useGetProductDetail(id as string);
+  const { data: product, isLoading, error } = useGetProductDetail(id as string);
   useEffect(() => {
     if (product) {
       setProduct(product);
       setSelectedVariant(product.productVariants[0]);
     }
   }, [product, setSelectedVariant, setProduct]);
-  if (isError) {
-    return <div>{isError}</div>;
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
   return (
@@ -53,6 +50,10 @@ export default function ProductDetailPage() {
             isLoading={isLoading}
           />
         </div>
+        <hr />
+        {product?.productCategory._id && (
+          <RelatedProductSection categoryId={product.productCategory._id} />
+        )}
       </div>
     </>
   );

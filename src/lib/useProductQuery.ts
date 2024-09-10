@@ -154,3 +154,20 @@ export function useSearchProduct(query: string) {
     })
 }
 
+export function useGetRelatedProducts(categoryId: string) {
+    const handleError = useHandleError()
+    const fetchData = async () => {
+        try {
+            const response = await ProductService.getRelatedProducts(categoryId)
+            return response.data.products as IProduct[]
+        } catch (error) {
+            handleError(error)
+        }
+    }
+    return useQuery({
+        queryKey: ['getRelatedProducts'],
+        queryFn: fetchData,
+
+    })
+}
+
