@@ -47,7 +47,9 @@ export default function ProductDetailActionSection({
         shopId,
         quantity,
       });
-      toast.success(message);
+      if (message) {
+        toast.success(message);
+      }
     } catch (error: any) {
       console.log(error);
     }

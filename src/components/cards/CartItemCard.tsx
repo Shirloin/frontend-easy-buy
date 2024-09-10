@@ -41,6 +41,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
     const quantity = Number(e.target.value);
     const cartId = cart._id;
     const itemId = item._id;
+    const itemQuantity = item.quantity;
     setQuantity(cartId, itemId, quantity);
     try {
       await updateCartQuantity.mutateAsync({
@@ -50,6 +51,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
       setError("");
     } catch (error: any) {
       setError(error.message);
+      setQuantity(cartId, itemId, itemQuantity);
     }
   };
   const handleIncrementQuantity = async () => {

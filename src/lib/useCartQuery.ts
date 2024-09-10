@@ -12,7 +12,6 @@ export function useAddToCart() {
             const response = await CartService.addToCart(variantId, shopId, quantity)
             return response.data.message
         } catch (error) {
-            console.log(error)
             handleError(error)
         }
     }
