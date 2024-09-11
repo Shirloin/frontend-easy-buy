@@ -4,7 +4,13 @@ import Button from "../ui/Button";
 import { useCreateAddressStore } from "../../hooks/useCreateAddressStore";
 import { ChangeEvent } from "react";
 
-export default function AddNewAddressModal() {
+interface AddNewAddressModalProps {
+  className?: string;
+}
+
+export default function AddNewAddressModal({
+  className,
+}: AddNewAddressModalProps) {
   const createAddress = useCreateAddress();
   const { address, setAddress } = useCreateAddressStore();
 
@@ -40,11 +46,11 @@ export default function AddNewAddressModal() {
       <Button
         title="Add New Address"
         type="outline"
-        className="mt-4 w-full"
+        className={className}
         size="large"
         onClick={openModal}
       />
-      <dialog id="add-new-address-modal" className="modal py-20">
+      <dialog id="add-new-address-modal" className="modal">
         <div className="modal-box h-full w-11/12 max-w-3xl p-0">
           <div className="sticky top-0 bg-white pt-6">
             <form method="dialog">

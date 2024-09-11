@@ -12,6 +12,10 @@ export default function BiodataSection() {
             <input className="hidden" type="file" accept="image/*" />
             <p className="font-semibold text-primary">Choose Photo</p>
           </label>
+          <p className="mt-4 text-sm leading-tight tracking-tight text-gray-400">
+            File size: maximum 10,000,000 bytes (10 Megabytes). Allowed file
+            extensions: .JPG .JPEG .PNG
+          </p>
         </div>
         <div className="flex flex-col gap-4">
           <p className="text-lg font-semibold text-gray-500">Change Biodata</p>

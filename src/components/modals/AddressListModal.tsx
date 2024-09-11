@@ -41,7 +41,7 @@ export default function AddressListModal() {
               Address List
             </h3>
           </div>
-          <AddNewAddressModal />
+          <AddNewAddressModal className="mt-4 w-full" />
           <div className="my-4 flex flex-col gap-4">
             {addresses?.map((address) => (
               <AddressCard key={address._id} address={address} />
