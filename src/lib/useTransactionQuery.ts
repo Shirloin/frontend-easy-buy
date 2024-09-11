@@ -35,3 +35,18 @@ export function useGetTransactionByShop() {
         queryFn: fetchData
     })
 }
+export function useGetTransactionByUser() {
+    const handleError = useHandleError()
+    const fetchData = async () => {
+        try {
+            const response = await TransactionService.getTransactionByUser()
+            return response.data.transactions as ITransactionHeader[]
+        } catch (error: any) {
+            handleError(error)
+        }
+    }
+    return useQuery({
+        queryKey: ["getTransactionByUser"],
+        queryFn: fetchData
+    })
+}

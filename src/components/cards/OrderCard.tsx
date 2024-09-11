@@ -5,9 +5,10 @@ import OrderDetailCard from "./OrderDetailCard";
 
 interface OrderCardProps {
   order: ITransactionHeader;
+  state?: "User" | "Shop";
 }
 
-export default function OrderCard({ order }: OrderCardProps) {
+export default function OrderCard({ order, state = "Shop" }: OrderCardProps) {
   return (
     <>
       <div className="mt-6 flex w-full flex-col gap-4 rounded-lg px-6 py-4 shadow-all-sides">
@@ -26,7 +27,7 @@ export default function OrderCard({ order }: OrderCardProps) {
         </div>
         <div className="flex flex-col gap-4">
           {order.details.map((detail) => (
-            <OrderDetailCard key={detail._id} detail={detail} />
+            <OrderDetailCard key={detail._id} detail={detail} state={state} />
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function Navbar() {
-  const { isAuthenticated, user, logOut } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -75,8 +75,8 @@ export default function Navbar() {
                     {user && user.shop ? user.shop.name : "Shop"}
                   </p>
                 </Link>
-                <button
-                  onClick={logOut}
+                <Link
+                  to={"/profile"}
                   className="relative flex max-w-32 items-center justify-start gap-2 rounded-lg p-2 hover:bg-slate-200"
                 >
                   <div className="avatar">
@@ -87,7 +87,7 @@ export default function Navbar() {
                   <p className="max-w-20 truncate text-sm font-semibold">
                     {user ? user.username : "Shirloin"}
                   </p>
-                </button>
+                </Link>
               </div>
             </>
           ) : (

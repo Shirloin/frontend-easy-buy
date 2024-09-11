@@ -1,11 +1,16 @@
 import { ITransactionDetail } from "../../interfaces/ITransaction";
 import { formatNumber } from "../../util/Util";
+import Button from "../ui/Button";
 
 interface OrderDetailCardProps {
   detail: ITransactionDetail;
+  state?: "Shop" | "User";
 }
 
-export default function OrderDetailCard({ detail }: OrderDetailCardProps) {
+export default function OrderDetailCard({
+  detail,
+  state = "Shop",
+}: OrderDetailCardProps) {
   return (
     <>
       <div>
@@ -32,6 +37,12 @@ export default function OrderDetailCard({ detail }: OrderDetailCardProps) {
             Rp{formatNumber(detail.variant.price * (detail.quantity ?? 1))}
           </p>
         </div>
+        {state === "User" && (
+          <div className="flex items-center justify-end gap-4">
+            <Button type="outline" title="Review" />
+            <Button title="Buy More" />
+          </div>
+        )}
       </div>
     </>
   );
