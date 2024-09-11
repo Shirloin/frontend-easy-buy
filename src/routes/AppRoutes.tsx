@@ -21,6 +21,7 @@ import SellerChatPage from "../pages/seller/ChatPage";
 import ChatPage from "../pages/ChatPage";
 import SearchPage from "../pages/SearchPage";
 import ProfilePage from "../pages/ProfilePage";
+import ReviewPage from "../pages/ReviewPage";
 
 export default function AppRoutes() {
   return (
@@ -37,6 +38,7 @@ export default function AppRoutes() {
             <Route path="cart" element={<CartPage />} />
             <Route path="chat" element={<ChatPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="review" element={<ReviewPage />} />
             <Route element={<ShipmentRoute />}>
               <Route path="shipment" element={<ShipmentPage />} />
             </Route>
