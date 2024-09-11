@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 interface TabsProps {
   tabList: string[];
   children: ReactNode[];
-  tabContentStyle: string;
+  tabContentStyle?: string;
 }
 
 export default function Tabs({
