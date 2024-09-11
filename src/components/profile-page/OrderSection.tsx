@@ -10,7 +10,9 @@ export default function OrderSection() {
   return (
     <>
       <div className="flex flex-col gap-4">
-        {orders?.map((order) => <OrderCard order={order} state="User" />)}
+        {orders?.map((order) => (
+          <OrderCard key={order._id} order={order} state="User" />
+        ))}
       </div>
     </>
   );
