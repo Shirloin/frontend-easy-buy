@@ -7,10 +7,13 @@ export default function LatestProductSection() {
 
   return (
     <>
-      {isLoading &&
-        Array.from({ length: 10 }).map((_, index) => (
-          <ProductLoadingCard key={index} />
-        ))}
+      {isLoading && (
+        <div className="my-4 flex flex-wrap gap-4">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <ProductLoadingCard key={index} />
+          ))}
+        </div>
+      )}
       {products && products.length > 0 && (
         <div>
           <h1 className="text-2xl font-bold">New Product</h1>
