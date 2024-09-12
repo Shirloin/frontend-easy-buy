@@ -1,9 +1,12 @@
+import { ReactNode } from "react";
+
 interface ButtonProps {
   title?: string;
   type?: "default" | "outline" | "cancel" | "danger" | "ghost";
   size?: "small" | "large";
   className?: string;
   onClick?: () => void;
+  children?: ReactNode;
 }
 
 export default function Button({
@@ -12,8 +15,10 @@ export default function Button({
   size = "small",
   onClick,
   className = "",
+  children = null,
 }: ButtonProps) {
-  const baseStyle = " text-center rounded-md text-sm capitalize";
+  const baseStyle =
+    " text-center rounded-md text-sm capitalize flex items-center justify-center gap-1";
   let typeStyle = "";
 
   let sizeStyle = "";
@@ -53,6 +58,7 @@ export default function Button({
         onClick={onClick}
         className={`${baseStyle} ${sizeStyle} ${typeStyle} ${className}`}
       >
+        {children}
         {title}
       </button>
     </>

@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import { ITransactionDetail } from "../../interfaces/ITransaction";
 import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
+import useCreateReviewStore from "../../hooks/useCreateReviewStore";
 
 interface OrderDetailCardProps {
   detail: ITransactionDetail;
@@ -11,6 +13,13 @@ export default function OrderDetailCard({
   detail,
   state = "Shop",
 }: OrderDetailCardProps) {
+  const navigate = useNavigate();
+  const { setOrder } = useCreateReviewStore();
+
+  const handleReview = () => {
+    setOrder(detail);
+    navigate("/review");
+  };
   return (
     <>
       <div>
@@ -39,7 +48,7 @@ export default function OrderDetailCard({
         </div>
         {state === "User" && (
           <div className="flex items-center justify-end gap-4">
-            <Button type="outline" title="Review" />
+            <Button onClick={handleReview} type="outline" title="Review" />
             <Button title="Buy More" />
           </div>
         )}
