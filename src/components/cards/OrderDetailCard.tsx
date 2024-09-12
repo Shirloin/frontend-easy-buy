@@ -48,7 +48,9 @@ export default function OrderDetailCard({
         </div>
         {state === "User" && (
           <div className="flex items-center justify-end gap-4">
-            <Button onClick={handleReview} type="outline" title="Review" />
+            {!detail.reviewStatus && (
+              <Button onClick={handleReview} type="outline" title="Review" />
+            )}
             <Button title="Buy More" />
           </div>
         )}

@@ -50,3 +50,34 @@ export function useGetTransactionByUser() {
         queryFn: fetchData
     })
 }
+
+export function useGetTransactionWithNoReview() {
+    const handleError = useHandleError()
+    const fetchData = async () => {
+        try {
+            const response = await TransactionService.getTransactionWithNoReview()
+            return response.data.transactions as ITransactionHeader[]
+        } catch (error: any) {
+            handleError(error)
+        }
+    }
+    return useQuery({
+        queryKey: ["getTransactionWithNoReview"],
+        queryFn: fetchData
+    })
+}
+export function useGetTransactionWithReview() {
+    const handleError = useHandleError()
+    const fetchData = async () => {
+        try {
+            const response = await TransactionService.getTransactionWithReview()
+            return response.data.transactions as ITransactionHeader[]
+        } catch (error: any) {
+            handleError(error)
+        }
+    }
+    return useQuery({
+        queryKey: ["getTransactionWithNoReview"],
+        queryFn: fetchData
+    })
+}

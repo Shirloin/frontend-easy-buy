@@ -19,4 +19,5 @@ export interface ITransactionDetail {
     transaction: ITransactionHeader
     product: IProduct
     variant: IProductVariant
+    reviewStatus: boolean
 }

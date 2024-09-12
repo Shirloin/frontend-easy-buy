@@ -25,4 +25,18 @@ export default class TransactionService {
             },
         });
     }
+    static async getTransactionWithNoReview() {
+        return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/transaction/no-review`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("authentication"),
+            },
+        });
+    }
+    static async getTransactionWithReview() {
+        return await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/transaction/review`, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("authentication"),
+            },
+        });
+    }
 }

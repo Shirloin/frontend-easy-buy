@@ -3,13 +3,31 @@ import useCreateReviewStore from "../../hooks/useCreateReviewStore";
 import Button from "../ui/Button";
 import { SlArrowLeft } from "react-icons/sl";
 import { ChangeEvent } from "react";
+import { useCreateReview } from "../../lib/useReviewQuery";
+import toast from "react-hot-toast";
 
 export default function ReviewForm() {
   const { order, rating, setRating, status, setOrder, text, setText } =
     useCreateReviewStore();
+  const createReview = useCreateReview();
 
   const handleBack = () => {
     setOrder(null);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const message = await createReview.mutateAsync({
+        rating: rating,
+        text: text,
+        productVariant: order!.variant._id,
+        transactionDetail: order!._id,
+      });
+      setOrder(null);
+      toast.success(message);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -44,7 +62,7 @@ export default function ReviewForm() {
               setText(e.target.value)
             }
           ></textarea>
-          <Button title="Submit" />
+          <Button onClick={handleSubmit} title="Submit" />
         </div>
       </div>
     </>
