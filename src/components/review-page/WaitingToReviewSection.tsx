@@ -18,9 +18,11 @@ export default function WaitingToReviewSection() {
         ) : (
           <div>
             {orders?.map((order) => (
-              <div>
-                <div className="mb-2 flex w-full items-center justify-between">
-                  <p className="text-primary">{order._id}</p>
+              <div key={order._id}>
+                <div className="my-2 flex w-full items-center justify-between">
+                  <p className="font-semibold text-green-500">
+                    Seller: {order.shop.name}
+                  </p>
                   <p className="text-gray-400">
                     Order Date: {formatDate(order.date)}
                   </p>
