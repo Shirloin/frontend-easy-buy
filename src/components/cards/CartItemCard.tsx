@@ -10,6 +10,7 @@ import {
 } from "../../lib/useCartQuery";
 import { ICart } from "../../interfaces/ICart";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 interface CartItemCardProps {
   cart: ICart;
@@ -132,7 +133,10 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
               checked={cartItem?.isSelected ?? false}
               onChange={() => toggleItemSelection(cart._id, item._id)}
             />
-            <div className="flex items-start gap-2">
+            <Link
+              to={`/product/${item.variant.product._id}`}
+              className="flex items-start gap-2"
+            >
               <img
                 className="h-20 w-20 rounded-md object-cover"
                 src={item.variant.imageUrl}
@@ -144,7 +148,7 @@ export default function CartItemCard({ cart, item }: CartItemCardProps) {
                 <p>{item.variant.name}</p>
                 <p>Rp{formatNumber(item.variant.price)}</p>
               </div>
-            </div>
+            </Link>
           </div>
           <p className="font-bold">
             Rp{formatNumber(item.variant.price * (cartItem?.quantity ?? 1))}

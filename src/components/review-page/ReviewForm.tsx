@@ -20,13 +20,16 @@ export default function ReviewForm() {
       const message = await createReview.mutateAsync({
         rating: rating,
         text: text,
+        product: order!.product._id,
         productVariant: order!.variant._id,
         transactionDetail: order!._id,
       });
       setOrder(null);
+      setRating(0);
+      setText("");
       toast.success(message);
     } catch (error) {
-      console.log(error);
+      return;
     }
   };
 

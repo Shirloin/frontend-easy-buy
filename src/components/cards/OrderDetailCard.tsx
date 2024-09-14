@@ -3,6 +3,7 @@ import { ITransactionDetail } from "../../interfaces/ITransaction";
 import { formatNumber } from "../../util/Util";
 import Button from "../ui/Button";
 import useCreateReviewStore from "../../hooks/useCreateReviewStore";
+import { Link } from "react-router-dom";
 
 interface OrderDetailCardProps {
   detail: ITransactionDetail;
@@ -24,7 +25,10 @@ export default function OrderDetailCard({
     <>
       <div>
         <div className="flex justify-between">
-          <div className="flex items-center gap-6">
+          <Link
+            to={`/product/${detail.product._id}`}
+            className="flex items-center gap-6"
+          >
             <div className="flex items-start gap-2">
               <img
                 className="h-16 w-16 rounded-md object-cover"
@@ -41,7 +45,7 @@ export default function OrderDetailCard({
                 </p>
               </div>
             </div>
-          </div>
+          </Link>
           <p className="font-bold">
             Rp{formatNumber(detail.variant.price * (detail.quantity ?? 1))}
           </p>
