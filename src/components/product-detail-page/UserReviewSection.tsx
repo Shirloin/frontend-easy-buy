@@ -14,9 +14,7 @@ export default function UserReviewSection({
   return (
     <>
       <div className="my-8">
-        {reviews.length < 1 ? (
-          <div className="my-10 text-center text-xl font-bold">No Review</div>
-        ) : (
+        {reviews.length > 0 && (
           <div className="flex gap-8">
             <div className="my-2 max-h-40 min-w-60 rounded-md border-2 p-4 text-center">
               <h1 className="text-xl font-bold uppercase">User Reviews</h1>

@@ -57,7 +57,11 @@ export default function ProductDetailPage() {
                     isLoading={isLoading}
                   />
                   <hr />
-                  <ShopSection shop={product?.shop} isLoading={isLoading} />
+                  <ShopSection
+                    shop={product?.shop}
+                    isLoading={isLoading}
+                    productRating={productRating}
+                  />
                   <hr />
                 </div>
               </div>

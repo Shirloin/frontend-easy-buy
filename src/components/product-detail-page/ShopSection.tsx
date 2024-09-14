@@ -1,12 +1,18 @@
 import { FaStar } from "react-icons/fa";
 import { IShop } from "../../interfaces/IShop";
+import { IProductRating } from "../../interfaces/IReview";
 
 interface ShopSectionProps {
   shop?: IShop;
   isLoading?: boolean;
+  productRating?: IProductRating;
 }
 
-export default function ShopSection({ shop, isLoading }: ShopSectionProps) {
+export default function ShopSection({
+  shop,
+  isLoading,
+  productRating,
+}: ShopSectionProps) {
   if (isLoading) {
     return ShopLoading();
   }
@@ -21,17 +27,20 @@ export default function ShopSection({ shop, isLoading }: ShopSectionProps) {
           />
           <div>
             <p className="text-lg font-bold uppercase">{shop?.name}</p>
-            <div className="flex items-center">
+            <div className="flex items-center gap-1">
               <FaStar className="h-4 w-4 text-yellow-300" />
               <p>
-                5.0 <span className="text-gray-400">(50 Rating)</span>
+                {productRating?.averageRating}{" "}
+                <span className="text-gray-400">
+                  ({productRating?.userCount} Rating)
+                </span>
               </p>
             </div>
           </div>
         </div>
-        <button className="h-8 w-24 rounded-lg p-1 font-bold text-primary ring-1 ring-primary">
+        {/* <button className="h-8 w-24 rounded-lg p-1 font-bold text-primary ring-1 ring-primary">
           Follow
-        </button>
+        </button> */}
       </div>
     </>
   );
