@@ -27,7 +27,7 @@ export default function ChatBubbleStart({ chat }: ChatBubbleStart) {
           </time>
         </div>
         <div className="chat-bubble">{chat.text}</div>
-        <div className="chat-footer opacity-50">Delivered</div>
+        {/* <div className="chat-footer opacity-50">Delivered</div> */}
       </div>
     </>
   );

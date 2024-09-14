@@ -27,7 +27,7 @@ export default function ChatBubbleEnd({ chat }: ChatBubbleEndProps) {
           </time>
         </div>
         <div className="chat-bubble">{chat.text}</div>
-        <div className="chat-footer opacity-50">Seen at 12:46</div>
+        {/* <div className="chat-footer opacity-50">Seen at 12:46</div> */}
       </div>
     </>
   );

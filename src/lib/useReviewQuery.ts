@@ -50,7 +50,6 @@ export function useGetProductRating(productId: string) {
             const res: IProductRating = data
             return res
         } catch (error) {
-            console.log(error)
             return
         }
     }
