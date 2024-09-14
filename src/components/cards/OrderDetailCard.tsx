@@ -51,7 +51,6 @@ export default function OrderDetailCard({
             {!detail.reviewStatus && (
               <Button onClick={handleReview} type="outline" title="Review" />
             )}
-            <Button title="Buy More" />
           </div>
         )}
       </div>
