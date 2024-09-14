@@ -42,7 +42,6 @@ export function useGetReviewByProduct(productId: string) {
 }
 
 export function useGetProductRating(productId: string) {
-    const handleError = useHandleError()
 
     const getProductRating = async () => {
         try {
@@ -51,7 +50,8 @@ export function useGetProductRating(productId: string) {
             const res: IProductRating = data
             return res
         } catch (error) {
-            handleError(error)
+            console.log(error)
+            return
         }
     }
     return useQuery({
