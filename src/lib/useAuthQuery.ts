@@ -5,7 +5,7 @@ import ShopService from "../services/ShopService";
 import { useHandleError } from "../hooks/useHandleError";
 
 export const useValidateToken = () => {
-    const { setUser, setHasShop, setShop } = useAuth();
+    const { setUser, setHasShop, setShop, logOut } = useAuth();
     const handleError = useHandleError();
     const validateToken = async () => {
         try {
@@ -16,6 +16,7 @@ export const useValidateToken = () => {
             setHasShop(user.shop !== undefined)
             return user
         } catch (error: any) {
+            logOut()
             handleError(error)
         }
         return {}
