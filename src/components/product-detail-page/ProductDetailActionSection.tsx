@@ -1,7 +1,5 @@
 import { ChangeEvent } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { IoIosHeartEmpty, IoMdShare } from "react-icons/io";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { useProductDetailStore } from "../../hooks/useProductDetailStore";
 import { formatNumber } from "../../util/Util";
 import { useAddToCart } from "../../lib/useCartQuery";
@@ -120,23 +118,11 @@ export default function ProductDetailActionSection({
         </div>
         <div className="mt-6 flex flex-col gap-2">
           <Button title="Add To Cart" onClick={handleAddToCart} />
-        </div>
-        <div className="mt-4 flex justify-between">
-          <button
+          <Button
+            title="Ask about this product"
             onClick={handleChat}
-            className="flex items-center justify-center px-2 text-center text-sm font-bold"
-          >
-            <IoChatboxEllipsesOutline className="mr-2 h-4 w-4" />
-            <p>Chat</p>
-          </button>
-          <button className="flex items-center justify-center px-2 text-center text-sm font-bold">
-            <IoIosHeartEmpty className="mr-2 h-4 w-4" />
-            <p>Wishlist</p>
-          </button>
-          <button className="flex items-center justify-center px-2 text-center text-sm font-bold">
-            <IoMdShare className="mr-2 h-4 w-4" />
-            <p>Share</p>
-          </button>
+            type="outline"
+          />
         </div>
       </div>
     </>

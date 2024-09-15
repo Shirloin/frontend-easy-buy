@@ -18,7 +18,7 @@ export default function Button({
   children = null,
 }: ButtonProps) {
   const baseStyle =
-    " text-center rounded-md text-sm capitalize flex items-center justify-center gap-1";
+    "text-center rounded-md text-sm capitalize flex items-center justify-center gap-1";
   let typeStyle = "";
 
   let sizeStyle = "";
@@ -59,7 +59,7 @@ export default function Button({
         className={`${baseStyle} ${sizeStyle} ${typeStyle} ${className}`}
       >
         {children}
-        {title}
+        <p>{title}</p>
       </button>
     </>
   );
