@@ -1,7 +1,6 @@
 import { IoPersonOutline } from "react-icons/io5";
 import AddressSection from "../components/profile-page/AddressSection";
 import BiodataSection from "../components/profile-page/BiodataSection";
-import NotificationSection from "../components/profile-page/NotificationSection";
 import Tabs from "../components/Tabs";
 import { useAuth } from "../contexts/AuthContext";
 import OrderSection from "../components/profile-page/OrderSection";
@@ -10,7 +9,7 @@ import Button from "../components/ui/Button";
 export default function ProfilePage() {
   const { user, logOut } = useAuth();
 
-  const tabList = ["Biodata", "Address List", "Notification", "Order"];
+  const tabList = ["Biodata", "Address List", "Order"];
 
   return (
     <>
@@ -23,7 +22,6 @@ export default function ProfilePage() {
         <Tabs tabList={tabList}>
           <BiodataSection />
           <AddressSection />
-          <NotificationSection />
           <OrderSection />
         </Tabs>
       </div>

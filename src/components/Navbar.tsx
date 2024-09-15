@@ -1,6 +1,5 @@
 import { IoCartOutline } from "react-icons/io5";
 import { useAuth } from "../contexts/AuthContext";
-import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiMail, CiShop } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -26,13 +25,13 @@ export default function Navbar() {
     <>
       <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-6 border-b bg-white px-6 py-4 sm:gap-x-10 sm:px-12">
         <Link
-          className="hidden w-fit font-serif text-2xl font-semibold text-primary md:flex"
+          className="flex font-serif text-2xl font-semibold text-primary"
           to="/"
         >
-          <p>Easy Buy</p>
+          <p>EasyBuy</p>
         </Link>
         <form
-          className="w-full sm:max-w-xl lg:max-w-3xl"
+          className="w-full min-w-36 sm:max-w-xl xl:max-w-3xl"
           onSubmit={handleSubmit}
         >
           <input
@@ -55,9 +54,6 @@ export default function Navbar() {
                 >
                   <IoCartOutline className="h-6 w-6" />
                 </Link>
-                <button className="relative rounded-lg p-2 hover:bg-slate-200">
-                  <IoIosNotificationsOutline className="h-6 w-6" />
-                </button>
                 <Link
                   to={"/chat"}
                   className="relative rounded-lg p-2 hover:bg-slate-200"

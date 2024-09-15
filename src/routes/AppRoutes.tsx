@@ -6,7 +6,6 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import Layout from "../components/Layout";
 import { GuestRoute } from "./GuestRoute";
 import SellerLayout from "../components/seller/SellerLayout";
-import SellerDashboardPage from "../pages/seller/DashboardPage";
 import AddProductPage from "../pages/seller/AddProductPage";
 import { SellerRoute } from "./SellerRoute";
 import ProductPage from "../pages/seller/ProductPage";
@@ -45,7 +44,6 @@ export default function AppRoutes() {
             <Route path="seller" element={<SellerLayout />}>
               <Route element={<SellerRoute />}>
                 {/* Seller Route */}
-                <Route index element={<SellerDashboardPage />} />
                 <Route path="chat" element={<SellerChatPage />} />
                 <Route path="add-product" element={<AddProductPage />} />
                 <Route path="products" element={<ProductPage />} />

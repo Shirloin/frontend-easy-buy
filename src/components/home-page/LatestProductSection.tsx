@@ -15,8 +15,8 @@ export default function LatestProductSection() {
         </div>
       )}
       {products && products.length > 0 && (
-        <div>
-          <h1 className="text-2xl font-bold">New Product</h1>
+        <div className="min-w-[500px]">
+          <h1 className="text-lg font-bold lg:text-2xl">New Product</h1>
           <div className="my-4 flex flex-wrap gap-4">
             {products &&
               products.map((product) => (

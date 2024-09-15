@@ -22,7 +22,7 @@ export default function SearchPage() {
             <ProductLoadingCard key={index} />
           ))}
         {products && products.length > 0 && (
-          <div className="my-4 flex flex-wrap gap-4">
+          <div className="my-4 flex min-w-[500px] flex-wrap gap-4">
             {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />

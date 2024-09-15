@@ -22,8 +22,15 @@ export const useSellerProductStore = create<SellerProductStoreState & SellerProd
     })),
     filter: (searchQuery) => set((state) => ({
         searchQuery,
-        filteredProducts: state.products.filter((product) =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        filteredProducts: state.products.filter((product: IProduct) =>
+            [
+                product.name,
+                product.description,
+                product.productCategory.name
+            ]
+                .some((field) =>
+                    field.toLocaleLowerCase().includes(searchQuery.toLowerCase())
+                )
         ),
     })),
 }));
