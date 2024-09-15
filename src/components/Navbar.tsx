@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed z-50 flex h-20 w-full items-center justify-between gap-x-6 border-b bg-white px-6 py-4 sm:gap-x-10 sm:px-12">
+      <nav className="fixed top-0 z-50 flex h-20 w-full items-center justify-between gap-x-6 border-b bg-white px-6 py-4 sm:gap-x-10 sm:px-12">
         <Link
           className="flex font-serif text-2xl font-semibold text-primary"
           to="/"

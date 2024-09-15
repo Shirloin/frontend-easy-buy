@@ -5,7 +5,7 @@ export default function BiodataSection() {
   return (
     <>
       <div className="flex h-full w-full gap-6">
-        <div className="shadow-all h-full w-72 rounded-xl border p-4 shadow-md">
+        <div className="shadow-all h-full w-72 min-w-72 rounded-xl border p-4 shadow-md">
           <img className="h-80 w-full" src={user?.imageUrl} alt="" />
         </div>
         <div className="flex flex-col gap-4">
