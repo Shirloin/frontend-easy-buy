@@ -6,7 +6,7 @@ export default function Layout() {
     <>
       <div className="flex min-h-screen w-full min-w-full flex-col">
         <Navbar />
-        <div className="mt-20 flex-grow overflow-auto">
+        <div className="mt-20 flex-grow">
           <Outlet />
         </div>
       </div>
