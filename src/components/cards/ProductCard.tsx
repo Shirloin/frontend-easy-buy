@@ -10,7 +10,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <>
       <a
         href={`/product/${product?._id}`}
-        className="min-h-72 w-36 rounded-md bg-white shadow-md lg:h-80 lg:w-44"
+        className="h-72 min-h-72 w-36 rounded-md bg-white shadow-md lg:h-80 lg:w-44"
       >
         <img
           className="h-36 w-36 rounded-md object-cover lg:h-44 lg:w-44"
