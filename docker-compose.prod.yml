@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  frontend:
+    image: riccardo006/frontend-easy-buy:latest
+    container_name: easy-buy-frontend
+    ports:
+      - "7654:3000"
+    env_file:
+      - .env
