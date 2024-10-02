@@ -18,6 +18,7 @@ export default function CreateShopPage() {
         const url = reader.result as string;
         setBannerImage(url);
       };
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
   const onShopImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +27,9 @@ export default function CreateShopPage() {
       reader.onloadend = () => {
         const url = reader.result as string;
         setShopImage(url);
+        console.log(url);
       };
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
@@ -42,7 +45,7 @@ export default function CreateShopPage() {
     } catch (error) {
       console.log(error);
     } finally {
-      navigate("/seller");
+      navigate("/seller/products");
     }
   };
 

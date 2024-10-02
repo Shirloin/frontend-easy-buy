@@ -63,7 +63,7 @@ export default function Navbar() {
               </div>
               <div className="flex">
                 <Link
-                  to={"/seller"}
+                  to={"/seller/products"}
                   className="relative flex max-w-32 items-center justify-center gap-2 rounded-lg p-2 hover:bg-slate-200"
                 >
                   <CiShop className="min-h-6 min-w-6" />

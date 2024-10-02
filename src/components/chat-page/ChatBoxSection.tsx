@@ -80,7 +80,6 @@ export default function ChatBoxSection({ state }: ChatBoxSectionProps) {
       });
       setText("");
     } catch (error: any) {
-      console.log(error);
       toast.error(error.message);
     }
   };

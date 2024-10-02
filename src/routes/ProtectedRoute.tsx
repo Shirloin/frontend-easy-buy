@@ -13,7 +13,7 @@ export const ProtectedRoute = () => {
   }
 
   if (location.pathname === "/create-shop" && hasShop) {
-    return <Navigate to="/seller" replace />;
+    return <Navigate to="/seller/products" replace />;
   }
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;

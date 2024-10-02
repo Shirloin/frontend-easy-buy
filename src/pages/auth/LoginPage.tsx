@@ -27,9 +27,9 @@ export default function LoginPage() {
         setUser(res.data.user);
         setShop(res.data.user.shop);
         toast.success(res.data.message);
+        navigate("/");
       }
     } catch (error: any) {
-      console.log(error);
       if (error.response) {
         const msg = error.response.data.message;
         toast.error(msg);

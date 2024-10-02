@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] =
     useState<boolean>(!!initialToken);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasShop, setHasShop_] = useState<boolean>(user?.shop !== null);
+  const [hasShop, setHasShop_] = useState<boolean>(false);
 
   const setToken = (newToken: string) => {
     setToken_(newToken);
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = "Bearer " + token;
       setIsAuthenticated(true);
-      setHasShop_(user?.shop !== null);
+      setHasShop_(user?.shop !== undefined);
       localStorage.setItem("authentication", token);
     } else {
       delete axios.defaults.headers.common["Authorization"];
