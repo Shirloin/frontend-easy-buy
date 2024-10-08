@@ -25,8 +25,8 @@ import ReviewPage from "../pages/ReviewPage";
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route element={<DefaultRoute />}>
+      <Route element={<DefaultRoute />}>
+        <Route path="/" element={<Layout />}>
           {/* Public Route */}
           <Route index element={<HomePage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
@@ -41,8 +41,8 @@ export default function AppRoutes() {
             <Route element={<ShipmentRoute />}>
               <Route path="shipment" element={<ShipmentPage />} />
             </Route>
-            <Route path="seller" element={<SellerLayout />}>
-              <Route element={<SellerRoute />}>
+            <Route element={<SellerRoute />}>
+              <Route path="seller" element={<SellerLayout />}>
                 {/* Seller Route */}
                 <Route path="chat" element={<SellerChatPage />} />
                 <Route path="add-product" element={<AddProductPage />} />
