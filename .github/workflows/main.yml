@@ -50,7 +50,7 @@ jobs:
           username: ${{secrets.VPS_USERNAME}}
           password: ${{secrets.VPS_PASSWORD}}
           script: |
-            cd frontend-easy-buy
+            cd easy-buy-frontend
             curl -o docker-compose.prod.yml https://raw.githubusercontent.com/shirloin/frontend-easy-buy/main/docker-compose.prod.yml
             docker pull ${{secrets.DOCKERHUB_USERNAME}}/frontend-easy-buy:latest
             docker compose -f docker-compose.prod.yml up -d
