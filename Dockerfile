@@ -1,17 +1,31 @@
-FROM node:18-alpine
+# Stage 1: Build the React app
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
+# Copy package files
 COPY package.json package-lock.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy source code
 COPY . .
 
+# Build the app
 RUN npm run build
 
-RUN npm i -g serve
+# Stage 2: Serve with nginx
+FROM nginx:alpine
 
-EXPOSE 7654
+# Copy built files from builder stage
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-CMD ["serve", "-s", "dist"]
+# Copy nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 3000 (to match docker-compose mapping)
+EXPOSE 3000
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
