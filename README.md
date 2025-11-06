@@ -4,19 +4,42 @@ Easy Buy is a modern, full-featured e-commerce platform that provides a seamless
 
 ## 📋 Table of Contents
 
+- [Live Demo](#live-demo)
 - [Brief Description](#brief-description)
 - [Features](#features)
 - [Application Details](#application-details)
 - [Tech Stack](#tech-stack)
 - [Deployment with Docker](#deployment-with-docker)
 - [Running Locally](#running-locally)
-- [Live Demo](#live-demo)
+
+## 🌐 Live Demo
+
+Experience Easy Buy live at:
+
+**🔗 [https://easy-buy.shirloin.my.id](https://easy-buy.shirloin.my.id)**
+
+The live demo showcases all features of the application including:
+
+- Product browsing and search
+- Shopping cart functionality
+- User authentication
+- Order placement and tracking
+- Real-time chat
+- Review system
+- Seller dashboard (requires seller account)
+
+### Demo Accounts
+
+_Note: Demo account credentials would typically be provided here if available._
+
+---
 
 ## 🎯 Brief Description
 
 Easy Buy is a comprehensive e-commerce solution that connects buyers and sellers in a user-friendly marketplace. The platform enables customers to browse products, manage their shopping cart, place orders, track shipments, communicate with sellers via real-time chat, and leave product reviews. Sellers can create shops, manage their product catalog, handle orders, and communicate with customers.
 
 Key highlights:
+
 - **User-Friendly Interface**: Clean, modern design built with Tailwind CSS and DaisyUI
 - **Real-Time Communication**: Socket.io-powered chat system for instant messaging
 - **Product Management**: Comprehensive product catalog with variants, images, and categories
@@ -29,26 +52,31 @@ Key highlights:
 ### Public Pages
 
 #### 🏠 Home Page
+
 - **Latest Products Display**: Browse the most recent products added to the platform
 - **Product Grid Layout**: Responsive grid displaying product cards with images, prices, and ratings
 - **Quick Navigation**: Easy access to search and product details
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Home Page Screenshot Here]
 ```
 
 #### 🔍 Search Page
+
 - **Product Search**: Search functionality to find products by name or keyword
 - **Search Results**: Display search results in a responsive grid layout
 - **Query Parameters**: URL-based search query handling
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Search Page Screenshot Here]
 ```
 
 #### 📦 Product Detail Page
+
 - **Product Images**: Multiple product images with variant selection
 - **Product Information**: Detailed product description, price, and specifications
 - **Product Variants**: Selection of different product variants (size, color, etc.)
@@ -58,6 +86,7 @@ Key highlights:
 - **Add to Cart**: Quick add to cart functionality
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Product Detail Page Screenshot Here]
 ```
@@ -65,6 +94,7 @@ Key highlights:
 ### Protected User Pages
 
 #### 🛒 Cart Page
+
 - **Cart Management**: View and manage all items in the shopping cart
 - **Quantity Control**: Increase or decrease product quantities
 - **Item Removal**: Remove items from cart
@@ -72,22 +102,26 @@ Key highlights:
 - **Checkout Preparation**: Review items before proceeding to shipment
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Cart Page Screenshot Here]
 ```
 
 #### 📮 Shipment Page
+
 - **Address Selection**: Choose or add shipping addresses
 - **Order Summary**: Review selected items and quantities
 - **Shipping Details**: Configure shipping information
 - **Order Placement**: Complete the purchase process
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Shipment Page Screenshot Here]
 ```
 
 #### 💬 Chat Page (User)
+
 - **Chat Rooms**: List of all active chat conversations
 - **Real-Time Messaging**: Socket.io-powered instant messaging
 - **Seller Communication**: Chat with sellers about products or orders
@@ -95,11 +129,13 @@ Key highlights:
 - **Chat Interface**: Clean, modern chat UI with message bubbles
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Chat Page Screenshot Here]
 ```
 
 #### 👤 Profile Page
+
 - **Biodata Section**: View and edit user profile information
 - **Address Management**:
   - View saved addresses
@@ -110,17 +146,20 @@ Key highlights:
 - **Order Tracking**: Track order status and details
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Profile Page Screenshot Here]
 ```
 
 #### ⭐ Review Page
+
 - **Waiting to Review**: List of completed orders awaiting review
 - **My Reviews**: View all submitted product reviews
 - **Review Submission**: Submit reviews with ratings and comments
 - **Review Management**: Edit or update existing reviews
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Review Page Screenshot Here]
 ```
@@ -128,26 +167,31 @@ Key highlights:
 ### Seller Pages
 
 #### 🏪 Create Shop Page
+
 - **Shop Registration**: Create a new seller shop
 - **Shop Information**: Set up shop details and description
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Create Shop Page Screenshot Here]
 ```
 
 #### 📊 Product Management Page
+
 - **Product List**: View all products in the seller's shop
 - **Product Search**: Search and filter products
 - **Product Actions**: Edit, delete, or manage product status
 - **Product Statistics**: View product performance metrics
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Product Management Page Screenshot Here]
 ```
 
 #### ➕ Add Product Page
+
 - **Product Information Form**:
   - Product name and description
   - Category selection
@@ -157,27 +201,32 @@ Key highlights:
 - **Product Details**: Configure detailed product specifications
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Add Product Page Screenshot Here]
 ```
 
 #### 📋 Order Management Page
+
 - **Order List**: View all orders received
 - **Order Status**: Track and update order status
 - **Order Details**: View detailed order information
 - **Customer Information**: Access customer details for each order
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Order Management Page Screenshot Here]
 ```
 
 #### 💬 Seller Chat Page
+
 - **Customer Conversations**: List of all customer chat conversations
 - **Real-Time Messaging**: Respond to customer inquiries instantly
 - **Order-Related Chats**: Manage chats related to specific orders
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Seller Chat Page Screenshot Here]
 ```
@@ -185,21 +234,25 @@ Key highlights:
 ### Authentication Pages
 
 #### 🔐 Login Page
+
 - **User Authentication**: Secure login with email/username and password
 - **Form Validation**: Input validation and error handling
 - **Remember Me**: Optional session persistence
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Login Page Screenshot Here]
 ```
 
 #### 📝 Register Page
+
 - **User Registration**: Create new user accounts
 - **Form Validation**: Comprehensive input validation
 - **Account Creation**: Set up user profile during registration
 
 **Screenshot Placeholder:**
+
 ```
 [Insert Register Page Screenshot Here]
 ```
@@ -207,7 +260,9 @@ Key highlights:
 ## 📱 Application Details
 
 ### Architecture
+
 Easy Buy follows a modern React application architecture with:
+
 - **Component-Based Structure**: Modular, reusable components
 - **State Management**: Zustand for client-side state management
 - **Data Fetching**: TanStack Query (React Query) for server state management
@@ -215,6 +270,7 @@ Easy Buy follows a modern React application architecture with:
 - **Real-Time Features**: Socket.io for chat functionality
 
 ### Key Components
+
 - **Layout Components**: Main layout with navbar and footer
 - **Card Components**: Reusable card components for products, orders, reviews, etc.
 - **Modal Components**: Address management modals
@@ -222,12 +278,15 @@ Easy Buy follows a modern React application architecture with:
 - **UI Components**: Buttons, tabs, and other UI elements
 
 ### State Management
+
 - **Zustand Stores**: Local state management for cart, chat, product details, etc.
 - **React Query**: Server state management and caching
 - **Context API**: Authentication context for user management
 
 ### API Integration
+
 The application integrates with a RESTful backend API for:
+
 - User authentication and authorization
 - Product management
 - Cart operations
@@ -237,6 +296,7 @@ The application integrates with a RESTful backend API for:
 - Address management
 
 ### Security Features
+
 - **Protected Routes**: Route guards for authenticated users
 - **Seller Routes**: Special route protection for seller features
 - **Guest Routes**: Redirect authenticated users away from login/register pages
@@ -245,38 +305,45 @@ The application integrates with a RESTful backend API for:
 ## 🛠 Tech Stack
 
 ### Frontend Framework & Libraries
+
 - **React 18.3.1**: UI library
 - **TypeScript 5.2.2**: Type-safe JavaScript
 - **Vite 5.3.1**: Build tool and development server
 
 ### Routing & State Management
+
 - **React Router DOM 6.24.1**: Client-side routing
 - **Zustand 4.5.4**: Lightweight state management
 - **TanStack React Query 5.51.23**: Server state management and data fetching
 
 ### Styling
+
 - **Tailwind CSS 3.4.4**: Utility-first CSS framework
 - **DaisyUI 4.12.10**: Component library for Tailwind CSS
 - **PostCSS 8.4.39**: CSS processing
 - **Autoprefixer 10.4.19**: CSS vendor prefixing
 
 ### HTTP Client & Real-Time
+
 - **Axios 1.7.2**: HTTP client for API requests
 - **Socket.io Client 4.7.5**: Real-time bidirectional communication
 
 ### UI Components & Utilities
+
 - **React Icons 5.2.1**: Icon library
 - **React Hot Toast 2.4.1**: Toast notifications
 - **React Simple Star Rating 5.1.7**: Star rating component
 - **Swiper 11.1.9**: Touch slider/carousel
 
 ### Development Tools
+
 - **ESLint 8.57.0**: Code linting
 - **TypeScript ESLint**: TypeScript-specific linting rules
 - **Prettier 3.3.3**: Code formatter
 - **Prettier Plugin Tailwind CSS**: Tailwind class sorting
 
 ### Deployment
+
 - **Docker**: Containerization
 - **Nginx 1.27.4**: Web server for production
 - **Node.js 22**: Runtime environment
@@ -290,6 +357,7 @@ Easy Buy uses Docker for containerized deployment. The application is built with
 The Dockerfile uses a multi-stage build process:
 
 1. **Build Stage**:
+
    - Uses `node:22-alpine` as base image
    - Installs dependencies
    - Builds the production-ready application
@@ -378,12 +446,14 @@ The application will be served on port 80 inside the container (configurable via
 ### Installation Steps
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd easy-buy-frontend
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -391,6 +461,7 @@ The application will be served on port 80 inside the container (configurable via
 3. **Create environment file**
 
    Create a `.env` file in the root directory:
+
    ```env
    VITE_API_BASE_URL=http://localhost:3000/api
    VITE_SOCKET_URL=http://localhost:3000
@@ -400,6 +471,7 @@ The application will be served on port 80 inside the container (configurable via
    Replace the URLs with your actual backend API and Socket.io server URLs.
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -407,6 +479,7 @@ The application will be served on port 80 inside the container (configurable via
    The application will be available at `http://localhost:5173` (default Vite port).
 
 5. **Build for production**
+
    ```bash
    npm run build
    ```
@@ -435,12 +508,14 @@ The application will be served on port 80 inside the container (configurable via
 ### Troubleshooting
 
 **Port already in use:**
+
 ```bash
 # Kill process on port 5173 (or change port in vite.config.ts)
 npm run dev -- --port 3000
 ```
 
 **Dependencies issues:**
+
 ```bash
 # Clear node_modules and reinstall
 rm -rf node_modules package-lock.json
@@ -448,42 +523,10 @@ npm install
 ```
 
 **Build errors:**
+
 - Ensure all TypeScript errors are resolved
 - Check that all environment variables are set
 - Verify that the backend API is accessible
-
-## 🌐 Live Demo
-
-Experience Easy Buy live at:
-
-**🔗 [https://easy-buy.shirloin.my.id](https://easy-buy.shirloin.my.id)**
-
-The live demo showcases all features of the application including:
-- Product browsing and search
-- Shopping cart functionality
-- User authentication
-- Order placement and tracking
-- Real-time chat
-- Review system
-- Seller dashboard (requires seller account)
-
-### Demo Accounts
-
-*Note: Demo account credentials would typically be provided here if available.*
-
----
-
-## 📝 License
-
-[Add your license information here]
-
-## 👥 Contributors
-
-[Add contributor information here]
-
-## 📧 Contact
-
-[Add contact information here]
 
 ---
 
