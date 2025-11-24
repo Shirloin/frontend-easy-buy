@@ -149,9 +149,7 @@ Key highlights:
 
 **Screenshot Placeholder:**
 
-```
-[Insert Create Shop Page Screenshot Here]
-```
+<img src="./src/assets/pages/create-shop-page.png" alt="Create Shop Page" width="800" />
 
 #### 📊 Product Management Page
 
