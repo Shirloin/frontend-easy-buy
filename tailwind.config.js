@@ -14,9 +14,9 @@ export default {
         'top': '0 -5px 5px -5px rgba(0, 0, 0, 0.1)',
         'bottom': '0 5px 5px -5px rgba(0, 0, 0, 0.1)',
         'all-sides': `
-          -5px 0 5px -5px rgba(0, 0, 0, 0.15), 
-          5px 0 5px -5px rgba(0, 0, 0, 0.15), 
-          0 -5px 5px -5px rgba(0, 0, 0, 0.15), 
+          -5px 0 5px -5px rgba(0, 0, 0, 0.15),
+          5px 0 5px -5px rgba(0, 0, 0, 0.15),
+          0 -5px 5px -5px rgba(0, 0, 0, 0.15),
           0 5px 5px -5px rgba(0, 0, 0, 0.15)
         `,
       },
@@ -31,5 +31,15 @@ export default {
   plugins: [
     daisyui
   ],
+  daisyui: {
+    themes: ["light"],
+    darkTheme: false,
+    base: true,
+    styled: true,
+    utils: true,
+    prefix: "",
+    logs: true,
+    themeRoot: ":root",
+  },
 }
 

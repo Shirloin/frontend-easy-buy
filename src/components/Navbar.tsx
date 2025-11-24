@@ -1,23 +1,19 @@
 import { IoCartOutline } from "react-icons/io5";
 import { useAuth } from "../contexts/AuthContext";
 import { CiMail, CiShop } from "react-icons/ci";
-import { Link, useNavigate } from "react-router-dom";
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useQueryClient } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { ChangeEvent, FormEvent } from "react";
+import useSearchStore from "../hooks/useSearchStore";
 
 export default function Navbar() {
   const { isAuthenticated, user } = useAuth();
 
-  const [search, setSearch] = useState("");
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const { search, setSearch, clearSearch } = useSearchStore();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (search.length > 0) {
-      navigate(`/search?query=${search}`);
-      setSearch("");
-      queryClient.invalidateQueries({ queryKey: ["searchProduct"] });
+      clearSearch();
     }
   };
 

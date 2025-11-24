@@ -83,4 +83,14 @@ export default class ProductService {
       },
     })
   }
+
+  static async getAllProducts(page: number = 1, limit: number = 10, search?: string) {
+    return axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/product`, {
+      params: {
+        page,
+        limit,
+        ...(search && { search }),
+      },
+    })
+  }
 }

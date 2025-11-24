@@ -171,3 +171,23 @@ export function useGetRelatedProducts(categoryId: string) {
     })
 }
 
+export function useGetAllProducts(page: number = 1, limit: number = 10, search?: string) {
+    const handleError = useHandleError()
+    const fetchData = async () => {
+        try {
+            const response = await ProductService.getAllProducts(page, limit, search)
+            return {
+                products: response.data.products as IProduct[],
+                pagination: response.data.pagination
+            }
+        } catch (error) {
+            handleError(error)
+            throw new Error("Failed to fetch all products")
+        }
+    }
+    return useQuery({
+        queryKey: ['allProducts', page, limit, search],
+        queryFn: fetchData
+    })
+}
+

@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 export default function Layout() {
   return (
     <>
-      <div className="flex min-h-screen w-full min-w-full flex-col">
+      <div className="flex min-h-screen w-full min-w-full flex-col bg-white">
         <Navbar />
         <div className="mt-20 flex flex-grow">
           <Outlet />
