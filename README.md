@@ -57,23 +57,7 @@ Key highlights:
 - **Product Grid Layout**: Responsive grid displaying product cards with images, prices, and ratings
 - **Quick Navigation**: Easy access to search and product details
 
-**Screenshot Placeholder:**
-
-```
-[Insert Home Page Screenshot Here]
-```
-
-#### 🔍 Search Page
-
-- **Product Search**: Search functionality to find products by name or keyword
-- **Search Results**: Display search results in a responsive grid layout
-- **Query Parameters**: URL-based search query handling
-
-**Screenshot Placeholder:**
-
-```
-[Insert Search Page Screenshot Here]
-```
+<img src="./src/assets/pages/home-page.png" alt="Home Page" width="800" />
 
 #### 📦 Product Detail Page
 
@@ -85,11 +69,11 @@ Key highlights:
 - **Related Products**: Suggestions for similar products in the same category
 - **Add to Cart**: Quick add to cart functionality
 
-**Screenshot Placeholder:**
+<img src="./src/assets/pages/product-detail-page.png" alt="Product Detail Page" width="800" />
 
-```
-[Insert Product Detail Page Screenshot Here]
-```
+<img src="./src/assets/pages/product-detail-page-with-review.png" alt="Product Detail Page with Reviews" width="800" />
+
+<img src="./src/assets/pages/product-detail-page-with-related-product.png" alt="Product Detail Page with Related Products" width="800" />
 
 ### Protected User Pages
 
@@ -101,11 +85,7 @@ Key highlights:
 - **Price Calculation**: Automatic total price calculation
 - **Checkout Preparation**: Review items before proceeding to shipment
 
-**Screenshot Placeholder:**
-
-```
-[Insert Cart Page Screenshot Here]
-```
+<img src="./src/assets/pages/cart-page.png" alt="Cart Page" width="800" />
 
 #### 📮 Shipment Page
 
@@ -114,11 +94,11 @@ Key highlights:
 - **Shipping Details**: Configure shipping information
 - **Order Placement**: Complete the purchase process
 
-**Screenshot Placeholder:**
+<img src="./src/assets/pages/shipment-page.png" alt="Shipment Page" width="800" />
 
-```
-[Insert Shipment Page Screenshot Here]
-```
+<img src="./src/assets/pages/shipment-page-with-address-list.png" alt="Shipment Page with Address List" width="800" />
+
+<img src="./src/assets/pages/shipment-page-with-address-selected.png" alt="Shipment Page with Address Selected" width="800" />
 
 #### 💬 Chat Page (User)
 
@@ -128,11 +108,7 @@ Key highlights:
 - **Message History**: View previous conversation history
 - **Chat Interface**: Clean, modern chat UI with message bubbles
 
-**Screenshot Placeholder:**
-
-```
-[Insert Chat Page Screenshot Here]
-```
+<img src="./src/assets/pages/chat-page.png" alt="Chat Page" width="800" />
 
 #### 👤 Profile Page
 
@@ -145,11 +121,11 @@ Key highlights:
 - **Order History**: View all past and current orders
 - **Order Tracking**: Track order status and details
 
-**Screenshot Placeholder:**
+<img src="./src/assets/pages/profile-biodata-page.png" alt="Profile Biodata Page" width="800" />
 
-```
-[Insert Profile Page Screenshot Here]
-```
+<img src="./src/assets/pages/profile-address-list-page.png" alt="Profile Address List Page" width="800" />
+
+<img src="./src/assets/pages/profile-order-history-list-page.png" alt="Profile Order History List Page" width="800" />
 
 #### ⭐ Review Page
 
@@ -158,11 +134,11 @@ Key highlights:
 - **Review Submission**: Submit reviews with ratings and comments
 - **Review Management**: Edit or update existing reviews
 
-**Screenshot Placeholder:**
+<img src="./src/assets/pages/waiting-to-review-page.png" alt="Waiting to Review Page" width="800" />
 
-```
-[Insert Review Page Screenshot Here]
-```
+<img src="./src/assets/pages/my-review-page.png" alt="My Review Page" width="800" />
+
+<img src="./src/assets/pages/product-review-page.png" alt="Product Review Page" width="800" />
 
 ### Seller Pages
 
@@ -184,11 +160,7 @@ Key highlights:
 - **Product Actions**: Edit, delete, or manage product status
 - **Product Statistics**: View product performance metrics
 
-**Screenshot Placeholder:**
-
-```
-[Insert Product Management Page Screenshot Here]
-```
+<img src="./src/assets/pages/seller-all-product-page.png" alt="Seller All Product Page" width="800" />
 
 #### ➕ Add Product Page
 
@@ -200,11 +172,9 @@ Key highlights:
 - **Product Images**: Upload multiple product images
 - **Product Details**: Configure detailed product specifications
 
-**Screenshot Placeholder:**
+<img src="./src/assets/pages/seller-add-product-1-page.png" alt="Seller Add Product Page 1" width="800" />
 
-```
-[Insert Add Product Page Screenshot Here]
-```
+<img src="./src/assets/pages/seller-add-product-2-page.png" alt="Seller Add Product Page 2" width="800" />
 
 #### 📋 Order Management Page
 
@@ -213,11 +183,7 @@ Key highlights:
 - **Order Details**: View detailed order information
 - **Customer Information**: Access customer details for each order
 
-**Screenshot Placeholder:**
-
-```
-[Insert Order Management Page Screenshot Here]
-```
+<img src="./src/assets/pages/seller-order-page.png" alt="Seller Order Page" width="800" />
 
 #### 💬 Seller Chat Page
 
@@ -225,11 +191,7 @@ Key highlights:
 - **Real-Time Messaging**: Respond to customer inquiries instantly
 - **Order-Related Chats**: Manage chats related to specific orders
 
-**Screenshot Placeholder:**
-
-```
-[Insert Seller Chat Page Screenshot Here]
-```
+<img src="./src/assets/pages/seller-chat-page.png" alt="Seller Chat Page" width="800" />
 
 ### Authentication Pages
 
@@ -239,11 +201,7 @@ Key highlights:
 - **Form Validation**: Input validation and error handling
 - **Remember Me**: Optional session persistence
 
-**Screenshot Placeholder:**
-
-```
-[Insert Login Page Screenshot Here]
-```
+<img src="./src/assets/pages/login-page.png" alt="Login Page" width="800" />
 
 #### 📝 Register Page
 
@@ -251,11 +209,7 @@ Key highlights:
 - **Form Validation**: Comprehensive input validation
 - **Account Creation**: Set up user profile during registration
 
-**Screenshot Placeholder:**
-
-```
-[Insert Register Page Screenshot Here]
-```
+<img src="./src/assets/pages/register-page.png" alt="Register Page" width="800" />
 
 ## 📱 Application Details
 
